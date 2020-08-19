@@ -1,6 +1,53 @@
 package kh.func;
 
+import java.util.Scanner;
+
 public class Variable {
+	public void exam1() {
+		//이름 , 나이 , 주소, 키, 몸무게, 성별
+		Scanner sc = new Scanner(System.in);
+		System.out.print("이름을 입력하세요: ");
+		String name = sc.next();
+		
+		System.out.print("나이을 입력하세요: ");
+		int age = sc.nextInt();
+		
+		System.out.print("주소을 입력하세요: ");
+		sc.nextLine();//버퍼 개행문자 제거
+		String addr = sc.nextLine();
+
+		System.out.print("키를 입력하세요: ");
+		double height = sc.nextDouble();
+		
+		System.out.print("몸무게을 입력하세요: ");
+		double weight = sc.nextDouble();
+		
+		System.out.println("성별 입력 (남/여) : ");
+		char gender = sc.next().charAt(0);
+		
+		System.out.println("===============출력================");
+		System.out.println("이름 :" + name);
+		System.out.println("나이 :" + age);
+		System.out.println("주소 :" + addr);
+		System.out.println("키 :" + (int)height);
+		System.out.printf("몸무게 : %.1f \n", weight);
+		System.out.println("성별 :" + gender);
+	}
+	public void exam2() {
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.print("국어 점수 입력: ");
+		int kor = sc.nextInt();
+		
+		System.out.print("수학 점수 입력: ");
+		int math = sc.nextInt();
+		System.out.print("영어 점수 입력: ");
+		int eng = sc.nextInt();
+		
+		System.out.printf("당신 성적의 총 합은 %d 이고 평균은 %.2f 입니다!",kor+math+eng,(((double)kor+math+eng)/3.0));
+	}
+	
+	
 	public void test2() {
 		String name = "김종모";
 		int age = 25;
@@ -21,6 +68,9 @@ public class Variable {
 		email = "test@example.com";
 		System.out.println("-------------------------------------------------------------------------------------------");
 		System.out.printf("%s\t%d\t%s\t%7s\t%13s\t%13s\n",name,age,gender,adress,phoneNumber,email);
+		
+		int num = 1;
+		
 	}
 	
 	
@@ -119,5 +169,43 @@ public class Variable {
 		System.out.println("역슬레쉬 출력 \\");
 		System.out.println("외따옴표 출력 \'");
 		System.out.println("쌍따옴표 출력 \"");
+	}
+	
+	public void scan() {
+		//1. scnanner 사용방법
+		//1. import java.util.Scanner
+		Scanner sc = new Scanner(System.in);
+		//1) 정수 입력받기
+		System.out.print("정수를 입력하세요 : ");
+		int temp =sc.nextInt();
+		System.out.print("입력하신 값은  " +temp+"입니다.\n");
+
+		//2) 실수 입력받기
+		System.out.print("실수를 입력하세요 : ");
+		float temp1 = sc.nextFloat();
+		System.out.print("입력하신 값은  " +temp1+"입니다. \n");
+		
+		System.out.print("실수를 입력하세요 : ");
+		double temp2 =sc.nextDouble();
+		System.out.print("입력하신 값은  " +temp2+"입니다. \n");
+		
+		//3 -1 ) 문자열 입력받기
+		System.out.print("문자열을 입력하세요.");
+		String temp3 = sc.next();
+		System.out.println("입력하신 문자열은 \"" + temp3 +"\"입니다. " );
+		
+		//3 -2 ) 문자열 입력받기
+		System.out.println("문자열 입력하세요 : ");
+		sc.nextLine();
+		String temp4 = sc.nextLine();
+		System.out.println("입력하신 문자열은 \"" + temp4 +"\"입니다. \n" );
+		
+		
+		//4 ) 문자 입력받기
+		System.out.print("문자를 입력하세요: ");
+		char temp5 = sc.next().charAt(0);
+		System.out.println(temp5);
+		
+		
 	}
 }
