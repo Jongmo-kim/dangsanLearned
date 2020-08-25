@@ -40,10 +40,11 @@ public class Start {
 //		System.out.println();
 //		d.forExam11();
 //		System.out.println();
-		d.forExam12();
-		System.out.println();
-		d.forExam13();
-		System.out.println();
+//		d.forExam12();
+//		System.out.println();
+//		d.forExam13();
+//		System.out.println();
+//		
 		
 	}
 }

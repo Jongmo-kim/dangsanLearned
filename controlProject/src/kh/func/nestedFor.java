@@ -1,5 +1,7 @@
 package kh.func;
 
+import java.util.Scanner;
+
 public class nestedFor {
 	public void forTest2() {
 
@@ -135,5 +137,49 @@ public class nestedFor {
 				++List_i;
 		}
 	}
+	public void forWhileTest1() {
+//		for(;;) {
+//			System.out.println("e");
+//		}
+//		
+//		while(true) {
+//			System.out.println("e");
+//		}
+		Scanner sc = new Scanner(System.in);
+		
+		for(int List_i=0;List_i<5;++List_i) {
+			System.out.println("Hello");
+			System.out.println("숫자입력 (1을 입력하면 그만 출력함): ");
+			int sel =  sc.nextInt();
+			
+			if(sel==1) {
+				System.out.println("1입력 break; 실행");
+				break;//반복문종료
+			}
+			else if(sel==2) {
+				System.out.println("2 입력 continue; 실행");
+				continue;//while문에서는 최상단,for문에서는 증감문으로 이동한다.
+			} else
+				System.out.println("1,2 둘다 실행되입력하지 않은경우");
+			
+			System.out.println("for문 제일 하단");
+		}
+	
+	}
 
+
+
+	public void forWhileTest2() {
+		for (int List_i = 0; List_i < 6; ++List_i) {
+			System.out.println(List_i + ". 외부 for문");
+			for (int Just_j = 0; Just_j < 6; ++Just_j) {
+				if (List_i == 3) {
+					break;
+				}
+				System.out.println(Just_j + ". 내부 for문");
+			}
+
+		}
+
+	}
 }
