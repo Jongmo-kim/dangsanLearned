@@ -293,6 +293,7 @@ public class RandomTest {
 				}//while(true)
 				break;
 			case SCORE:
+				double d = Double.MAX_VALUE;
 				if(bestCount==Integer.MAX_VALUE) {
 					System.out.printf("현재 최고기록은 없습니다\n");
 				}
