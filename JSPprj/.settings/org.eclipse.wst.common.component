@@ -2,7 +2,7 @@
     <wb-module deploy-name="JSPprj">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="JSPprj"/>
         <property name="java-output-path" value="/JSPprj/build/classes"/>
+        <property name="context-root" value="/"/>
     </wb-module>
 </project-modules>
