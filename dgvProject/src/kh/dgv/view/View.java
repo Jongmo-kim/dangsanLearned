@@ -69,7 +69,7 @@ public class View {
 		System.out.println("\t0. 이전 화면 으로");
 		System.out.print("\n선택 >");
 	}
-	public void insertProductMessage() {
+	public void initAdminInsertProductMessage() {
 		System.out.println("\tDGV 매점");
 		System.out.println("\t상품 등록");
 		System.out.println("\n\t1.음료등록");
@@ -96,7 +96,7 @@ public class View {
 		System.out.println("현재 창고가 가득 찼습니다.");
 	}
 	public void insertDoneMessage() {
-		System.out.println("영화가 성공적으로 추가되었습니다.");
+		System.out.println("성공적으로 추가되었습니다.");
 	}
 	public void notEnoughSpaceMessage() {
 		System.out.println("공간이 부족하여 저장하지 못하였습니다.");
@@ -104,31 +104,60 @@ public class View {
 	public void selectMoviesMessage(String purpose,int idx) {
 		System.out.printf("\n%s하려는 영화의  No.를 선택해 주세요 [1~%d]:",purpose,idx);
 	}
-	public int selectModifyNameOrTime() {
+	public int selectModifyNameOrTimeOrRunningTime() {
 		System.out.println("무엇을 수정하시겠습니까?");
 		System.out.println("\n\t1.영화 제목");
-		System.out.println("\t2.상영 시간");
+		System.out.println("\t2.시작 시간");
+		System.out.println("\t3.상영 시간");
 		System.out.println("\t0. 이전 화면 으로");
 		System.out.print("\n선택 >");
 		return sc.nextInt();
 	}
 	public void modifyMovieNameMessage() {
-		System.out.println("변경하고 싶은 새 제목을 입력하세요. :");
+		System.out.print("변경하고 싶은 새 제목을 입력하세요. :");
 	}
 	public void modifyMovieDoneMessage(String str) {
-		System.out.printf("%s으로 변경되었습니다.",str);
+		System.out.printf("%s으로 변경되었습니다.\n",str);
 	}
 	public void modifyMovieStartTimeMessage() {
-		System.out.println("변경하고 싶은 새 시작시간을 입력하세요. :");
+		System.out.print("변경하고 싶은 새 시작시간을 입력하세요. :");
 	}
 	
 	public void modfiyMovieRunningTimeMessage() {
-		System.out.println("변경하고 싶은 새 상영 시간을 입력하세요. [HH:mm]:");
+		System.out.print("변경하고 싶은 새 상영 시간을 입력하세요. [HH:mm]:");
 	}
 	
 	public void deleteConfrimMessage(Movies movie) {
 		System.out.printf("%s영화를 선택했습니다.\n",movie.getName());
 		System.out.printf("정말 삭제하시겠습니까? [y/n] :");
+	}
+	public void printSelectMovieNumber(String purpose) {
+		System.out.printf("%s하고싶은 영화의 No.를 입력해주세요",purpose);
+	}
+	public void printSelectedMovieName(String purpose) {
+		System.out.printf("선택하신 영화의 제목은 %s입니다.\n",purpose);
+	}
+	public void printAskingAmountOfTicket() {
+		System.out.print("몇 명 예약하시겠어요 ? :");
+	}
+	public void printAskTicketSeats(int NumberOfTickets) {
+		System.out.printf("%d 번째 손님 예매 도와드리겠습니다. \n",NumberOfTickets);
+		System.out.print("좌석중에 어디 열로 하시겠어요? (A~J): ");
+	}
+	public void printAskNumOfSeat(char ch) {
+		System.out.printf("%c열의 몇 번자리로 하시겠어요? (1~10):",ch);
+	}
+	public void printAlreadyOccupiedSeat() {
+		System.out.println("이미 지정된 자리가 있습니다.");
+	}
+	public void printCancelTicketId() {
+		System.out.print("예매시 부여받은 ID를 입력하세요. :");
+	}
+	public void printCancelFail() {
+		System.out.println("맞는 번호가 없습니다.");
+	}
+	public void printCancelSucess() {
+		System.out.println("취소 되었습니다.");
 	}
 	public void printSeats(Movies movie){
 		
@@ -161,13 +190,7 @@ public class View {
 		}
 		System.out.println();
 	}
-	public void productMenuMessage(Product[] product,String kind,int idx) {
-		System.out.println("────────────────────────────────────────────────");
-		System.out.printf("\t\t%s",kind);
-		System.out.println("No.\t제품명\t수량\t가격");
-		printAllProduct(product,idx);
-		System.out.println("────────────────────────────────────────────────");
-	}
+
 	public SelectedMenu productSelectMessage() {
 		buyingMessage("No.");
 		int no = sc.nextInt();
@@ -178,31 +201,37 @@ public class View {
 	public void buyingMessage(String str) {
 		System.out.printf("구매할 제품의 %s(을)를 선택해주세요 :",str);
 	}
-	
-	public void printAllProduct(Product[] product,int idx) {
+	public void productMenuMessage(Product[] product,String kind,int idx) {
+		System.out.println("────────────────────────────────────────────────");
+		System.out.printf("\t\t%s\n",kind);
+		System.out.println("No.\t제품명\t수량\t가격");
+		printAllProductForMenu(product,idx);
+		System.out.println("────────────────────────────────────────────────");
+	}
+	public void printAllProductForMenu(Product[] product,int idx) {
 		for(int List_i=0;List_i<idx;++List_i) {
 			printProduct(product[List_i]);
 		}
 	}
 	public void printProduct(Product product) {
-		System.out.printf("No.%d\t%s\t%s\t%s",product.getName(),product.getAmount()
+		System.out.printf("No.%d\t%s\t%d\t%d\n",product.getIndex()+1,product.getName(),product.getAmount()
 				,product.getPrice());
 	}
 	
-	public void PopcornMenuMessage(Popcorn[] popcorn,int idx) {
+	public void popcornMenuMessage(Popcorn[] popcorn,int idx) {
 		System.out.println("────────────────────────────────────────────────");
-		System.out.println("\t\t팝콘");
-		System.out.println("No.\t제품명\t수량\t가격\t맛");
-		printAllPopcorn(popcorn,idx);
+		System.out.println("\t\t         팝콘\n");
+		System.out.println("No.\t제품명\t\t수량\t가격\t맛\n");
+		printAllPopcornForMenu(popcorn,idx);
 		System.out.println("────────────────────────────────────────────────");
 	}
-	public void printAllPopcorn(Popcorn[] popcorn,int idx) {
+	public void printAllPopcornForMenu(Popcorn[] popcorn,int idx) {
 		for(int List_i=0;List_i<idx;++List_i) {
-			printProduct(popcorn[List_i]);
+			printPopcorn(popcorn[List_i]);
 		}
 	}
 	public void printPopcorn(Popcorn popcorn) {
-		System.out.printf("No.%d\t%s\t%s\t%s",popcorn.getName(),popcorn.getAmount()
+		System.out.printf("No.%d\t%s\t%s\t%s\t%s\n",popcorn.getIndex()+1,popcorn.getName(),popcorn.getAmount()
 				,popcorn.getPrice(),popcorn.getFlavor());
 	}
 	public void buyingDoneMessage() {
@@ -214,30 +243,44 @@ public class View {
 		System.out.println("삭제 완료");
 	}
 	public void foodMenuMessage() {
-
+		
 	}
-
+	public void productNameInsertMessage(String product) {
+		System.out.printf("추가할 %s의 이름을 입력해주세요 : ",product);
+	}
+	public void productAmountInsertMessage(String product) {
+		System.out.printf("추가할 %s의 재고를 입력해주세요 :", product);
+	}
+	public void productPriceInsertMessage(String product) {
+		System.out.printf("추가할 %s의 가격을 입력해주세요 :",product);
+	}
+	public void popcornFlavorInsertMessage(String product) {
+		System.out.printf("추가할 %s의 맛을 입력해주세요 :",product);
+	}
 	public void popcornMenuMessage() {
 
 	}
 	
-	public void modifyProductMessage() {
+	public void printTicketDoneMessage(int Id) {
+		System.out.printf("고객님의 ID는 %d 입니다.\n",Id);
+		System.out.println("부여받으신 ID는 예매내역 확인이나 예매취소시 사용됩니다. 잊지 말고 계세요!");
+	}
+	public void initAdminModifyProductMessage() {
 		System.out.println("\tDGV 매점");
 		System.out.println("\t상품 수정");
 		System.out.println("\n\t1.음료수정");
 		System.out.println("\t2.음식수정");
 		System.out.println("\t3.팝콘수정\n");
 		System.out.println("\t0. 이전 화면 으로");
-		System.out.println("재고 변경할 제품의 카테고리를 선택해 주세요.");
 		System.out.print("\n선택 >");
 	}
 	public void modifyProductMessage(Product[] product,int idx) {
-		printAllProduct(product, idx);
+		printAllProductForMenu(product, idx);
 		System.out.println("재고를 변경할 제품의 No.를 선택해주세요.");
 		System.out.print("선택 >");
 	}
 	public void printProductSelectedMessage(Product product) {
-		System.out.printf("%s 제품을 선택하셨습니다.\n");
+		System.out.printf("%s 제품을 선택하셨습니다.\n",product.getName());
 		System.out.printf("현재 재고는 %d개입니다.\n",product.getAmount());
 		System.out.println("몇개로 수정할지 입력해주세요.");
 		System.out.print("\n선택 >");
@@ -246,7 +289,7 @@ public class View {
 		System.out.printf("%d개로 수정 완료되었습니다.\n",amount);
 	}
 	
-	public void deleteProductMessage() {
+	public void initAdminDeleteProductMessage() {
 		System.out.println("\tDGV 매점");
 		System.out.println("\t상품 삭제");
 		System.out.println("\n\t1.음료삭제");
@@ -259,9 +302,9 @@ public class View {
  
 	public void printAllStoreStuffs(Product[] drinking,int drinkingIdx
 			,Product[] food,int foodIdx,Popcorn[] popcorn, int popcornIdx) {
-		printAllProduct(drinking,drinkingIdx);
-		printAllProduct(food,foodIdx);
-		printAllPopcorn(popcorn,popcornIdx);
+		productMenuMessage(drinking,"음료",drinkingIdx);
+		productMenuMessage(food,"음식",foodIdx);
+		popcornMenuMessage(popcorn,popcornIdx);
 	}
 	public void printAllMovies(Movies[] movies,int idx) {
 		for(int List_i=0;List_i<idx;++List_i) {

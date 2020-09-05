@@ -82,11 +82,15 @@ public class Movies {
 
 	public Movies(String name, Calendar startTime, String hour) {
 		StringTokenizer st = new StringTokenizer(hour, ":", false);
+		String hourPart = st.nextToken();
+		String minutePart = st.nextToken();
 		this.startTime = startTime;
 		endTime = (Calendar) startTime.clone();
-		endTime.set(Calendar.HOUR, endTime.get(Calendar.HOUR) + Integer.parseInt(st.nextToken()));
-		endTime.set(Calendar.MINUTE, endTime.get(Calendar.MINUTE) + Integer.parseInt(st.nextToken()));
-		runningTime = new CalcBetweenTime().calc(startTime, endTime);
+		endTime.set(Calendar.HOUR, endTime.get(Calendar.HOUR) + Integer.parseInt(hourPart));
+		endTime.set(Calendar.MINUTE, endTime.get(Calendar.MINUTE) + Integer.parseInt(minutePart));
+		//runningTime = new CalcBetweenTime().calc(startTime, endTime);// CalcBetweenTime 미완성 완성시 사용
+		
+		runningTime = hourPart+"시간 "+minutePart+"분";
 		seatsInitalize();
 		this.name = name;
 		Index = 0;
@@ -108,11 +112,12 @@ public class Movies {
 		}
 	}
 
-	public void occupiesSeat(int width, int length) {
+	public boolean occupiesSeat(int width, int length) {
 		if (!seats[width][length]) {
 			seats[width][length] = true;
+			return true;
 		} else {
-			System.out.println("이미 지정된 자리가 있습니다.");
+			return false;
 		}
 	}
 

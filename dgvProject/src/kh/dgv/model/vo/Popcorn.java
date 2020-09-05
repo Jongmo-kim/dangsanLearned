@@ -8,8 +8,8 @@ public class Popcorn extends Product {
 		static final String CHESSES = ("Ä¡Áî¸À");
 	}
 	
-	public Popcorn(String name,int amount, int price, String flavor) {
-		super(name,amount,price);
+	public Popcorn(String name,int amount, int price,int index, String flavor) {
+		super(name,amount,price,index);
 		this.flavor = FlavorType.SALTY;
 	}
 
@@ -17,13 +17,8 @@ public class Popcorn extends Product {
 		super();
 	}
 
-	public Popcorn(Product product,String flavor) {
-		super(product.getName(),product.getAmount(),product.getPrice());
-		this.flavor = flavor;
-		
-	}
-	public Popcorn(String name, int amount, int price) {
-		super(name, amount, price);
+	public Popcorn(String name, int amount, int price,int index) {
+		super(name, amount, price,index);
 	}
 
 	public String getFlavor() {

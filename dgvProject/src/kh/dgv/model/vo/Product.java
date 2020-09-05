@@ -2,6 +2,7 @@ package kh.dgv.model.vo;
 
 public class Product {
 	private String name;
+	protected String className;
 	private int amount;
 	private int price;
 	private int Index;
@@ -15,12 +16,12 @@ public class Product {
 	public Product() {
 		super();
 	}
-	public Product(String name, int amount, int price) {
+	public Product(String name, int amount, int price,int index) {
 		super();
 		this.name = name;
 		this.amount = amount;
 		this.price = price;
-
+		this.Index = index;
 	}
 	public String getName() {
 		return name;
@@ -40,6 +41,8 @@ public class Product {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	
+	public String getclassName() {
+		return className;
+	}
 	
 }
