@@ -1,8 +1,5 @@
-//- BobbleSort.java
-
 package kh.java.exam;
-
-import java.util.Scanner;
+import java.util.Scanner; //추가
 
 public class BobbleSort {
 
@@ -12,9 +9,9 @@ public class BobbleSort {
 
 		int[] arr = new int[5];
 
-		int sum = 0;
-
 // 반복문을 통한 입력
+
+		int sum = 0;
 
 		for (int i = 0; i < 5; i++) {
 
@@ -22,17 +19,17 @@ public class BobbleSort {
 
 			arr[i] = scanner.nextInt();
 
-			sum += arr[i];
+			sum += arr[i]; // 추가
 
 		}
 
 // 버블정렬 코드
 
-		for (int i = 0; i < arr.length-1; i++) {
+		for (int i = 0; i < arr.length - 1; i++) {// 1번더 돌 필요가 없음
 
 			for (int j = 0; j < arr.length - 1 - i; j++) {
 
-				if (arr[j] > arr[j + 1]) {
+				if (arr[j] < arr[j + 1]) { // 내림차순으로 출력하므로 부등호 반대
 
 					int temp = arr[j];
 
@@ -56,11 +53,11 @@ public class BobbleSort {
 
 		}
 
-		System.out.println("\n입력한 수의 총 합은 : " + sum);
+		System.out.println("\n가장 큰 수와 작은 수의 합은 : " + sum);
 
 	}
-	public static void main(String[] args) {
-		BobbleSort j = new BobbleSort();
-		j.bobbleSort();
+	public static void main(String args[]) {
+		BobbleSort f = new BobbleSort();
+			f.bobbleSort();
+		}
 	}
-}

@@ -41,7 +41,7 @@ public class StudentController {
 		}
 	}
 	public void insertStudent() {
-		students[index++]  =    view.insertStudent();
+		students[index++] = view.insertStudent();
 	}
 	public void printAllStudent(Student[] students, int index) {
 		view.printAllStudents(this.students,this.index);

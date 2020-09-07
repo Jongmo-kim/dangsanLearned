@@ -1,8 +1,6 @@
 package kh.or.iei.controller;
 
-import java.util.HashMap;
 import java.util.Scanner;
-import java.util.Set;
 
 import kh.point.model.vo.*;
 
@@ -20,13 +18,16 @@ public class PointMgr {
 
 	Scanner sc;
 	final int MAX = 30;
-	private HashMap<String, Grade> arr;
+	private Grade[] arr;
 	private int idx;
 
 	public PointMgr() {
-		arr = new HashMap<String, Grade>();
+		arr = new Grade[MAX];
 		idx = 0;
 		sc = new Scanner(System.in);
+		for(int List_i=0;List_i<MAX;++List_i) {
+			arr[List_i] = new Grade();
+		}
 	}
 	public Grade inputPoint() {
 		System.out.print("회원 이름 입력: ");
@@ -53,7 +54,7 @@ public class PointMgr {
 		Grade temp = inputPoint();
 		if(!temp.equals(new Grade())) {
 			System.out.println("회원 등록 완료");
-			arr.put(temp.getName(), temp);
+			arr[idx++] = temp;
 		}
 		
 	}
@@ -61,45 +62,57 @@ public class PointMgr {
 	public void showAll() {
 		System.out.println("------ 회원 전체 정보 출력 ------");
 		System.out.println("이름\t등급\t포인트\t보너스");
-		Set<String> s = arr.keySet();
-		for(String name : s) {
-			arr.get(name).printStuff();
+		for (int List_i = 0; List_i < idx; ++List_i) {
+			arr[List_i].printStuff();
 		}
 	}
 
 	public void showOne() {
 		System.out.println("------ 회원 정보 출력(1명) ------");
-		System.out.print("조회 할 이름 입력 :");
-		String result = sc.next();
-		if (arr.containsKey(result)) {
-			System.out.println("이름\t등급\t포인트\t보너스");
-			arr.get(result).printStuff();
-		} else {
+		System.out.print("조회 ");
+		int result = searchIndexByName();
+		if (result == -1) {
 			System.out.println("해당하는 회원이 없습니다.");
+		} else {
+			System.out.println("이름\t등급\t포인트\t보너스");
+			arr[result].printStuff();
 		}
+	}
+
+	private int searchIndexByName() {
+		System.out.print("할 회원 이름 입력: ");
+		String tempForName = sc.next();
+		for (int List_i = 0; List_i < idx; ++List_i) {
+			if (arr[List_i].getName().contentEquals(tempForName)) {
+				return List_i;
+			}
+		}
+		return -1;
 	}
 
 	public void modifyPoint() {
 		System.out.println("------ 회원 정보 수정 ------");
 		System.out.print("수정 ");
-		String result = sc.next();
-		if (arr.containsKey(result)) {
-			arr.remove(result);
-			Grade s = inputPoint();
-			arr.put(s.getName(),s);
-		} else {
+		int result = searchIndexByName();
+		if (result == -1) {
 			System.out.println("해당하는 회원이 없습니다.");
+		} else {
+			Grade temp = inputPoint();
+			arr[result] = temp;
 		}
 	}
 
 	public void deletePoint() {
 		System.out.println("------ 회원 정보 삭제 ------");
-		System.out.print("삭제 할 회원의 이름 입력 :");
-		String result = sc.next();
-		if(arr.containsKey(result)) {
-			arr.remove(result);
-		} else {
+		System.out.print("삭제 ");
+		int result = searchIndexByName();
+		if(result == -1) {
 			System.out.println("해당하는 회원이 없습니다.");
+		} else {
+			for(int List_i=result;List_i<idx;++List_i) {
+				arr[List_i] = arr[List_i+1];
+			}
+			idx--;
 		}	
 	}
 }
