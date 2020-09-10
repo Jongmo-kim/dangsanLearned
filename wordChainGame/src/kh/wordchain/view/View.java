@@ -5,7 +5,8 @@ public class View {
 		System.out.println("---- 끝말잇기 ----");
 		System.out.println("1.게임시작 ");
 		System.out.println("2.전적확인 ");
-		System.out.println("3.프로그램 종료 ");
+		System.out.println("3.단어 새로 불러오기 ");
+		System.out.println("0.프로그램 종료 ");
 		System.out.print("선택 > ");
 	}
 	public void printChoiceAttackPostion() {
@@ -31,7 +32,9 @@ public class View {
 		System.out.printf("%d 승 %d 패 승률 %.1f%%\n\n",
 				winCount,loseCount,(double)winCount/(winCount+loseCount)*100);
 	}
-	
+	public void printNewWords() {
+		
+	}
 	public void printUserBattleStart() {
 		System.out.print("[User] :");
 	}

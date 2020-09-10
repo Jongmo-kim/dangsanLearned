@@ -31,6 +31,23 @@ public class checkWordAndMakeDict {
 		insertDictToFile();
 		closeBw();
 	}
+	public void insertDictToFile(){
+		for(String str : dict) {
+			length2++;
+			bwWrite(str);
+		}
+	}
+	public void makeDict() {
+		dict = new ArrayList<String>();
+		String str = "";
+		while( (str = brReadLine() )!=null) {
+			length1++;
+			if(is2CharAbove(str) && !isContainSingleConsonants(str)) {
+				dict.add(str);
+				
+			}
+		}
+	}
 	public void closeBr() {
 		try {
 			br.close();
@@ -41,12 +58,7 @@ public class checkWordAndMakeDict {
 	public ArrayList<String> getDict() {
 		return dict;
 	}
-	public void insertDictToFile(){
-		for(String str : dict) {
-			length2++;
-			bwWrite(str);
-		}
-	}
+
 	public void bwWrite(String str) {
 		try {
 			bw.write(str+"\r\n");
@@ -61,17 +73,7 @@ public class checkWordAndMakeDict {
 			e.printStackTrace();
 		}
 	}
-	public void makeDict() {
-		dict = new ArrayList<String>();
-		String str = "";
-		while( (str = brReadLine() )!=null) {
-			length1++;
-			if(is2CharAbove(str) && !isContainSingleConsonants(str)) {
-				dict.add(str);
-				
-			}
-		}
-	}
+
 	public String brReadLine() {
 		try {
 			return br.readLine();

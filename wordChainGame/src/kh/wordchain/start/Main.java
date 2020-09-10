@@ -35,11 +35,17 @@ public class Main {
 				view.printBattleResult(winCount, loseCount);
 				break;
 			case 3:
+				view.printNewWords();
+				putNewWord();
+				break;
+			case 0:
 				System.exit(0);
 			}
 		}
 	}
-
+	public void putNewWord() {
+		f = new checkWordAndMakeDict();
+	}
 	public void gameStart() {
 		view.printChoiceAttackPostion();
 		int sel = inputIntAndCheck(1, 2);
@@ -51,6 +57,7 @@ public class Main {
 		final int USER = 1;
 		final int COM = 2;
 		final int RESULT = 3;
+		int loseCount = 0;
 		String currentWord = "";
 		boolean exit = true;
 		boolean first = true;
@@ -60,7 +67,7 @@ public class Main {
 				view.printUserBattleStart();
 				String userStr = inputStringAndDictCheck();
 				
-				if (userStr.equals("gg")) {
+				if (userStr.equals("gg") || loseCount == 3) {
 					++loseCount;
 					view.printDefeatMessage();
 					exit = false;
@@ -70,14 +77,17 @@ public class Main {
 					first=!first;
 					currentWord = userStr;
 					status = COM;
+					loseCount = 0;
 					continue;
 				}
 				else if (areTwoStringChained(currentWord, userStr)) {
 					status = COM;
+					loseCount = 0;
 					currentWord = userStr;
 					continue;
 				} else // 끝 글자랑 맞지 않는 경우 다시 처음부터.
 				{
+					++loseCount;
 					view.printNotCurrectWord();
 				}
 			} else if (status == COM) {
