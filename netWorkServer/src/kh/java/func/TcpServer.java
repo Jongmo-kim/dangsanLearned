@@ -96,7 +96,7 @@ public class TcpServer {
 	public ServerSocket makeServerSocket(int port) {
 		ServerSocket s = null;
 		try {
-			s = new ServerSocket(7777);
+			s = new ServerSocket(port);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

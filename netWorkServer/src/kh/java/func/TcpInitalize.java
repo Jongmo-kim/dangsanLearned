@@ -9,7 +9,23 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class TcpInitalize {
-	public void closeStream(DataInputStream dis,DataOutputStream dos,
+	public int disReadInt(DataInputStream dis) {
+		int i = 0;
+		try {
+			i = dis.readInt();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return i;
+	}
+	public void closeServerSocket(ServerSocket serverSocket) {
+		try {
+			serverSocket.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	public void closeAll(DataInputStream dis,DataOutputStream dos,
 			ServerSocket serverSocket,Socket socket) {
 		try {
 			dos.close();
@@ -18,6 +34,15 @@ public class TcpInitalize {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	public void closeStream(DataInputStream dis, DataOutputStream dos) {
+		try {
+			dos.close();
+			dis.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	public String disReadUTF(DataInputStream dis) {
 		String str = "";
@@ -72,5 +97,12 @@ public class TcpInitalize {
 			e.printStackTrace();
 		}
 		return s;
+	}
+	public void closeClientSocket(Socket socket) {
+		try {
+			socket.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

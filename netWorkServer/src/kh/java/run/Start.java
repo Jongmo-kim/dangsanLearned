@@ -1,12 +1,11 @@
 package kh.java.run;
 
-import kh.java.func.TcpChatServer;
-import kh.java.func.TcpEchoServer;
-import kh.java.func.TcpServer;
+import kh.java.func.*;
 
 public class Start {
 	public static void main(String args[]) {
-		TcpEchoServer f = new TcpEchoServer();
+		UdpServer f = new UdpServer();
 		f.main();
+
 	}
 }

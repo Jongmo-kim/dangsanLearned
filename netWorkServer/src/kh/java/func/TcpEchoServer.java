@@ -52,7 +52,7 @@ public class TcpEchoServer {
 			f.dosWriteUTF(dos, readMsg);		//입력한 문자 스트림에 보내기 
 		}
 		System.out.println("채팅을 종료합니다.");
-		f.closeStream(dis, dos, serverSocket, socket);
+		f.closeAll(dis, dos, serverSocket, socket);
 	}
 	public boolean checkStringEXIT(String str) {
 		return str.equals("exit");
