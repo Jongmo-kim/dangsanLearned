@@ -18,4 +18,3 @@ public class Nana extends HttpServlet{
 		out.print("Hello~~232asd313~~");
 	}
 }
-	
