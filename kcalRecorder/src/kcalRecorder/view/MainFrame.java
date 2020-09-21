@@ -2,6 +2,8 @@ package kcalRecorder.view;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,23 +16,37 @@ public class MainFrame extends JFrame {
 	public MainFrame(String s){
 		super(s);
 		setDefaultOptions();
-		makeMenuBar();
-		add(new JButton("먹은것 추가"));
-		add(new JButton("먹었던 것들"));
+		MenuBar f = new MenuBar();
+		setJMenuBar(f.mb);
+		makeMainButton();
 	}
-	private void makeMenuBar() {
-		JMenuBar mb = new JMenuBar();
-		setJMenuBar(mb);
+	private void makeMainButton() {
+		JButton addMeal,showMeal;
+		add(addMeal = new JButton("먹은것 추가"));
+		addMeal.addActionListener(actionListenerAddMeal());
 		
-		JMenu file;
-		mb.add(file = new JMenu("File"));
-		mb.add(new JMenu("Option"));
-		file.add(new JMenuItem("파일 저장"));
-		file.add(new JMenuItem("파일 불러오기"));
-		file.add(new JMenuItem("서버 저장"));
-		file.add(new JMenuItem("서버에 동기화"));
-		file.addSeparator();
-		file.add(new JMenuItem("나가기"));
+		add(showMeal = new JButton("먹었던 것들"));
+		showMeal.addActionListener(actionListenerShowMeal());
+	}
+	public ActionListener actionListenerAddMeal() {
+		ActionListener actionListener = new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				addMealBox f = new addMealBox();
+				setInvisible();
+			}
+		};
+		return actionListener;
+	}
+	public ActionListener actionListenerShowMeal() {
+		ActionListener actionListener = new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		};
+		return actionListener;
+	}
+	private void setInvisible() {
+		setVisible(false);
+		setEnabled(false);
 	}
 	private void setDefaultOptions() {
 		setSize(700,400);
