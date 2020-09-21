@@ -31,7 +31,7 @@ public class MainFrame extends JFrame {
 	public ActionListener actionListenerAddMeal() {
 		ActionListener actionListener = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				addMealBox f = new addMealBox();
+				AddMealBox f = new AddMealBox();
 				setInvisible();
 			}
 		};
