@@ -7,3 +7,7 @@ grant connect, resource to kh;
 --권한 회수 방법
 --REVOKE 회수할 ROLE FROM 계정이름
 revoke connect from test01;
+--VIEW 권한주기
+grant create view to kh;
+--synonym 동의어 권한주기
+grant create synonym to kh;
