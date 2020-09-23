@@ -9,6 +9,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -23,11 +24,15 @@ import kcalRecorder.model.vo.Food;
 
 public class AddMealBox extends JFrame{
 	ArrayList<Food> addedFood;
+	Iterator<Food> foodIter;
 	nameInputPanel nameInputPanel;
 	kcalPer100GramInputPanel kcalPer100GramInputPanel;
-	sizeInputPanel sizeInputPanel; 
+	sizeInputPanel sizeInputPanel;
+	addedFoodWithScrollBar addedFoodWithScrollBar;
 	public AddMealBox() {
+		
 		addedFood = new ArrayList<Food>();
+		foodIter = addedFood.iterator();
 		setDefaultOptions();
 		setGridBagConstraintsLayout();
 	}
@@ -41,7 +46,7 @@ public class AddMealBox extends JFrame{
 		
 		add(ap,gbc);
 		
-		addedPanel addedPanel = new addedPanel();
+		addedFoodMainPanel addedPanel = new addedFoodMainPanel();
 		//addedPanel.setPreferredSize(new Dimension(200,150));
 		gbc.weightx = 0.6; 
 		gbc.weighty = 1;
@@ -82,14 +87,11 @@ public class AddMealBox extends JFrame{
 			ActionListener e = new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					addFoodFromTextField();
-					updateAddedPanel();
+					addedFoodWithScrollBar.updateFood();
 				}
 			};
 			return e;
 		}
-	}
-	public void updateAddedPanel() {
-		
 	}
 	
 	public void addFoodFromTextField() {
@@ -98,16 +100,31 @@ public class AddMealBox extends JFrame{
 		String size = sizeInputPanel.getText();
 		int kcal = Integer.parseInt(kcalPerGram);
 		double size_ = Double.parseDouble(size);
-
 		Food f = new Food(kcal, size_, name);
 		addedFood.add(f);
+
 	}
 	public class addedFoodPanel extends JPanel{
+
 		public addedFoodPanel(Food f) {
 			setLayout(new FlowLayout());
 			add(new JLabel(f.getName()));
 			add(new JLabel(Double.toString(f.getSize())));
 			add(new JLabel(Integer.toString(f.getTotalKcal())));
+		}
+	}
+	public class addedFoodWithScrollBar extends JPanel{
+		public addedFoodWithScrollBar() {
+			setLayout(new FlowLayout());
+		}
+		public void updateFood() {
+			while(foodIter.hasNext()) {
+				//TODO 오류나는 부분
+				Food dd = foodIter.next();
+				addedFoodPanel e = new addedFoodPanel(dd);
+				add(e);
+			}
+			repaint();
 		}
 	}
 	public class confirmButton extends JButton{
@@ -169,10 +186,11 @@ public class AddMealBox extends JFrame{
 		}
 		
 	}
-	public class addedPanel extends JPanel{
-		public addedPanel() {
+	public class addedFoodMainPanel extends JPanel{
+		public addedFoodMainPanel() {
 			setBorder(BorderFactory.createLineBorder(Color.black));
 			add(new JLabel("* 먹은 음식들"));
+			add(addedFoodWithScrollBar = new addedFoodWithScrollBar());
 		}
 	}
 }
