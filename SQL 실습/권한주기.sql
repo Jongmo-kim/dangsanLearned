@@ -11,3 +11,7 @@ revoke connect from test01;
 grant create view to kh;
 --synonym 동의어 권한주기
 grant create synonym to kh;
+
+--JDBC용 계정
+create user jdbc identified by 1234;
+grant connect, resource to jdbc;

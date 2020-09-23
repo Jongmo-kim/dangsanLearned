@@ -104,7 +104,7 @@ public class AddMealBox extends JFrame{
 	}
 	public class addedFoodPanel extends JPanel{
 		public addedFoodPanel(Food f) {
-			setLayout(mgr);
+			setLayout(new FlowLayout());
 			add(new JLabel(f.getName()));
 			add(new JLabel(Double.toString(f.getSize())));
 			add(new JLabel(Integer.toString(f.getTotalKcal())));
