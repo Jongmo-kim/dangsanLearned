@@ -1,7 +1,11 @@
-package kh.java.func;
+package sendsourcecode.func;
 
+import java.io.BufferedInputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -31,6 +35,46 @@ public class TcpInitalize {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	public void dosClose(DataOutputStream dos) {
+		try {
+			dos.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	public int bisRead(BufferedInputStream bis, byte[] data) {
+		int f = 0;
+		try {
+			f = bis.read(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return f;
+	}
+	public void fisClose(FileInputStream fis) {
+		try {
+			fis.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	public void dosWrite(DataOutputStream dos, byte[] data,int n, int len) {
+		try {
+			dos.write(data,n,len);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public FileInputStream getFileInputStream(File file) {
+		FileInputStream f = null;
+		try {
+			f= new FileInputStream(file);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return f;
 	}
 	public void closeAll(DataInputStream dis,DataOutputStream dos,
 			ServerSocket serverSocket,Socket socket) {

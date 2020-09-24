@@ -5,17 +5,7 @@ import java.util.Scanner;
 
 import kh.member.model.dao.MemberDao;
 import kh.member.model.vo.Member;
-/*
- * 1. statement /prepareed statement
- * 1) 캐시 메모리 사용
- * 객체 생성시 sql 문법 검사완료 (parsing)
- * 문법에 문제가 없는 경우 캐시 메모리에sql query 저장
- * 같은 query 를 다시 수행하는 경우 캐시에 있는 데이터를 이용하여 바로 수행하기 떄문에 속도가 빠름
- * 
- * 2) SQL INJECTION 방지
- * 인자값이 없는 상태로 문법검사를 완료하고 인자를 대입하기 떄문에 SQL의 노출이 없고
- * 보안성이 더 높다.'or' + '1'
- */
+
 public class MemberController {
 	Scanner sc;
 	MemberDao dao;
@@ -31,11 +21,11 @@ public class MemberController {
 		while (true) {
 			System.out.println("\n=== 회원 관리 프로그램 ===");
 			System.out.println("1. 전체회원 정보 출력");
-			System.out.println("2. 아이디로 회원 출력(1명)");
-			System.out.println("3. 이름으로 회원 조회");
-			System.out.println("4. 회원 등록");
-			System.out.println("5. 회원 정보 수정");
-			System.out.println("6. 회원 정보 삭제");
+			System.out.println("2. 회원 정보 출력(1명)");
+			System.out.println("3. 회원 등록");
+			System.out.println("4. 회원 정보 수정");
+			System.out.println("5. 회원 정보 삭제");
+			System.out.println("6. 회원 정보 조회(이름 + 포함되면 전부다 조회)");
 			System.out.println("0. 종료");
 			System.out.print("선택 >");
 			int sel = sc.nextInt();
@@ -47,33 +37,22 @@ public class MemberController {
 				selectOneMember();
 				break;
 			case 3:
-				selectMemberByName();
-				break;
-			case 4:
 				insertMember();
 				break;
-			case 5:
+			case 4:
 				updateMember();
 				break;
-			case 6:
+			case 5:
 				deleteMember();
+				break;
+			case 6:
+				selectChoiceMember();
 				break;
 			default:
 				System.exit(0);
 			}
 		}
 	}
-	private void selectMemberByName() {
-		System.out.print("검색할 이름 입력 :");
-		String Name = sc.next();
-		Member e = dao.selectOneMemberByName(Name);
-		if(e==null) {
-			System.out.println("찾을수 없음");
-		} else {
-			e.printMember();
-		}
-	}
-
 	private void updateMember() {
 		System.out.print("수정할 아이디 입력 :");
 		String Id = sc.next();
@@ -123,6 +102,27 @@ public class MemberController {
 		e.setPhone(sc.next());
 		
 		System.out.printf("%d 개 행이 추가 되었습니다.",dao.insertMember(e));
+	}
+	public void selectChoiceMember() {
+			System.out.print("조회할 아이디 입력 :");
+			String Id = sc.next();
+			ArrayList<Member> list = dao.selectChoiceMember(Id);
+			if (list.isEmpty()) {
+				System.out.println("멤버가 없음");
+			} else {
+				System.out.println("번호\t아이디\t비밀번호\t이름\t성별\t전화번호\t가입일자");
+				for (Member e : list) {
+					System.out.printf("%s", e.getMemberNo());
+					System.out.printf("\t%s", e.getMemberId());
+					System.out.printf("\t%s", e.getMemberPw());
+					System.out.printf("\t%s", e.getMemberName());
+					System.out.printf("\t%s", e.getPhone());
+					System.out.printf("\t%c", e.getGender());
+					System.out.printf("\t%s", e.getEnrollDate());
+					System.out.println();
+				}
+			
+		}
 	}
 	public void selectOneMember() {
 		System.out.print("조회할 아이디 입력 :");

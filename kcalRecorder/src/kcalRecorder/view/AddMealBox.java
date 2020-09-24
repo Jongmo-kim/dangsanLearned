@@ -29,10 +29,10 @@ public class AddMealBox extends JFrame{
 	kcalPer100GramInputPanel kcalPer100GramInputPanel;
 	sizeInputPanel sizeInputPanel;
 	addedFoodWithScrollBar addedFoodWithScrollBar;
+	addedFoodMainPanel addedFoodMainPanel;
 	public AddMealBox() {
 		
 		addedFood = new ArrayList<Food>();
-		foodIter = addedFood.iterator();
 		setDefaultOptions();
 		setGridBagConstraintsLayout();
 	}
@@ -43,14 +43,14 @@ public class AddMealBox extends JFrame{
 		gbc.weightx = 1;
 		gbc.weighty = 1;
 		addPanel ap = new addPanel();
-		
+		ap.add(new addedFoodPanel(new Food(0,0,"1")));
 		add(ap,gbc);
 		
-		addedFoodMainPanel addedPanel = new addedFoodMainPanel();
+		addedFoodMainPanel = new addedFoodMainPanel();
 		//addedPanel.setPreferredSize(new Dimension(200,150));
 		gbc.weightx = 0.6; 
 		gbc.weighty = 1;
-		add(addedPanel,gbc);
+		add(addedFoodMainPanel,gbc);
 	}
 	
 	private void setDefaultOptions() {
@@ -88,7 +88,9 @@ public class AddMealBox extends JFrame{
 				public void actionPerformed(ActionEvent e) {
 					addFoodFromTextField();
 					addedFoodWithScrollBar.updateFood();
+					//TODO 이제 update된 addedFoodWithScrollbar를 뵈게끔만하면댐
 				}
+				
 			};
 			return e;
 		}
@@ -105,26 +107,52 @@ public class AddMealBox extends JFrame{
 
 	}
 	public class addedFoodPanel extends JPanel{
-
 		public addedFoodPanel(Food f) {
-			setLayout(new FlowLayout());
-			add(new JLabel(f.getName()));
-			add(new JLabel(Double.toString(f.getSize())));
-			add(new JLabel(Integer.toString(f.getTotalKcal())));
+			add(new addedFoodNamePanel(f.getName()));
+			add(new addedFoodSizePanel(f.getSize()));
+			add(new addedFoodTotalKcalPanel(f.getTotalKcal()));
+		}
+	}
+	public class addedFoodNamePanel extends JPanel{
+		public addedFoodNamePanel(String name){
+			JLabel indicator = new JLabel("음식 이름 :");
+			JLabel name_ = new JLabel(name);
+			add(indicator);
+			add(name_);
+		}
+	}
+	public class addedFoodSizePanel extends JPanel{
+		public addedFoodSizePanel(double size){
+			JLabel indicator = new JLabel("몇 인분 :");
+			JLabel size_ = new JLabel(Double.toString(size));
+			add(indicator);
+			add(size_);
+		}
+	}
+	public class addedFoodTotalKcalPanel extends JPanel{
+		public addedFoodTotalKcalPanel(int totalKcal){
+			JLabel indicator = new JLabel("음식 칼로리 :");
+			JLabel totalKcal_ = new JLabel(Integer.toString(totalKcal));
+			add(indicator);
+			add(totalKcal_);
 		}
 	}
 	public class addedFoodWithScrollBar extends JPanel{
 		public addedFoodWithScrollBar() {
-			setLayout(new FlowLayout());
+			
+			Food dd= new Food(0,0,"12");
+			addedFoodPanel e = new addedFoodPanel(dd);
+			add(e);
 		}
 		public void updateFood() {
+			foodIter = addedFood.iterator();
 			while(foodIter.hasNext()) {
-				//TODO 오류나는 부분
 				Food dd = foodIter.next();
 				addedFoodPanel e = new addedFoodPanel(dd);
 				add(e);
 			}
-			repaint();
+			super.updateUI();
+			
 		}
 	}
 	public class confirmButton extends JButton{
@@ -189,6 +217,7 @@ public class AddMealBox extends JFrame{
 	public class addedFoodMainPanel extends JPanel{
 		public addedFoodMainPanel() {
 			setBorder(BorderFactory.createLineBorder(Color.black));
+			setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 			add(new JLabel("* 먹은 음식들"));
 			add(addedFoodWithScrollBar = new addedFoodWithScrollBar());
 		}
