@@ -13,7 +13,7 @@ public class MsgSender extends Thread {
 	BufferedInputStream bis;
 	TcpInitalize f;
 
-	public MsgSender(Socket scoket, String msg) {
+	public MsgSender(Socket socket, String msg) {
 		f = new TcpInitalize();
 		this.socket = socket;
 		this.msg = msg;
@@ -23,6 +23,7 @@ public class MsgSender extends Thread {
 	@Override
 	public void run() {
 //			파일전송 구분자 전송 'msg'전송
+		
 		f.dosWriteUTF(dos, "msg");
 		f.dosFlush(dos);
 

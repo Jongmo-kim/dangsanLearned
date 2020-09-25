@@ -16,7 +16,7 @@ public class FileSender extends Thread {
 	TcpInitalize f;
 
 	public FileSender(Socket socket, String filePath, String fileNm) {
-		TcpInitalize f = new TcpInitalize();
+		f = new TcpInitalize();
 		this.socket = socket;
 		this.fileNm = fileNm;
 		this.filePath = filePath;
@@ -27,7 +27,7 @@ public class FileSender extends Thread {
 	@Override
 	public void run() {
 //		파일 전송을 서버에 알린다.
-		f.dosWriteUTF(dos, fileNm);
+		f.dosWriteUTF(dos, "file");
 		f.dosFlush(dos);
 
 //		전송할 파일을 읽어서 Socket Server에 전송
@@ -38,7 +38,7 @@ public class FileSender extends Thread {
 	private String fileRead(DataOutputStream dos) {
 		f.dosWriteUTF(dos, fileNm);
 		System.out.printf("파일 %s을(를) 전송하였습니다.", fileNm);
-
+		
 		File file = new File(filePath + "/" + fileNm);
 		fis = f.getFileInputStream(file);
 		bis = new BufferedInputStream(fis);
@@ -51,7 +51,7 @@ public class FileSender extends Thread {
 		}
 		
 		f.dosFlush(dos);
-		f.fisClose(fis);		
+		f.fisClose(fis);
 		return "done";
 	}
 }

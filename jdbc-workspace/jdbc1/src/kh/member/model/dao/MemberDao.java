@@ -180,7 +180,7 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 
 		try {
-			Class.forName(JDBC_DRIVER);
+			Class.forName(JDBC_DRIVER);//생략가능 오류 쉽게 찾을려고 넣는느낌?
 			conn = DriverManager.getConnection(CONNECT_IP, CONNECT_USER, CONNECT_PW);
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, e.getMemberId());
@@ -249,7 +249,7 @@ public class MemberDao {
 	public Member selectOneMemberByName(String Name) {
 		Member member = null;
 		// 위치 홀더를 이용해서 인자값 차리를 표시
-		String query = String.format("select * from member where member_name = ?");
+		String query = String.format("select * from member where member_name like ?"); //작은따옴표 안에 있는 것을 ?가 대체함 고로 setString에 % 를 추가해야함
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -257,7 +257,7 @@ public class MemberDao {
 			Class.forName(JDBC_DRIVER);
 			conn = DriverManager.getConnection(CONNECT_IP, CONNECT_USER, CONNECT_PW);
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, Name);
+			pstmt.setString(1, "%" + Name + "%");
 			rset = pstmt.executeQuery();
 			if (rset.next()) {
 			

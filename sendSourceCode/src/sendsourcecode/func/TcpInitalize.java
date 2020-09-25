@@ -122,6 +122,7 @@ public class TcpInitalize {
 	}
 	public OutputStream getOutputStream(Socket client) {
 		OutputStream out = null;
+
 		try {
 			out = client.getOutputStream();
 		} catch (IOException e) {
