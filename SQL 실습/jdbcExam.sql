@@ -1,3 +1,8 @@
+--drop table exam_member;
+--drop table exam_board;
+--drop sequence exam_member_seq;
+--drop sequence exam_board_seq;
+insert into exam_board values(
 create table exam_member(
     MEMBER_NO   number primary key,
     MEMBER_ID   VARCHAR2(20) UNIQUE,
@@ -5,10 +10,6 @@ create table exam_member(
     MEMBER_NAME VARCHAR2(20) NOT NULL,
     PHONE       CHAR(11)
 );
-
-insert into exam_member values (exam_member_seq,'123','123','123','0101111222');
-
-
 COMMENT ON COLUMN exam_member.MEMBER_NO IS '회원번호';
 COMMENT ON COLUMN exam_member.MEMBER_ID IS '아이디';
 COMMENT ON COLUMN  exam_member.MEMBER_PW IS '비밀번호';

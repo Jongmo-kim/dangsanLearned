@@ -24,7 +24,7 @@ public class SendClient {
 
 			String filePath = "C:/";
 			// String fileNm = "DSC01129.jpg";
-			String fileNm = "Install League of Legends kr.exe";
+			String fileNm = "Chrysanthemum.jpg";
 			FileSender fs = new FileSender(socket, filePath, fileNm);
 			fs.start();
 

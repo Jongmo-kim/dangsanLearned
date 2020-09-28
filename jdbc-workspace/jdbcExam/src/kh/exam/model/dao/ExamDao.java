@@ -67,7 +67,7 @@ public class ExamDao {
 	public int insertMember(Connection conn, String memberId, String memberPw, String memberName, String phone) {
 		int result = 0;
 		String sql = "insert into exam_member values (exam_member_seq.nextval,?,?,?,?)";
-		PreparedStatement pstmt;
+		PreparedStatement pstmt =null;
 		try {
 			pstmt = conn.prepareStatement(sql);
 
@@ -80,6 +80,8 @@ public class ExamDao {
 			commitOrRollback(conn, result);
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
 		}
 		return result;
 	}
@@ -88,17 +90,22 @@ public class ExamDao {
 
 		Member m = null;
 		String sql = "select * from exam_member where member_id = ? and member_pw = ?";
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
 		try {
 
-			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, memberId);
 			pstmt.setString(2, memberPw);
 
-			ResultSet rset = pstmt.executeQuery();
+			rset = pstmt.executeQuery();
 			if (rset.next())
 				m = getMember(rset);
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
 		}
 		return m;
 	}
@@ -106,8 +113,9 @@ public class ExamDao {
 	public Member findId(Connection conn, String memberId, String phone) {
 		Member m = null;
 		String sql = "select * from exam_member where member_id = ? and phone =?";
+		PreparedStatement pstmt = null;
 		try {
-			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, memberId);
 			pstmt.setString(2, phone);
 
@@ -117,6 +125,8 @@ public class ExamDao {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}  finally {
+			JDBCTemplate.close(pstmt);
 		}
 
 		return m;
@@ -126,8 +136,9 @@ public class ExamDao {
 		String sql = "select * from exam_board";
 		ArrayList<Board> list = new ArrayList<Board>();
 		ResultSet rset = null;
+		PreparedStatement pstmt = null;
 		try {
-			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql);
 			rset = pstmt.executeQuery();
 
 			while (rset.next()) {
@@ -135,6 +146,9 @@ public class ExamDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
 		}
 
 		return list;
@@ -143,8 +157,9 @@ public class ExamDao {
 		String sql = "select * from exam_board where board_No = ?";
 		ResultSet rset = null;
 		Board b = null;
+		PreparedStatement pstmt = null;
 		try {
-			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, boardNo);
 			rset = pstmt.executeQuery();
 			if(rset.next()) b = getBoard(rset);
@@ -153,26 +168,33 @@ public class ExamDao {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
 		}
 		return b;
 	}
 	public int incresementHit(Connection conn,int boardNo) {
 		String sql = "update exam_board set read_count = read_count + 1";
 		int result = 0;
+		PreparedStatement pstmt = null;
 		try {
-			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql);
 			result = pstmt.executeUpdate();
 			commitOrRollback(conn, result);
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
 		}
 		return result;
 	}
 	public int insertBoard(Connection conn, String boardTitle, String boardContent,String boardWriter) {
 		int result =0;
 		String sql = "insert into exam_board values(exam_board_seq.nextval,?,?,?,default,default)";
+		PreparedStatement pstmt = null;
 		try {
-			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, boardTitle);
 			pstmt.setString(2, boardContent);
 			pstmt.setString(3, boardWriter);
@@ -180,14 +202,17 @@ public class ExamDao {
 			commitOrRollback(conn, result);
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
 		}		
 		return result;
 	}
 	public int updateBoard(Connection conn, String boardTitle, String boardContent, int boardNo) {
 		String sql = "update exam_board set board_title = ?, board_content = ? where board_no = ?";
 		int result = 0;
+		PreparedStatement pstmt = null;
 		try {
-			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, boardTitle);
 			pstmt.setString(2, boardContent);
 			pstmt.setInt(3, boardNo);
@@ -196,6 +221,8 @@ public class ExamDao {
 			commitOrRollback(conn, result);
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
 		}
 		
 		return result;
@@ -203,13 +230,16 @@ public class ExamDao {
 	public int deleteBoard(Connection conn, int boardNo) {
 		String sql = "delete from exam_board where board_no = ?";
 		int result = 0;
+		PreparedStatement pstmt = null;
 		try {
-			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, boardNo);
 			result = pstmt.executeUpdate();
 			commitOrRollback(conn, result);
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
 		}
 		
 		
@@ -218,9 +248,9 @@ public class ExamDao {
 	public int updateMember(Connection conn, String memberPw, String phone, int memberNo) {
 		String sql = "update exam_member set member_pw = ?,phone = ? where member_no = ?";
 		int result =0;
-		
+		PreparedStatement pstmt = null;
 		try {
-			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, memberPw);
 			pstmt.setString(2, phone);
 			pstmt.setInt(3, memberNo);
@@ -228,19 +258,24 @@ public class ExamDao {
 			commitOrRollback(conn, result);
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
 		}
 		return result;
 	}
 	public int deleteMember(Connection conn, int memberNo) {
 		String sql = "delete from exam_member where member_no = ?";
+		PreparedStatement pstmt = null;
 		int result = 0;
 		try {
-			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, memberNo);
 			result = pstmt.executeUpdate();
 			commitOrRollback(conn, result);
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
 		}
 		return result;
 	}

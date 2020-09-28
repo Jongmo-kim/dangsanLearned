@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Stack;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -17,22 +18,24 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import kcalRecorder.model.vo.Food;
+//TODO 엔터키를 누르면 field에 입력된 값이 자동으로 저장되지만 focus가 3번째 위치에 되어있다
+// 이를 1번째로 바꾸어보자.
 
-
-public class AddMealBox extends JFrame{
-	ArrayList<Food> addedFood;
-	Iterator<Food> foodIter;
+public class AddMealBox extends JFrame {
+	Stack<Food> addedFood;
+	ArrayList<Food> FoodList;
 	nameInputPanel nameInputPanel;
 	kcalPer100GramInputPanel kcalPer100GramInputPanel;
 	sizeInputPanel sizeInputPanel;
 	addedFoodWithScrollBar addedFoodWithScrollBar;
 	addedFoodMainPanel addedFoodMainPanel;
 	public AddMealBox() {
-		
-		addedFood = new ArrayList<Food>();
+		FoodList = new ArrayList<Food>();
+		addedFood = new Stack<Food>();
 		setDefaultOptions();
 		setGridBagConstraintsLayout();
 	}
@@ -43,7 +46,6 @@ public class AddMealBox extends JFrame{
 		gbc.weightx = 1;
 		gbc.weighty = 1;
 		addPanel ap = new addPanel();
-		ap.add(new addedFoodPanel(new Food(0,0,"1")));
 		add(ap,gbc);
 		
 		addedFoodMainPanel = new addedFoodMainPanel();
@@ -108,6 +110,7 @@ public class AddMealBox extends JFrame{
 	}
 	public class addedFoodPanel extends JPanel{
 		public addedFoodPanel(Food f) {
+			//setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 			add(new addedFoodNamePanel(f.getName()));
 			add(new addedFoodSizePanel(f.getSize()));
 			add(new addedFoodTotalKcalPanel(f.getTotalKcal()));
@@ -139,15 +142,14 @@ public class AddMealBox extends JFrame{
 	}
 	public class addedFoodWithScrollBar extends JPanel{
 		public addedFoodWithScrollBar() {
-			
-			Food dd= new Food(0,0,"12");
-			addedFoodPanel e = new addedFoodPanel(dd);
-			add(e);
+			super();
+			setAutoscrolls(true);
+			setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 		}
 		public void updateFood() {
-			foodIter = addedFood.iterator();
-			while(foodIter.hasNext()) {
-				Food dd = foodIter.next();
+			while(!addedFood.isEmpty()) {
+				Food dd = addedFood.pop(); 
+				FoodList.add(dd);
 				addedFoodPanel e = new addedFoodPanel(dd);
 				add(e);
 			}
@@ -161,6 +163,12 @@ public class AddMealBox extends JFrame{
 			addActionListener(confirmButtonActionListener());
 		}
 		public ActionListener confirmButtonActionListener() {
+			ActionListener e = new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+
+				}
+				
+			};
 			return null;
 		}
 	}
@@ -203,6 +211,7 @@ public class AddMealBox extends JFrame{
 		sizeInputPanel(){
 			add(sizeLabel = new JLabel("* Size \t"));
 			add(sizeField = new JTextField(10));
+			sizeField.addActionListener(addButtonActionListener());
 		}
 		public JLabel getSizeLabel() {
 			return sizeLabel;
@@ -212,7 +221,17 @@ public class AddMealBox extends JFrame{
 			sizeField.setText("");
 			return s;
 		}
-		
+		public ActionListener addButtonActionListener() {
+			ActionListener e = new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					addFoodFromTextField();
+					addedFoodWithScrollBar.updateFood();
+					
+				}
+				
+			};
+			return e;
+		}
 	}
 	public class addedFoodMainPanel extends JPanel{
 		public addedFoodMainPanel() {

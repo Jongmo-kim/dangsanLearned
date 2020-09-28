@@ -105,7 +105,7 @@ public class ExamController {
 
 		while (iter.hasNext()) {
 			Board b = iter.next();
-			System.out.printf("%d\t%s\t%s\t%s\t%s\t", b.getBoardNo(), b.getBoardTitle(), b.getBoardWriter(),
+			System.out.printf("%d\t%s\t%s\t%s\t%s\t\n", b.getBoardNo(), b.getBoardTitle(), b.getBoardWriter(),
 					b.getReadCount(), b.getWriteDate());
 		}
 		JDBCTemplate.close(conn);
@@ -129,8 +129,11 @@ public class ExamController {
 
 	private void insertBoard() {
 		Connection conn = JDBCTemplate.getConnection();
+		sc.nextLine();
 		String boardTitle = inputBoardTitle();
 		String boardContent = inputBoardContent();
+		System.out.println(boardTitle);
+		System.out.println(boardContent);
 		int result = dao.insertBoard(conn,boardTitle,boardContent,loginMember.getMemberId());
 		if(result > 0 ) System.out.println("등록 성공!");
 		else System.out.println("등록 실패!");
@@ -277,12 +280,12 @@ public class ExamController {
 	}
 	private String inputBoardTitle() {
 		System.out.print("게시물 제목 입력 : ");
-		return sc.next();
+		return sc.nextLine();
 	}
 	
 	private String inputBoardContent() {
 		System.out.print("게시물 내용 입력 : ");
-		return sc.next();
+		return sc.nextLine();
 	}
 
 
