@@ -13,6 +13,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
 public class MainFrame extends JFrame {
+	public JButton addMealButton,showMealButton;
 	public MainFrame(String s){
 		super(s);
 		setDefaultOptions();
@@ -20,33 +21,25 @@ public class MainFrame extends JFrame {
 		setJMenuBar(f.mb);
 		makeMainButton();
 	}
+	public JButton getAddMeal() {
+		return addMealButton;
+	}
+	public JButton getShowMeal() {
+		return showMealButton;
+	}
 	private void makeMainButton() {
-		JButton addMeal,showMeal;
-		add(addMeal = new JButton("¸ÔÀº°Í Ãß°¡"));
-		addMeal.addActionListener(actionListenerAddMeal());
+		add(addMealButton = new JButton("¸ÔÀº°Í Ãß°¡"));
+		add(showMealButton = new JButton("¸Ô¾ú´ø °Íµé"));
 		
-		add(showMeal = new JButton("¸Ô¾ú´ø °Íµé"));
-		showMeal.addActionListener(actionListenerShowMeal());
 	}
-	public ActionListener actionListenerAddMeal() {
-		ActionListener actionListener = new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				AddMealBox f = new AddMealBox();
-				setInvisible();
-			}
-		};
-		return actionListener;
-	}
-	public ActionListener actionListenerShowMeal() {
-		ActionListener actionListener = new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		};
-		return actionListener;
-	}
-	private void setInvisible() {
+
+	public void setInvisible() {
 		setVisible(false);
 		setEnabled(false);
+	}
+	public void setVisible() {
+		setVisible(true);
+		setEnabled(true);
 	}
 	private void setDefaultOptions() {
 		setSize(700,400);

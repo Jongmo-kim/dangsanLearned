@@ -11,11 +11,25 @@ public class Meal {
 	public Meal() {
 		date = new Date();
 	}
-	public Meal(int kcal,String name,Date date) {
-		this.date = date;
-	}
-	public Meal(int kcal,String name) {
+	public Meal(ArrayList<Food> list) {
 		date = new Date();
+		foodArr = new ArrayList<Food>();
+		for(Food f : list) {
+			foodArr.add(f);
+		}
+	}
+
+	public ArrayList<Food> getFoodArr() {
+		return foodArr;
+	}
+	public void setFoodArr(ArrayList<Food> foodArr) {
+		this.foodArr = foodArr;
+	}
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
 	}
 	public Food findHighestTotalKcal() {
 		int max = 0;
@@ -27,6 +41,13 @@ public class Meal {
 			}
 		}
 		return tempToReturn;
+	}
+	public boolean isFoodNameIncluded(String valueBeIncluded) {
+		for(Food f : foodArr) {
+			if(f.getName().contains(valueBeIncluded))
+				return true;
+		}
+		return false;
 	}
 	public Food findLowestTotalKcal() {
 		int min = Integer.MAX_VALUE;
