@@ -17,8 +17,7 @@ public class MainFrame extends JFrame {
 	public MainFrame(String s){
 		super(s);
 		setDefaultOptions();
-		MenuBar f = new MenuBar();
-		setJMenuBar(f.mb);
+		
 		makeMainButton();
 	}
 	public JButton getAddMeal() {

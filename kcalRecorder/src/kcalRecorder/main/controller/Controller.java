@@ -7,11 +7,15 @@ import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.JButton;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import kcalRecorder.func.file.FileController;
 import kcalRecorder.model.vo.Food;
 import kcalRecorder.model.vo.Meal;
 import kcalRecorder.view.MainFrame;
+import kcalRecorder.view.MenuBar;
 import kcalRecorder.view.ShowMealFrame;
 import kcalRecorder.view.AddMealFrame;
 import kcalRecorder.view.AddMealFrame.*;
@@ -26,10 +30,14 @@ public class Controller {
 	JButton consonantSearchButton;
 	JButton nameSearchButton;
 	JButton dateSearchButton;
-
+	MenuBar menuBar;
+	FileController fileController;
+	String filePath,fileName;
 	public Controller() {
+		fileName = "data.dat";
+		fileController = new FileController(filePath, fileName);
 		mealArr = new ArrayList<Meal>();
-		setTestValues();
+		//setTestValues();
 	}
 
 	public void setTestValues() {
@@ -82,15 +90,88 @@ public class Controller {
 
 	public void main() {
 		mainFrame = new MainFrame("temp");
+		setMenuBar();
+		setMenuBarActionListener();
 		setMainFrameActionListener();
+		
 	}
-
+	
+	private void setMenuBar() {
+		menuBar = new MenuBar();
+		mainFrame.setJMenuBar(menuBar.getJMenuBar());
+	}
+	private void setMenuBarActionListener() {
+		JMenuItem save = menuBar.getMenuFileSave();
+		JMenuItem load = menuBar.getMenuFileLoad();
+		JMenuItem serverSave = menuBar.getMenuServerSave();
+		JMenuItem serverLoad = menuBar.getMenuServerLoad();
+		
+		save.addActionListener(actionListenerMenuFileSave());
+		load.addActionListener(actionListenerMenuFileLoad());
+		serverSave.addActionListener(actionListenerMenuServerSave());
+		serverLoad.addActionListener(actionListenerMenuServerLoad());
+	}
 	public void setMainFrameActionListener() {
 		JButton addMealButton = mainFrame.getAddMeal();
 		addMealButton.addActionListener(actionListenerAddMeal());
 
 		JButton showMealButton = mainFrame.getShowMeal();
 		showMealButton.addActionListener(actionListenerShowMeal());
+	}
+	public ActionListener actionListenerMenuLoginStatus() {
+		ActionListener actionListener = new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		};
+		return actionListener;
+	}
+	public ActionListener actionListenerMenuFileSave() {
+		ActionListener actionListener = new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(fileController.saveFile(mealArr)) {
+					JOptionPane.showMessageDialog(mainFrame, "저장되었습니다.");
+				} else {
+					JOptionPane.showMessageDialog(mainFrame, "저장 실패!");
+				}
+			}
+		};
+		return actionListener;
+	}
+	public ActionListener actionListenerMenuFileLoad() {
+		ActionListener actionListener = new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mealArr = fileController.readFile();
+				if(mealArr.isEmpty()) {
+					JOptionPane.showMessageDialog(mainFrame, "불러오기 실패!");
+				} else {
+					JOptionPane.showMessageDialog(mainFrame, "불러오기 성공!");
+				}
+			}
+		};
+		return actionListener;
+	}
+	public ActionListener actionListenerMenuServerSave() {
+		ActionListener actionListener = new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		};
+		return actionListener;
+	}
+	public ActionListener actionListenerMenuServerLoad() {
+		ActionListener actionListener = new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		};
+		return actionListener;
+	}
+	public ActionListener actionListenerMenuExit() {
+		ActionListener actionListener = new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		};
+		return actionListener;
 	}
 	public ActionListener actionListenerAddMeal() {
 		ActionListener actionListener = new ActionListener() {

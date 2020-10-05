@@ -8,66 +8,49 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 public class MenuBar {
-	public JMenuBar mb; 
+	public JMenuBar JMenuBar; 
+	private JMenuItem menuFileSave,menuFileLoad,menuServerSave,menuServerLoad,menuLoginStatus,menuExit;
+	
 	public MenuBar() {
-		JMenuItem fileSave,fileLoad,serverSave,serverLoad,exit;
-		mb = new JMenuBar();
+		JMenuBar = new JMenuBar();
 
-		JMenu file;
-		mb.add(file = new JMenu("File"));
-		mb.add(new JMenu("Option"));
-		
-		file.add(fileSave = new JMenuItem("파일 저장"));
-		fileSave.addActionListener(actionListenerFileSave());
-		
-		file.add(fileLoad = new JMenuItem("파일 불러오기"));
-		fileLoad.addActionListener(actionListenerFileLoad());
-		
-		file.add(serverSave = new JMenuItem("서버 저장"));
-		serverSave.addActionListener(actionListenerServerSave());
-		
-		file.add(serverLoad = new JMenuItem("서버에 동기화"));
-		serverLoad.addActionListener(actionListenerServerLoad());
-		
-		file.addSeparator();
-		file.add(exit = new JMenuItem("나가기"));
-		exit.addActionListener(actionListenerExit());
+		JMenu menu;
+		JMenuBar.add(menu = new JMenu("File"));
+		JMenuBar.add(new JMenu("Option"));
+
+		menu.add(menuFileSave = new JMenuItem("파일 저장"));
+		menu.add(menuFileLoad = new JMenuItem("파일 불러오기"));
+		menu.add(menuServerSave = new JMenuItem("서버 저장"));
+		menu.add(menuServerLoad = new JMenuItem("서버에 동기화"));
+		menu.add(menuLoginStatus = new JMenuItem("로그인"));
+		menu.addSeparator();
+		menu.add(menuExit = new JMenuItem("나가기"));
 	}
-	public ActionListener actionListenerFileSave() {
-		ActionListener actionListener = new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		};
-		return actionListener;
+	
+	public JMenuBar getJMenuBar() {
+		return JMenuBar;
 	}
-	public ActionListener actionListenerFileLoad() {
-		ActionListener actionListener = new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		};
-		return actionListener;
+
+	public JMenuItem getMenuLoginStatus() {
+		return menuLoginStatus;
 	}
-	public ActionListener actionListenerServerSave() {
-		ActionListener actionListener = new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		};
-		return actionListener;
+
+	public JMenuItem getMenuFileSave() {
+		return menuFileSave;
 	}
-	public ActionListener actionListenerServerLoad() {
-		ActionListener actionListener = new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		};
-		return actionListener;
+
+	public JMenuItem getMenuFileLoad() {
+		return menuFileLoad;
 	}
-	public ActionListener actionListenerExit() {
-		ActionListener actionListener = new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-		};
-		return actionListener;
+	public JMenuItem getMenuServerSave() {
+		return menuServerSave;
 	}
+
+	public JMenuItem getMenuServerLoad() {
+		return menuServerLoad;
+	}
+	public JMenuItem getMenuExit() {
+		return menuExit;
+	}
+
 }

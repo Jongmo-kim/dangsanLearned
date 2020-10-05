@@ -1,10 +1,11 @@
 package kcalRecorder.model.vo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Meal {
+public class Meal implements Serializable{
 	
 	private ArrayList<Food> foodArr;
 	private Date date;
