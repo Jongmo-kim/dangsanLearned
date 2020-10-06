@@ -25,22 +25,25 @@ DROP SEQUENCE foods_SEQ;
 
 SELECT * FROM FOOD;
 SELECT * FROM USER_;
+SELECT * FROM MEAL;
+SELECT * FROM FOODS;
 
-INSERT INTO FOOD(F_NAME,KCAL) VALUES('음식1',100);
-INSERT INTO FOODS(F_CODE) VALUES (FOOD_SEQ.CURRVAL);
-INSERT INTO MEAL(FS_CODE,AMOUNT,EAT_DATE) VALUES (FOODS_SEQ.CURRVAL,1,SYSDATE);
-INSERT INTO MEALS(M_CODE) VALUES (MEAL_SEQ.CURRVAL);
-INSERT INTO USER_(ID,PW,MS_CODE) VALUES ('ID3','1234',MEALS_SEQ.CURRVAL);
-
-
+insert into meal values(meal_seq.nextval,
+insert into user_ values(user__seq.nextval,'id1','pw1','nick');
 
 
 
 
 ----테이블 생성
--- 테이블 순서는 관계를 고려하여 한 번에 실행해도 에러가 발생하지 않게 정렬되었습니다.
+2-- 테이블 순서는 관계를 고려하여 한 번에 실행해도 에러가 발생하지 않게 정렬되었습니다.
 
 -- user_ Table Create SQL
+
+create SEQUENCE food_SEQ;
+create sequence meal_seq;
+create sequence meals_seq;
+create SEQUENCE user__SEQ;
+create SEQUENCE foods_SEQ;
 CREATE TABLE user_
 (
     u_code      NUMBER          NOT NULL, 

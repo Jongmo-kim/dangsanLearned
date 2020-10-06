@@ -14,12 +14,15 @@ import javax.swing.JTextField;
 import kcalRecorder.func.file.FileController;
 import kcalRecorder.model.vo.Food;
 import kcalRecorder.model.vo.Meal;
+import kcalRecorder.model.vo.User;
 import kcalRecorder.view.MainFrame;
 import kcalRecorder.view.MenuBar;
 import kcalRecorder.view.ShowMealFrame;
 import kcalRecorder.view.AddMealFrame;
 import kcalRecorder.view.AddMealFrame.*;
+import kcalRecorder.view.LoginFrame;
 import kcalRecorder.view.ShowMealFrame.*;
+import khRecorder.model.dao.Dao;
 
 public class Controller {
 	private ArrayList<Meal> mealArr;
@@ -30,16 +33,20 @@ public class Controller {
 	JButton consonantSearchButton;
 	JButton nameSearchButton;
 	JButton dateSearchButton;
+	JButton loginFrameLoginButton;
 	MenuBar menuBar;
 	FileController fileController;
 	String filePath,fileName;
+	User loggedInUser;
+	LoginFrame loginFrame;
+	Dao dao;
 	public Controller() {
 		fileName = "data.dat";
 		fileController = new FileController(filePath, fileName);
 		mealArr = new ArrayList<Meal>();
+		dao = new Dao();
 		//setTestValues();
 	}
-
 	public void setTestValues() {
 		ArrayList<Food> list = new ArrayList<Food>();
 		Calendar calendar = Calendar.getInstance();
@@ -105,11 +112,17 @@ public class Controller {
 		JMenuItem load = menuBar.getMenuFileLoad();
 		JMenuItem serverSave = menuBar.getMenuServerSave();
 		JMenuItem serverLoad = menuBar.getMenuServerLoad();
+		JMenuItem login = menuBar.getMenuLogin();
+		JMenuItem lookupId = menuBar.getMenuLookUp();
+		JMenuItem signUp = menuBar.getMenuSignUp();
 		
+		lookupId.addActionListener(actionListenerMenuLookupId());
+		signUp.addActionListener(actionListenerMenuSignUp());
 		save.addActionListener(actionListenerMenuFileSave());
 		load.addActionListener(actionListenerMenuFileLoad());
 		serverSave.addActionListener(actionListenerMenuServerSave());
 		serverLoad.addActionListener(actionListenerMenuServerLoad());
+		login.addActionListener(actionListenerMenuLogin());
 	}
 	public void setMainFrameActionListener() {
 		JButton addMealButton = mainFrame.getAddMeal();
@@ -118,7 +131,55 @@ public class Controller {
 		JButton showMealButton = mainFrame.getShowMeal();
 		showMealButton.addActionListener(actionListenerShowMeal());
 	}
-	public ActionListener actionListenerMenuLoginStatus() {
+	public ActionListener actionListenerMenuSignUp() {
+		ActionListener actionListener = new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		};
+		return actionListener;
+	}
+	public ActionListener actionListenerMenuLogin() {
+		ActionListener actionListener = new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				loginFrame = new LoginFrame();
+				loginFrameLoginButton= loginFrame.getLoginButton();
+				loginFrameLoginButton.addActionListener(actionListenerLoginButton());
+			}
+		};
+		return actionListener;
+	}
+	public ActionListener actionListenerLoginButton() {
+		ActionListener actionListener = new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				loginUser();
+				if(isLoggedIn()) {
+					JOptionPane.showMessageDialog(mainFrame, "로그인 성공");
+					loginFrame.setInvisible();
+				} else {
+					JOptionPane.showMessageDialog(mainFrame, "로그인 실패");
+				}
+			}
+
+			
+		};
+		return actionListener;
+	}
+	private boolean isLoggedIn() {
+		if(loggedInUser==null)
+			return false;
+		return true;
+	}
+	private void loginUser() {
+		JTextField idField = loginFrame.getIdTextField();
+		JTextField pwField = loginFrame.getPwTextField();
+		String id = idField.getText();
+		String pw = idField.getText();
+		idField.setText("");
+		pwField.setText("");
+		User u = dao.loginUser(id, pw);
+	}
+	public ActionListener actionListenerMenuLookupId() {
 		ActionListener actionListener = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				

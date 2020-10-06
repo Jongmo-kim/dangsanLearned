@@ -9,30 +9,40 @@ import javax.swing.JMenuItem;
 
 public class MenuBar {
 	public JMenuBar JMenuBar; 
-	private JMenuItem menuFileSave,menuFileLoad,menuServerSave,menuServerLoad,menuLoginStatus,menuExit;
+	private JMenuItem menuFileSave,menuFileLoad,menuServerSave,menuServerLoad,menuLogin,menuSignUp,menuExit,menuLookUp;
 	
 	public MenuBar() {
 		JMenuBar = new JMenuBar();
 
-		JMenu menu;
-		JMenuBar.add(menu = new JMenu("File"));
-		JMenuBar.add(new JMenu("Option"));
-
-		menu.add(menuFileSave = new JMenuItem("파일 저장"));
-		menu.add(menuFileLoad = new JMenuItem("파일 불러오기"));
-		menu.add(menuServerSave = new JMenuItem("서버 저장"));
-		menu.add(menuServerLoad = new JMenuItem("서버에 동기화"));
-		menu.add(menuLoginStatus = new JMenuItem("로그인"));
-		menu.addSeparator();
-		menu.add(menuExit = new JMenuItem("나가기"));
+		JMenu fileMenu;
+		JMenu memberMenu;
+		JMenuBar.add(fileMenu = new JMenu("File"));
+		JMenuBar.add(memberMenu = new JMenu("Member"));
+		
+		fileMenu.add(menuFileSave = new JMenuItem("파일 저장"));
+		fileMenu.add(menuFileLoad = new JMenuItem("파일 불러오기"));
+		fileMenu.add(menuServerSave = new JMenuItem("서버 저장"));
+		fileMenu.add(menuServerLoad = new JMenuItem("서버와 동기화"));
+		fileMenu.addSeparator();
+		fileMenu.add(menuExit = new JMenuItem("나가기"));
+		
+		memberMenu.add(menuLogin = new JMenuItem("로그인"));
+		memberMenu.add(menuSignUp = new JMenuItem("회원가입"));
+		memberMenu.add(menuLookUp = new JMenuItem("아이디 찾기"));
 	}
 	
 	public JMenuBar getJMenuBar() {
 		return JMenuBar;
 	}
-
-	public JMenuItem getMenuLoginStatus() {
-		return menuLoginStatus;
+	
+	public JMenuItem getMenuSignUp() {
+		return menuSignUp;
+	}
+	public JMenuItem getMenuLookUp() {
+		return menuLookUp;
+	}
+	public JMenuItem getMenuLogin() {
+		return menuLogin;
 	}
 
 	public JMenuItem getMenuFileSave() {
