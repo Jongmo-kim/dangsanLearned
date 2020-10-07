@@ -6,7 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Meal implements Serializable{
-	
+	private int m_no;
 	private ArrayList<Food> foodArr;
 	private Date date;
 	public Meal() {
@@ -20,6 +20,12 @@ public class Meal implements Serializable{
 		}
 	}
 
+	public int getM_no() {
+		return m_no;
+	}
+	public void setM_no(int m_no) {
+		this.m_no = m_no;
+	}
 	public ArrayList<Food> getFoodArr() {
 		return foodArr;
 	}
@@ -28,6 +34,9 @@ public class Meal implements Serializable{
 	}
 	public Date getDate() {
 		return date;
+	}
+	public java.sql.Date getSqlDate() {
+		return new java.sql.Date(date.getTime());
 	}
 	public void setDate(Date date) {
 		this.date = date;

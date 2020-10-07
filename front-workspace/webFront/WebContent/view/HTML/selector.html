@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>selector</title>
+<!--    내부 스타일 태그-->
+    <style>
+/*        전체선택자 body태그까지 포함*/
+        *{
+            color:dimgrey;
+            background-color: antiquewhite;
+        }
+/*        태그 선택자*/
+        p{
+            color : aliceblue;
+        }
+/*        아이디 선택자*/
+        #idtest{
+            color: fuchsia;
+        }
+/*        클래스 선택자*/
+        .classTest{
+            color: darkviolet;
+        }
+        .t-red{
+            color : red;
+        }
+        .t-bblue{
+            color:blue;
+        }
+        .b-yellow{
+            background-color: yellow;
+        }
+        .b-green{
+            background-color: green;
+        }
+        input[name=id]{
+            color: antiquewhite;
+        }
+        input[type=password]{
+            background-color: burlywood;
+        }
+        #d1>*{
+            background-color: coral;
+        }
+        #d1 li{
+            background-color: cornsilk;
+        }
+    </style>
+</head>
+    <header>
+    <marquee scrollamount="10" direction="right">_@/</marquee>
+    </header>
+<body>
+    <h1 class="classTest">h1</h1>
+    <h2>h2</h2>
+    <h3>h3</h3>
+    <p id="idtest">p</p>
+    <div class="t-red">div</div>
+    <h3 >h3<span>h3내부태그</span></h3>
+    <input type="text" name = "id"><br>
+    <input type="password" name ="pw"><br>
+    <input type="button" value ="클릭"><br>
+    <div id="d1">
+        <h1>#d1의 자손</h1>
+        <h2>#d1의 자손</h2>
+        <ul>
+            <li>#d1의 후손</li>
+            <li>#d1의 후손</li>
+        </ul>
+    </div>
+
+</body>
+    
+    <footer>
+    <marquee scrollamount="11" direction="right">_@/</marquee>
+    </footer>
+</html>

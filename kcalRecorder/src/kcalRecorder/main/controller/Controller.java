@@ -2,6 +2,7 @@ package kcalRecorder.main.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -11,6 +12,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import common.JDBCTemplate;
 import kcalRecorder.func.file.FileController;
 import kcalRecorder.model.vo.Food;
 import kcalRecorder.model.vo.Meal;
@@ -22,6 +24,7 @@ import kcalRecorder.view.AddMealFrame;
 import kcalRecorder.view.AddMealFrame.*;
 import kcalRecorder.view.LoginFrame;
 import kcalRecorder.view.ShowMealFrame.*;
+import kcalRecorder.view.SignUpFrame;
 import khRecorder.model.dao.Dao;
 
 public class Controller {
@@ -34,19 +37,26 @@ public class Controller {
 	JButton nameSearchButton;
 	JButton dateSearchButton;
 	JButton loginFrameLoginButton;
+	JButton signUpFrameSignUpButton;
 	MenuBar menuBar;
 	FileController fileController;
-	String filePath,fileName;
+	String filePath, fileName;
 	User loggedInUser;
+	ArrayList<Food> foodList;
 	LoginFrame loginFrame;
+	SignUpFrame signUpFrame;
 	Dao dao;
+
 	public Controller() {
 		fileName = "data.dat";
+		loggedInUser = null;
+		foodList = new ArrayList<Food>();
 		fileController = new FileController(filePath, fileName);
 		mealArr = new ArrayList<Meal>();
 		dao = new Dao();
-		//setTestValues();
+		setTestValues();
 	}
+
 	public void setTestValues() {
 		ArrayList<Food> list = new ArrayList<Food>();
 		Calendar calendar = Calendar.getInstance();
@@ -100,23 +110,22 @@ public class Controller {
 		setMenuBar();
 		setMenuBarActionListener();
 		setMainFrameActionListener();
-		
+
 	}
-	
+
 	private void setMenuBar() {
 		menuBar = new MenuBar();
 		mainFrame.setJMenuBar(menuBar.getJMenuBar());
 	}
+
 	private void setMenuBarActionListener() {
 		JMenuItem save = menuBar.getMenuFileSave();
 		JMenuItem load = menuBar.getMenuFileLoad();
 		JMenuItem serverSave = menuBar.getMenuServerSave();
 		JMenuItem serverLoad = menuBar.getMenuServerLoad();
 		JMenuItem login = menuBar.getMenuLogin();
-		JMenuItem lookupId = menuBar.getMenuLookUp();
 		JMenuItem signUp = menuBar.getMenuSignUp();
-		
-		lookupId.addActionListener(actionListenerMenuLookupId());
+
 		signUp.addActionListener(actionListenerMenuSignUp());
 		save.addActionListener(actionListenerMenuFileSave());
 		load.addActionListener(actionListenerMenuFileLoad());
@@ -124,6 +133,7 @@ public class Controller {
 		serverLoad.addActionListener(actionListenerMenuServerLoad());
 		login.addActionListener(actionListenerMenuLogin());
 	}
+
 	public void setMainFrameActionListener() {
 		JButton addMealButton = mainFrame.getAddMeal();
 		addMealButton.addActionListener(actionListenerAddMeal());
@@ -131,29 +141,65 @@ public class Controller {
 		JButton showMealButton = mainFrame.getShowMeal();
 		showMealButton.addActionListener(actionListenerShowMeal());
 	}
+
 	public ActionListener actionListenerMenuSignUp() {
 		ActionListener actionListener = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				signUpFrame = new SignUpFrame();
+				signUpFrameSignUpButton = signUpFrame.getLoginButton();
+				signUpFrameSignUpButton.addActionListener(actionListenerSignUpButton());
 			}
 		};
 		return actionListener;
 	}
+
+	public ActionListener actionListenerSignUpButton() {
+		ActionListener actionListener = new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (signUp() > 0) {
+					JOptionPane.showMessageDialog(mainFrame, "회원가입 성공");
+					signUpFrame.setInvisible();
+				} else {
+					JOptionPane.showMessageDialog(mainFrame, "회원가입 실패");
+				}
+
+			}
+		};
+		return actionListener;
+	}
+
+	private int signUp() {
+		JTextField idField = signUpFrame.getIdTextField();
+		JTextField pwField = signUpFrame.getPwTextField();
+		JTextField nickField = signUpFrame.getNickTextField();
+		String id = idField.getText();
+		String pw = pwField.getText();
+		String nick = nickField.getText();
+		idField.setText("");
+		pwField.setText("");
+		nickField.setText("");
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.signUpUser(conn, id, pw, nick);
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
 	public ActionListener actionListenerMenuLogin() {
 		ActionListener actionListener = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				loginFrame = new LoginFrame();
-				loginFrameLoginButton= loginFrame.getLoginButton();
+				loginFrameLoginButton = loginFrame.getLoginButton();
 				loginFrameLoginButton.addActionListener(actionListenerLoginButton());
 			}
 		};
 		return actionListener;
 	}
+
 	public ActionListener actionListenerLoginButton() {
 		ActionListener actionListener = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				loginUser();
-				if(isLoggedIn()) {
+				if (isLoggedIn()) {
 					JOptionPane.showMessageDialog(mainFrame, "로그인 성공");
 					loginFrame.setInvisible();
 				} else {
@@ -161,36 +207,32 @@ public class Controller {
 				}
 			}
 
-			
 		};
 		return actionListener;
 	}
+
 	private boolean isLoggedIn() {
-		if(loggedInUser==null)
+		if (loggedInUser == null)
 			return false;
 		return true;
 	}
+
 	private void loginUser() {
 		JTextField idField = loginFrame.getIdTextField();
 		JTextField pwField = loginFrame.getPwTextField();
 		String id = idField.getText();
-		String pw = idField.getText();
+		String pw = pwField.getText();
 		idField.setText("");
 		pwField.setText("");
-		User u = dao.loginUser(id, pw);
+		Connection conn = JDBCTemplate.getConnection();
+		loggedInUser = dao.loginUser(conn, id, pw);
+		JDBCTemplate.close(conn);
 	}
-	public ActionListener actionListenerMenuLookupId() {
-		ActionListener actionListener = new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		};
-		return actionListener;
-	}
+
 	public ActionListener actionListenerMenuFileSave() {
 		ActionListener actionListener = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(fileController.saveFile(mealArr)) {
+				if (fileController.saveFile(mealArr)) {
 					JOptionPane.showMessageDialog(mainFrame, "저장되었습니다.");
 				} else {
 					JOptionPane.showMessageDialog(mainFrame, "저장 실패!");
@@ -199,11 +241,12 @@ public class Controller {
 		};
 		return actionListener;
 	}
+
 	public ActionListener actionListenerMenuFileLoad() {
 		ActionListener actionListener = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mealArr = fileController.readFile();
-				if(mealArr.isEmpty()) {
+				if (mealArr.isEmpty()) {
 					JOptionPane.showMessageDialog(mainFrame, "불러오기 실패!");
 				} else {
 					JOptionPane.showMessageDialog(mainFrame, "불러오기 성공!");
@@ -212,13 +255,70 @@ public class Controller {
 		};
 		return actionListener;
 	}
+
 	public ActionListener actionListenerMenuServerSave() {
 		ActionListener actionListener = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (isLoggedIn()) {
+					if (serverSave() > 0) {
+						JOptionPane.showMessageDialog(mainFrame, "저장 성공");
+					} else {
+						JOptionPane.showMessageDialog(mainFrame, "저장 실패");
+					}
+				} else {
+					JOptionPane.showMessageDialog(mainFrame, "로그인이 되지 않았습니다.");
+				}
+
 			}
 		};
 		return actionListener;
 	}
+
+	private int serverSave() {
+		Connection conn = JDBCTemplate.getConnection();
+		setNotNestedFoodListFromMealArr();
+		int foodResult = dao.insertMultipleFood(conn, foodList);
+		int mealResult = dao.insertMultipleMeal(conn, mealArr, loggedInUser);
+		int foodsResult = dao.insertMultipleFoods(conn, foodList, loggedInUser);
+
+		
+		if (foodResult == 0 || mealResult == 0 || foodsResult == 0) {
+			commitOrRollback(conn, 0);
+		} else {
+			commitOrRollback(conn, foodsResult);
+		}
+		JDBCTemplate.close(conn);
+		return foodResult;
+	}
+
+	private void commitOrRollback(Connection conn, int result) {
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+	}
+
+	private void setNotNestedFoodListFromMealArr() {
+		for (Meal meal : mealArr) {
+			ArrayList<Food> list = meal.getFoodArr();
+			for (Food food : list) {
+				if (isNestedFood(food)) {
+					foodList.add(food);
+				}
+			}
+		}
+	}
+
+	private boolean isNestedFood(Food ori) {
+		for (Food des : foodList) {
+			if (ori.getName().equals(des.getName())) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 	public ActionListener actionListenerMenuServerLoad() {
 		ActionListener actionListener = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -226,6 +326,7 @@ public class Controller {
 		};
 		return actionListener;
 	}
+
 	public ActionListener actionListenerMenuExit() {
 		ActionListener actionListener = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -234,6 +335,7 @@ public class Controller {
 		};
 		return actionListener;
 	}
+
 	public ActionListener actionListenerAddMeal() {
 		ActionListener actionListener = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -247,6 +349,7 @@ public class Controller {
 		};
 		return actionListener;
 	}
+
 	public ActionListener actionListenerShowMeal() {
 
 		ActionListener actionListener = new ActionListener() {
@@ -269,8 +372,7 @@ public class Controller {
 		};
 		return actionListener;
 	}
-	
-	
+
 	public ActionListener actionListenerAddMealConfirmButton() {
 		ActionListener actionListener = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -287,6 +389,7 @@ public class Controller {
 		mealArr.add(new Meal(list));
 		list.clear();
 	}
+
 	public ActionListener actionListenerShowMealReturnMain() {
 		ActionListener actionListener = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

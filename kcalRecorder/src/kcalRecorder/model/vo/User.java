@@ -1,12 +1,22 @@
 package kcalRecorder.model.vo;
 
 public class User {
+	private int no;
 	private String id;
 	private String pw;
 	private String nickname;
 	public String getId() {
 		return id;
 	}
+	
+	public int getNo() {
+		return no;
+	}
+
+	public void setNo(int no) {
+		this.no = no;
+	}
+
 	public void setId(String id) {
 		this.id = id;
 	}

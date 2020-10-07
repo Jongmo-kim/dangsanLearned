@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>form태그</title>
+    <style>
+        body {
+            background-color: darkgreen;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <marquee scrollamount="10" direction="right">_@/</marquee>
+        <hr>
+    </header>
+    <!--        ?는 파라미터 구분자-->
+    <form action='actionPage.html' method="get">
+        <fieldset>
+            <legend>로그인 정보</legend>
+            ID : <input type="text" name="id" required><br>
+            pw : <input type="password" name="pw" required><br>
+            <input type="submit" value="로그인">
+            <input type="reset" value="취소">
+        </fieldset>
+    </form>
+    <input type="text" value="테스트"><br>
+    <input type="text" placeholder="아이디를 입력하세용"> <br>
+    <input type="text" value="읽기전용이지롱" readonly> <br>
+    <input type="text" maxlength="10" placeholder="10개이상 입력이 안됨 근데 난됨"> <br>
+    <input type="text" size="100" maxlength="10"> <br>
+    <hr>
+    <form action="inputType.html" method="get" autocomplete="off">
+        <label for ="a">test</label><input type="text" name="a" id="a" placeholder="개행문자없이 한줄짜리만가능"><br>
+        password<input type="password" placeholder="비밀번호 입력할떄사용" name="b"><br>
+        hidden:<input type="hidden" value="넘어갈 데이터" placeholder="value에 값을 숨겨 놓았다 서버에 전송" name="c"><br>
+        multiple<input type="file" multiple><br>
+        radio:<label><input type="radio" name="e">남</label>
+        <input type="radio" name="e">여
+        <br>
+        checkBox:<input type="checkbox" name="f"> 취미1
+        <input type="checkbox" name="f">취미2
+        <input type="checkbox" name="f">취미3
+        <input type="submit" value="제출하기"><br>
+        <input type="reset" value="초기화"><br>
+        <input type="button" value="기능용버튼" onclick="alter('1111')"><br>
+    </form>
+    <hr>
+    <form action = "html5type.html" method="">
+        color : <input type="color" name="a"><br>
+        date :<input type="date" name="b"><br>
+        dateTime-local : <input type="datetime-local" name="c"><br>
+        month : <input type="month" name = "d"><br>
+        week : <input type="week" name = "e"><br>
+        time : <input type="time" name = "f"><br>
+        number : <input type="number" nmae = "g" min = "0" max ="10" step ="2" value ="0"><br>
+        range : <input type="range" min="1" max="100" value="1"><br>
+        url : <input type="url" name ="h"> 주소값왓는지검색<br>
+        email : <input type="email" name="i"> 안에 @ 있는지 검색<br>
+        <br>
+        <select>
+            <option>첫번쨰</option>
+            <option>두번째</option>
+            <option>세번째</option>
+        </select>
+        <br>
+        <textarea name="content" row = "10" cols="50" style="resize:none"></textarea><br>
+        <input type="submit" value="제출">
+    </form>
+</body>
+
+</html>

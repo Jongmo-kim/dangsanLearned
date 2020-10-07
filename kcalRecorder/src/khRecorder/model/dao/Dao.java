@@ -1,12 +1,162 @@
 package khRecorder.model.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import common.JDBCTemplate;
+import kcalRecorder.model.vo.Food;
+import kcalRecorder.model.vo.Meal;
 import kcalRecorder.model.vo.User;
 
+/*
+create SEQUENCE food_SEQ;
+create sequence meal_seq;
+create sequence meals_seq;
+create SEQUENCE user__SEQ;
+create SEQUENCE foods_SEQ;
+
+ */
 public class Dao {
 
-	public User loginUser(String id, String pw) {
-
-		return null;
+	private User getUser(ResultSet rset) {
+		User u = new User();
+		try {
+			u.setId(rset.getString("id"));
+			u.setPw(rset.getString("pw"));
+			u.setNickname(rset.getString("nickName"));
+			u.setNo(rset.getInt("u_code"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return u;
 	}
 
+	public User loginUser(Connection conn, String id, String pw) {
+		PreparedStatement pstmt = null;
+		String sql = "select * from user_ where id = ? and pw = ?";
+		ResultSet rset = null;
+		User u = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, pw);
+			rset = pstmt.executeQuery();
+			if (rset.next()) {
+				u = getUser(rset);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rset.close();
+				pstmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return u;
+	}
+
+	public int signUpUser(Connection conn, String id, String pw, String nick) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = "insert into User_ values(user__seq.nextval,?,?,?)";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, pw);
+			pstmt.setString(3, nick);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+
+		return result;
+	}
+
+	public int serverSave(Connection conn, User loggedInUser, ArrayList<Meal> mealArr) {
+		int result =0;
+		PreparedStatement pstmt = null;
+		
+		return result;
+	}
+	public int insertFood(Connection conn,Food food) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = "insert into food values(food_seq.nextval,?,?)";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, food.getName());
+			pstmt.setInt(2, food.getKcalPerOneHundred());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public int insertMultipleFood(Connection conn, ArrayList<Food> foodList) {
+		int result =0;
+		for(Food food : foodList) {
+			result += insertFood(conn, food);
+		}
+		return result;
+	}
+
+	public int insertMultipleFoods(Connection conn, ArrayList<Food> foodList,User u) {
+		int result = 0 ;
+		for(Food food :foodList) {
+			result += insertFoods(conn, food,u);
+		}
+		return result;
+	}
+	public int insertFoods(Connection conn,Food food,User u) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = "insert into foods values(meal_seq.currval,food_seq.currval,?)";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setDouble(1, food.getSize());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally { 
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int insertMultipleMeal(Connection conn, ArrayList<Meal> mealArr,User u ) {
+		int result = 0;
+		for(Meal meal : mealArr) {
+			result += insertMeal(conn, meal, u);
+		}
+		return result;
+	}
+	public int insertMeal(Connection conn, Meal meal,User u) {
+		int result =0;
+		PreparedStatement pstmt = null;
+		String sql = "insert into meal values(meal_seq.nextval,?,?)";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setDate(1, meal.getSqlDate());
+			pstmt.setInt(2,u.getNo());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			 JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
 }

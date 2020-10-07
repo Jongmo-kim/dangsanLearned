@@ -8,6 +8,9 @@ drop table meals;
 drop table meal;
 drop table foods;
 drop table food;
+SELECT * FROM FOODS;
+select * from user_ where id = 'id1' and pw = 'pw1';
+select to_char(member_seq.currval,9999) from dual;
 
 DROP TRIGGER food_AI_TRG;
 DROP TRIGGER foods_AI_TRG;
@@ -23,10 +26,13 @@ DROP SEQUENCE foods_SEQ;
 -- 값 삽입 예제
 -- 삽입전 시퀀스 초기화
 
+select * from user_ where id = 'id1' and pw = 'pw1';
+--조회
 SELECT * FROM FOOD;
 SELECT * FROM USER_;
 SELECT * FROM MEAL;
 SELECT * FROM FOODS;
+select id 아이디,pw 비밀번호,nickname 닉네임 from user_;
 
 insert into meal values(meal_seq.nextval,
 insert into user_ values(user__seq.nextval,'id1','pw1','nick');
@@ -49,7 +55,7 @@ CREATE TABLE user_
     u_code      NUMBER          NOT NULL, 
     id          VARCHAR2(20)    NOT NULL, 
     pw          VARCHAR2(20)    NOT NULL, 
-    nickname    VARCHAR2(20)    NOT NULL, 
+    nickname    VARCHAR2(100)    NOT NULL, 
     CONSTRAINT USER__PK PRIMARY KEY (u_code)
 )
 /
@@ -82,7 +88,7 @@ ALTER TABLE user_
 CREATE TABLE food
 (
     f_code    NUMBER          NOT NULL, 
-    f_name    VARCHAR2(20)    NOT NULL, 
+    f_name    VARCHAR2(100)    NOT NULL, 
     kcal      NUMBER          NOT NULL, 
     CONSTRAINT FOOD_PK PRIMARY KEY (f_code)
 )

@@ -3,6 +3,7 @@ package kcalRecorder.model.vo;
 import java.io.Serializable;
 
 public class Food implements Serializable{
+	private int f_no;
 	private int kcalPerOneHundred;
 	private double size;
 	private int totalKcal;
@@ -14,6 +15,15 @@ public class Food implements Serializable{
 		this.name = name;
 		this.totalKcal = calcTotalKcal(kcalPerOneHundred,size);
 	}
+	
+	public int getF_no() {
+		return f_no;
+	}
+
+	public void setF_no(int f_no) {
+		this.f_no = f_no;
+	}
+
 	public int calcTotalKcal(int kcalPerOneHundred,double size) {
 		return (int)((double)this.kcalPerOneHundred *  size);
 	}

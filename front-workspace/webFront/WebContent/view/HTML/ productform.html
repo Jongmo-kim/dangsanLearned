@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title> productform.html</title>
+</head>
+
+<body>
+    <form action="wherearewegoing.html" method="get" autocomplete="off">
+    <fieldset>
+        <legend>납품자정보</legend>
+
+        <ol type="1">
+            <li>납품자명: <input type="text" name="a" placeholder="name"></li>
+            <li>email: <input type="email" name="b" placeholder="answs@naver.com"></li>
+            <li>홈페이지: <input type="url" name="c" placeholder="http://"></li>
+        </ol>
+
+    </fieldset>
+    <br>
+    <fieldset>
+        <legend>납품정보</legend>
+        <ul>
+            <li>상품명: <input type="text" name="d"></li>
+            <li>납품수량: <input type="text" name="e" placeholder="최소100" size="5" min="100"></li>
+            <li>납품등급: <input type="range" name="f"></li>
+            <li>기타사항: <textarea cols="20" rows="2" name="g"></textarea></li>
+        </ul>
+    </fieldset>
+    <input type="submit" value="send message">
+    </form>
+</body></html>

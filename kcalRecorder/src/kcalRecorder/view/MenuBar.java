@@ -9,7 +9,7 @@ import javax.swing.JMenuItem;
 
 public class MenuBar {
 	public JMenuBar JMenuBar; 
-	private JMenuItem menuFileSave,menuFileLoad,menuServerSave,menuServerLoad,menuLogin,menuSignUp,menuExit,menuLookUp;
+	private JMenuItem menuFileSave,menuFileLoad,menuServerSave,menuServerLoad,menuLogin,menuSignUp,menuExit;
 	
 	public MenuBar() {
 		JMenuBar = new JMenuBar();
@@ -28,7 +28,6 @@ public class MenuBar {
 		
 		memberMenu.add(menuLogin = new JMenuItem("로그인"));
 		memberMenu.add(menuSignUp = new JMenuItem("회원가입"));
-		memberMenu.add(menuLookUp = new JMenuItem("아이디 찾기"));
 	}
 	
 	public JMenuBar getJMenuBar() {
@@ -37,9 +36,6 @@ public class MenuBar {
 	
 	public JMenuItem getMenuSignUp() {
 		return menuSignUp;
-	}
-	public JMenuItem getMenuLookUp() {
-		return menuLookUp;
 	}
 	public JMenuItem getMenuLogin() {
 		return menuLogin;
