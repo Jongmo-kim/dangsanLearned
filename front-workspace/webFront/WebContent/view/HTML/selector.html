@@ -11,9 +11,11 @@
             background-color: antiquewhite;
         }
 /*        태그 선택자*/
+/*
         p{
             color : aliceblue;
         }
+*/
 /*        아이디 선택자*/
         #idtest{
             color: fuchsia;
@@ -40,11 +42,33 @@
         input[type=password]{
             background-color: burlywood;
         }
+        
+/*        자손은 꺽쇠 후손은 공백 남매관계는 동위관계라함*/
         #d1>*{
+/*            모든 자손에게 */
             background-color: coral;
         }
         #d1 li{
+/*            후손 중 모든 li에게*/
             background-color: cornsilk;
+        }
+        #d1 a{
+/*            후손 중 모든 a에게*/
+            color : dodgerblue;
+        }
+/*        동위관계*/
+        #div-test>h2+h3{
+/*            h2태그중 바로 다음 h3태그 한개만 인지*/
+            color:aliceblue;
+        }
+        #div-test>h2~p{
+/*            ~은 이후 모든 동위관계들에게 적용하는것 */
+            color:white;
+        }
+        #div-test1>p:hover{
+            color:aqua;
+            background-color: coral;
+            cursor: progress;
         }
     </style>
 </head>
@@ -65,11 +89,26 @@
         <h1>#d1의 자손</h1>
         <h2>#d1의 자손</h2>
         <ul>
-            <li>#d1의 후손</li>
+            <li>#d1의 후손<a href="#">aaa</a></li>
             <li>#d1의 후손</li>
         </ul>
     </div>
-
+    <div id = "div-test">
+        <h2>자손0</h2>
+        <h3>자손1</h3>
+        <h3>자손2</h3>
+        <p>자손3</p>    
+        <p>자손4</p>
+    </div>
+    <div id="div-test1">
+        <p>Test Msg</p>
+        <p>Test Msg</p>
+        <p>Test Msg</p>
+        <p>Test Msg</p>
+        <p>Test Msg</p>
+        <p>Test Msg</p>
+        
+    </div>
 </body>
     
     <footer>
