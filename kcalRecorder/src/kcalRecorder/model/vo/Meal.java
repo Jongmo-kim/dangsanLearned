@@ -19,12 +19,12 @@ public class Meal implements Serializable{
 			foodArr.add(f);
 		}
 	}
-
-	public int getM_no() {
-		return m_no;
-	}
+	
 	public void setM_no(int m_no) {
 		this.m_no = m_no;
+	}
+	public int getM_no() {
+		return m_no;
 	}
 	public ArrayList<Food> getFoodArr() {
 		return foodArr;

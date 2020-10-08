@@ -81,12 +81,6 @@ public class Dao {
 		return result;
 	}
 
-	public int serverSave(Connection conn, User loggedInUser, ArrayList<Meal> mealArr) {
-		int result =0;
-		PreparedStatement pstmt = null;
-		
-		return result;
-	}
 	public int insertFood(Connection conn,Food food) {
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -96,11 +90,36 @@ public class Dao {
 			pstmt.setString(1, food.getName());
 			pstmt.setInt(2, food.getKcalPerOneHundred());
 			result = pstmt.executeUpdate();
+			if(result > 0) {
+				int f_no = getFNumber(conn,pstmt);
+				food.setF_no(f_no);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			JDBCTemplate.close(pstmt);
 		}
+		return result;
+	}
+
+	private int getFNumber(Connection conn, PreparedStatement pstmt) {
+		
+		String sql = "select food_seq.currval from dual";
+		int result = 0;
+		ResultSet rset = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				result = rset.getInt("currval");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+		}
+		
+		
 		return result;
 	}
 
@@ -112,22 +131,31 @@ public class Dao {
 		return result;
 	}
 
-	public int insertMultipleFoods(Connection conn, ArrayList<Food> foodList,User u) {
+	public int insertMultipleFoods(Connection conn, ArrayList<Meal> mealList,User u) {
 		int result = 0 ;
-		for(Food food :foodList) {
-			result += insertFoods(conn, food,u);
+		ArrayList<Food> foodList = null;
+		for(Meal meal : mealList) {
+			foodList = meal.getFoodArr();
+			for(Food food : foodList) {
+				insertFoods(conn,food,meal);
+			}
+			
 		}
 		return result;
 	}
-	public int insertFoods(Connection conn,Food food,User u) {
+	public int insertFoods(Connection conn,Food food,Meal meal) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String sql = "insert into foods values(meal_seq.currval,food_seq.currval,?)";
+		String sql = "insert into foods values(?,?,?)";
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setDouble(1, food.getSize());
+			pstmt.setInt(1, meal.getM_no());
+			pstmt.setInt(2, food.getF_no());
+			pstmt.setDouble(3, food.getSize());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
+			System.out.printf("%d m_code\n",meal.getM_no());
+			System.out.printf("%d f_code\n",food.getF_no());
 			e.printStackTrace();
 		} finally { 
 			JDBCTemplate.close(pstmt);
@@ -152,11 +180,31 @@ public class Dao {
 			pstmt.setDate(1, meal.getSqlDate());
 			pstmt.setInt(2,u.getNo());
 			result = pstmt.executeUpdate();
+			if(result > 0) {
+				int m_no = getMNumber(conn, pstmt);
+				meal.setM_no(m_no);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			 JDBCTemplate.close(pstmt);
 		}
+		return result;
+	}
+	private int getMNumber(Connection conn, PreparedStatement pstmt) {
+		int result = 0;
+		String sql = "select meal_seq.currval from dual";
+		ResultSet rset = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				result = rset.getInt("currval");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 		return result;
 	}
 }

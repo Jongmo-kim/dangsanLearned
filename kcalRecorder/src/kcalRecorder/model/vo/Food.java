@@ -5,9 +5,14 @@ import java.io.Serializable;
 public class Food implements Serializable{
 	private int f_no;
 	private int kcalPerOneHundred;
+	
 	private double size;
 	private int totalKcal;
 	private String name;
+	public Food() {
+		
+	}
+	
 	public Food(int kcalPerOneHundred,double size, String name) {
 		super();
 		this.kcalPerOneHundred = kcalPerOneHundred;

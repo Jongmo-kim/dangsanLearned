@@ -67,6 +67,7 @@ public class Controller {
 		list.add(new Food(250, 1, "소고기 무국"));
 		list.add(new Food(100, 1, "미역줄기 볶음"));
 		Meal temp = new Meal(list);
+
 		Date date1 = new Date();
 		temp.setDate(date1);
 		mealArr.add(temp);
@@ -278,8 +279,11 @@ public class Controller {
 		Connection conn = JDBCTemplate.getConnection();
 		setNotNestedFoodListFromMealArr();
 		int foodResult = dao.insertMultipleFood(conn, foodList);
+		for(Food food : foodList) {
+			System.out.println(food.getF_no());
+		}
 		int mealResult = dao.insertMultipleMeal(conn, mealArr, loggedInUser);
-		int foodsResult = dao.insertMultipleFoods(conn, foodList, loggedInUser);
+		int foodsResult = dao.insertMultipleFoods(conn, mealArr, loggedInUser);
 
 		
 		if (foodResult == 0 || mealResult == 0 || foodsResult == 0) {

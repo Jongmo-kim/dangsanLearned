@@ -40,7 +40,7 @@
             color: antiquewhite;
         }
         input[type=password]{
-            background-color: burlywood;
+/*            background-color: burlywood;*/
         }
         
 /*        자손은 꺽쇠 후손은 공백 남매관계는 동위관계라함*/
@@ -70,10 +70,29 @@
             background-color: coral;
             cursor: progress;
         }
+        input[type=radio]:checked{
+            width: 20px;
+            height: 20px;
+        }
+        input[name=hobby]:checked{
+            width: 20px;
+            height: 20px;
+        }
+        input[name=id]:focus{
+            background-color: cornflowerblue;
+            color:aliceblue;
+        }
+        select[name=age]>option:disabled{
+            color:white;
+        }
+        select[name = age] > option:enabled{
+            color:blueviolet;
+        }
     </style>
 </head>
     <header>
     <marquee scrollamount="10" direction="right">_@/</marquee>
+        <hr>
     </header>
 <body>
     <h1 class="classTest">h1</h1>
@@ -107,11 +126,33 @@
         <p>Test Msg</p>
         <p>Test Msg</p>
         <p>Test Msg</p>
+        <a href="#">클릭</a>
         
+        <hr>
+        <input type="radio" name = "gender">남
+        <input type="radio" name = "gender">여
+        <br>
+        <input type="checkbox" name="hobby">독서
+        <input type="checkbox" name="hobby">음악
+        <input type="checkbox" name="hobby">운동
+        <br>
+        <input type="text" name="id" autocomplete="off" placeholder="아이디입력"><br>
+        <input type="password" name="pw" placeholder="비밀번호입력"><br>
+        나이대 선택
+        <select name="age">
+            <option disabled>10대</option>
+            <option>20대</option>
+            <option>30대</option>
+            <option>40대</option>
+            <option>50대</option>
+            <option>60대</option>
+        </select>
     </div>
 </body>
     
     <footer>
+        <hr>
+        
     <marquee scrollamount="11" direction="right">_@/</marquee>
     </footer>
 </html>

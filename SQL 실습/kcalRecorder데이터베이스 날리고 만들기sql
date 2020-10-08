@@ -1,53 +1,13 @@
---데이터베이스 만들고권한주기
-create user kcalRecorder identified by 1234;
-grant resource, connect to kcalRecorder;
-
---데이터베이스 날리기 
 drop table foods;
 drop table meal;
 drop table user_;
 drop table food;
-
-
-SELECT * FROM FOODS;
-select * from user_ where id = 'id1' and pw = 'pw1';
-select to_char(member_seq.currval,9999) from dual;
-
 DROP SEQUENCE food_SEQ;
 drop sequence meal_seq;
 drop sequence meals_seq;
 DROP SEQUENCE user__SEQ;
 DROP SEQUENCE foods_SEQ;
--- 값 삽입 예제
--- 삽입전 시퀀스 초기화
 
-select * from user_ where id = 'id1' and pw = 'pw1';
---조회
-SELECT * FROM FOOD;
-SELECT * FROM USER_;
-SELECT * FROM MEAL;
-select * from foods;
-SELECT f_name,amount FROM FOODS E
-join food F on (E.f_code=F.f_code);
-
-select food_seq.currval from dual;
-
-insert into foods values(5,12,2);
-select id 아이디,pw 비밀번호,nickname 닉네임 from user_;
-select * from meal;
-select
-    id 아이디,f_name 먹은음식,kcal 칼로리,eat_date 먹은날
-from user_ ,food,meal;
-insert into meal values(meal_seq.nextval,
-insert into user_ values(user__seq.nextval,'id1','pw1','nick');
-
-
-
-
-----테이블 생성
-2-- 테이블 순서는 관계를 고려하여 한 번에 실행해도 에러가 발생하지 않게 정렬되었습니다.
-
--- user_ Table Create SQL
 
 create SEQUENCE food_SEQ;
 create sequence meal_seq;
