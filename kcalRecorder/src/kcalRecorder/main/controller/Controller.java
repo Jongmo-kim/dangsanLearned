@@ -277,8 +277,9 @@ public class Controller {
 
 	private int serverSave() {
 		Connection conn = JDBCTemplate.getConnection();
-		setNotNestedFoodListFromMealArr();
+		
 		int foodResult = dao.insertMultipleFood(conn, foodList);
+		setNotNestedFoodListFromMealArr();
 		for(Food food : foodList) {
 			System.out.println(food.getF_no());
 		}
