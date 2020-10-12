@@ -1,72 +1,488 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>fontStyle</title>
+    <meta charset="UTF-8">
+    <title>fontStyle</title>
     <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
 </head>
-    <style>
-        h1{
-/*         color : blue;   */
-        }
-        #h1 {
-            color : rgb(0,0,255);
-            
-        }
-        #h3 {
-            color: #0000ff;
-        }
-        #h4 {
-            color: rgba(0,0,255,0.05);
-        }
-        #p1 {
-/*            해당폰트를 사용할수 없으면 넘어감 3개까지*/
-            font-family: "궁서체","고딕체","바탕체";
-            font-size :2em;
-            font-weight: 900;
-        }
-        #p2 {
-            font-family: "고딕체","굴림체";
-            font-size : 3rem;
-            font-weight: normal;
-        }
-        #p3 {
-            font-family: "바탕체","궁서체","고딕체";
-            font-size: 50pt;
-        }
-        #p4 {
-            font-family: 'Black Han Sans', sans-serif;
-            font-size:50px;
-        }
-        #p6{
-            font-variant: normal;
-            font-style:italic;
-        }
-        #p7{
-            font-variant: small-caps;
-            font-style: oblique;
-        }
-        #p8{
-            font: italic bold 20px "궁서체";
-        }
-    </style>
+<style>
+    h1 {
+        /*         color : blue;   */
+    }
+
+    #h1 {
+        color: rgb(0, 0, 255);
+
+    }
+
+    #h3 {
+        color: #0000ff;
+    }
+
+    #h4 {
+        color: rgba(0, 0, 255, 0.05);
+    }
+
+    #p1 {
+        /*            해당폰트를 사용할수 없으면 넘어감 3개까지*/
+        font-family: "궁서체", "고딕체", "바탕체";
+        font-size: 2em;
+        font-weight: 900;
+    }
+
+    #p2 {
+        font-family: "고딕체", "굴림체";
+        font-size: 3rem;
+        font-weight: normal;
+    }
+
+    #p3 {
+        font-family: "바탕체", "궁서체", "고딕체";
+        font-size: 50pt;
+    }
+
+    #p4 {
+        font-family: 'Black Han Sans', sans-serif;
+        font-size: 50px;
+    }
+
+    #p6 {
+        font-variant: normal;
+        font-style: italic;
+    }
+
+    #p7 {
+        font-variant: small-caps;
+        font-style: oblique;
+    }
+
+    #p8 {
+        font: italic bold 20px "궁서체";
+    }
+
+    #c1 {
+        color: red;
+        text-decoration: underline;
+        text-transform: lowercase;
+    }
+
+    #c2 {
+        color: rgb(255, 0, 0);
+        text-decoration: overline;
+        text-transform: uppercase;
+    }
+
+    #c3 {
+        color: #ff0000;
+        text-decoration: line-through;
+        text-transform: capitalize;
+    }
+
+    #c4 {
+        color: rgba(255, 0, 0, 0.5);
+        text-transform: none;
+    }
+
+    #a1 {
+        text-decoration: none;
+        color: black;
+    }
+
+    #p11 {
+        color: orangered;
+        font-size: 40px;
+        text-shadow: 5px 5px 50px;
+        /*            text shadow 가로 세로 그림자 번짐 색상*/
+    }
+
+    #p12 {
+        color: blue;
+        font-size: 40px;
+        text-shadow: 0px 1px 20px #ff0
+    }
+
+    #p13 {
+        color: red;
+        font-size: 40px;
+        text-shadow: 1px 1px 20px #6f0;
+    }
+
+    #p14 {
+        color: black;
+        font-size: 40px;
+        text-shadow: 10px 1px 1px #5d5d5d, 15px 15px 10px #d9418c, 20px 20px 10px #8041d9, 30px 30px 10px #47c83e;
+    }
+
+    #p21 {
+        white-space: nowrap;
+    }
+
+    #p22 {
+        white-space: pre;
+    }
+
+    #p23 {
+        white-space: pre-line;
+    }
+
+    #p24 {
+        white-space: pre-wrap;
+    }
+    #p31 {
+        letter-spacing: 10px;
+    }
+    #p32{
+        letter-spacing: 20px;
+    }
+    #p33{
+        word-spacing: 10px;
+        
+    }
+    #p34{
+        word-spacing: 20px;
+    }
+    #pp1{
+        direction: ltr;
+    }
+    #pp2{
+        direction: rtl;
+    }
+    #pp3{
+        text-align: left;
+        text-indent: 10px;
+    }
+    #pp4{
+        text-align: left;
+        text-indent: 340px;
+    }
+    #pp5{
+        text-align: center;
+    }
+    #pp6{
+        text-align: justify;
+    }
+    #pp7 { 
+        line-height: 20px;
+    }
+    #pp8 {
+        line-height: 50px;
+    }
+    #pp9{
+        
+    }
+    #pp10{
+        border: 1px solid black;
+        width : 100px;
+        white-space: nowrap;
+        overflow:hidden;
+        text-overflow:clip;
+    }
+    #pp11{
+        border: 1px solid black;
+        width : 100px;
+        white-space :nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+    }
+    #u1{
+/*        기본값*/
+        list-style-type:disc;
+        list-style-position: inside
+    }
+    #u1>li{
+        background-color: aqua;        
+    }
+    #u2{
+        list-style-type:circle;
+        list-style-position: outside;
+    }
+    #u2>li{
+        background-color:aquamarine;
+
+    }
+    #u3{
+        list-style-type: square;
+    }
+    #u4{
+        list-style-image:url(img/kakao.jpg);
+    }
+    #o1{
+        list-style-type: decimal;
+    }
+    
+</style>
+
 <body>
     <h1 id="h1">색상 테스트1</h1>
     <h1 id="h2">색상 테스트2</h1>
     <h1 id="h3">색상 테스트3</h1>
     <h1 id="h4">색상 테스트4</h1>
-    <hr>  
-    <p id = "p1">글꼴테스트1</p>
-    <p id = "p2">글꼴테스트2</p>
-    <p id = "p3">글꼴테스트3</p>
-    <p id = "p4">글꼴테스트4 </p>
-    
+    <hr>
+    <p id="p1">글꼴테스트1</p>
+    <p id="p2">글꼴테스트2</p>
+    <p id="p3">글꼴테스트3</p>
+    <p id="p4">글꼴테스트4 </p>
+
     <p id="p6">Iloveyou</p>
     <p id="p7">Iloveyou</p>
     <p id="p8">폰트테스트</p>
-<footer>
-<hr>
-    <marquee scrollamount="11" direction="right">_@/</marquee>
+    <hr>
+    <p id="c1">Example test1</p>
+    <p id="c2">Example test2</p>
+    <p id="c3">Example test3</p>
+    <p id="c4">Example test4</p>
+    <a id="a1" href="#">#</a>
+
+    <hr>
+
+    <p id="p11">example test</p>
+    <p id="p12">example test</p>
+    <p id="p13">example test</p>
+    <p id="p14">example test</p>
+    <hr>
+    <h2>p21</h2>
+    <p id="p21">1
+
+        동해 물과 백두산이 마르고 닳도록하느님이 보우하사 우리나라 만세.무궁화 삼천리 화려 강산대한 사람, 대한으로 길이 보전하세.
+        2남산 위에 저 소나무, 철갑을 두른 듯
+        바람 서리 불변함은 우리 기상일세.
+        무궁화 삼천리 화려 강산
+        대한 사람, 대한으로 길이 보전하세.
+        3가을 하늘 공활한데 높고 구름 없이밝은 달은 우리 가슴 일편단심일세.무궁화 삼천리 화려 강산대한 사람, 대한으로 길이 보전하세.4이 기상과 이 맘으로 충성을 다하여
+        괴로우나 즐거우나 나라 사랑하세.
+        무궁화 삼천리 화려 강산
+        대한 사람, 대한으로 길이 보전하세.</p>
+    <h2>p22</h2>
+    <p id="p22">1
+
+        동해 물과 백두산이 마르고 닳도록
+        하느님이 보우하사 우리나라 만세.
+        무궁화 삼천리 화려 강산
+        대한 사람, 대한으로 길 이 보전하세.
+        2
+
+        남산 위에 저 소나무, 철갑을 두른 듯
+        바람 서리 불변함은 우리 기상일세.
+        무궁화 삼천리 화려 강산
+        대한 사람, 대한으로 길이 보전하세.
+        3
+
+        가을 하늘 공활한데 높고 구름 없이
+        밝은 달은 우리 가슴 일편단심일세.
+        무궁화 삼천리 화려 강산
+        대한 사람, 대한으로 길이 보전하세.
+        4
+
+        이 기상과 이 맘으로 충성을 다하여
+        괴로우나 즐거우나 나라 사랑하세.
+        무궁화 삼천리 화려 강산
+        대한 사람, 대한으로 길이 보전하세.</p>
+    <h2>p23</h2>
+    <p id="p23">1
+
+        동해 물과 백두산이 마르고 닳도록
+        하느님이 보우하사 우리나라 만세.
+        무궁화 삼천리 화려 강산
+        대한 사람, 대한으로 길이 보전하세.
+        2
+
+        남산 위에 저 소나무, 철갑을 두른 듯
+        바람 서리 불변함은 우리 기상일세.
+        무궁화 삼천리 화려 강산
+        대한 사람, 대한으로 길이 보전하세.
+        3
+
+        가을 하늘 공활한데 높고 구름 없이
+        밝은 달은 우리 가슴 일편단심일세.
+        무궁화 삼천리 화려 강산
+        대한 사람, 대한으로 길이 보전하세.
+        4
+
+        이 기상과 이 맘으로 충성을 다하여
+        괴로우나 즐거우나 나라 사랑하세.
+        무궁화 삼천리 화려 강산
+        대한 사람, 대한으로 길이 보전하세.</p>
+    <h2>p24</h2>
+    <p id="p24">1.
+
+        동해 물과 백두산이 마르고 닳도록
+        하느님이 보우하사 우리나라 만세.
+        무궁화 삼천리 화려 강산
+        대한 사람, 대한으로 길이 보전하세.
+        2
+
+        남산 위에 저 소나무, 철갑을 두른 듯
+        바람 서리 불변함은 우리 기상일세.
+        무궁화 삼천리 화려 강산
+        대한 사람, 대한으로 길이 보전하세.
+        3
+
+        가을 하늘 공활한데 높고 구름 없이
+        밝은 달은 우리 가슴 일편단심일세.
+        무궁화 삼천리 화려 강산
+        대한 사람, 대한으로 길이 보전하세.
+        4
+
+        이 기상과 이 맘으로 충성을 다하여
+        괴로우나 즐거우나 나라 사랑하세.
+        무궁화 삼천리 화려 강산
+        대한 사람, 대한으로 길이 보전하세.</p>
+    <hr>
+    <p id="p31">나는 지금 피곤하지 않다.</p>
+    <p id="p32">나는 지금 피곤하지 않다.</p>
+    <p id="p33">나는 지금 피곤하지 않다.</p>
+    <p id="p34">나는 지금 피곤하지 않다.</p>
+    <hr>
+    <p id="pp1">안녕 하세요.</p>
+    <p id="pp2">안녕 하세요.</p>
+    <hr>
+    <p id="pp3">
+    1.
+
+        동해 물과 백두산이 마르고 닳도록
+        하느님이 보우하사 우리나라 만세.
+        무궁화 삼천리 화려 강산
+        대한 사람, 대한으로 길이 보전하세.
+        2
+
+        남산 위에 저 소나무, 철갑을 두른 듯
+        바람 서리 불변함은 우리 기상일세.
+        무궁화 삼천리 화려 강산
+        대한 사람, 대한으로 길이 보전하세.
+        3
+
+        가을 하늘 공활한데 높고 구름 없이
+        밝은 달은 우리 가슴 일편단심일세.
+        무궁화 삼천리 화려 강산
+        대한 사람, 대한으로 길이 보전하세.
+        4
+
+        이 기상과 이 맘으로 충성을 다하여
+        괴로우나 즐거우나 나라 사랑하세.
+        무궁화 삼천리 화려 강산
+        대한 사람, 대한으로 길이 보전하세.
+    </p>
+    
+    <p id="pp4">
+    1.
+
+        동해 물과 백두산이 마르고 닳도록
+        하느님이 보우하사 우리나라 만세.
+        무궁화 삼천리 화려 강산
+        대한 사람, 대한으로 길이 보전하세.
+        2
+
+        남산 위에 저 소나무, 철갑을 두른 듯
+        바람 서리 불변함은 우리 기상일세.
+        무궁화 삼천리 화려 강산
+        대한 사람, 대한으로 길이 보전하세.
+        3
+
+        가을 하늘 공활한데 높고 구름 없이
+        밝은 달은 우리 가슴 일편단심일세.
+        무궁화 삼천리 화려 강산
+        대한 사람, 대한으로 길이 보전하세.
+        4
+
+        이 기상과 이 맘으로 충성을 다하여
+        괴로우나 즐거우나 나라 사랑하세.
+        무궁화 삼천리 화려 강산
+        대한 사람, 대한으로 길이 보전하세.
+    </p>
+    
+    <p id="pp5">
+    1.
+
+        동해 물과 백두산이 마르고 닳도록
+        하느님이 보우하사 우리나라 만세.
+        무궁화 삼천리 화려 강산
+        대한 사람, 대한으로 길이 보전하세.
+        2
+
+        남산 위에 저 소나무, 철갑을 두른 듯
+        바람 서리 불변함은 우리 기상일세.
+        무궁화 삼천리 화려 강산
+        대한 사람, 대한으로 길이 보전하세.
+        3
+
+        가을 하늘 공활한데 높고 구름 없이
+        밝은 달은 우리 가슴 일편단심일세.
+        무궁화 삼천리 화려 강산
+        대한 사람, 대한으로 길이 보전하세.
+        4
+
+        이 기상과 이 맘으로 충성을 다하여
+        괴로우나 즐거우나 나라 사랑하세.
+        무궁화 삼천리 화려 강산
+        대한 사람, 대한으로 길이 보전하세.
+    </p>
+    sdsd
+    <p id="pp6">
+    1.
+
+        동해 물과 백두산이 마르고 닳도록
+        하느님이 보우하사 우리나라 만세.
+        무궁화 삼천리 화려 강산
+        대한 사람, 대한으로 길이 보전하세.
+        2
+
+        남산 위에 저 소나무, 철갑을 두른 듯
+        바람 서리 불변함은 우리 기상일세.
+        무궁화 삼천리 화려 강산
+        대한 사람, 대한으로 길이 보전하세.
+        3
+
+        가을 하늘 공활한데 높고 구름 없이
+        밝은 달은 우리 가슴 일편단심일세.
+        무궁화 삼천리 화려 강산
+        대한 사람, 대한으로 길이 보전하세.
+        4
+
+        이 기상과 이 맘으로 충성을 다하여
+        괴로우나 즐거우나 나라 사랑하세.
+        무궁화 삼천리 화려 강산
+        대한 사람, 대한으로 길이 보전하세.
+    </p>
+    <p id="pp7">안녕하세요</p>
+    <p id="pp8">안녕하세요</p>
+    <p id="pp9">안녕하세요</p>
+    <p id="pp10">안녕하세요 테스트를 위한 글 입니다.</p>
+    <p id="pp11">안녕하세요 테스트를 위한 글 입니다.</p>
+    <hr>
+    <ul id="u1">
+        <li>test1</li>
+        <li>test1</li>
+        <li>test1</li>
+    </ul>
+    <ul id="u2">
+        <li>test1</li>
+        <li>test1</li>
+        <li>test1</li>
+    </ul>
+    
+    <ul id="u3">
+        <li>test1</li>
+        <li>test1</li>
+        <li>test1</li>
+    </ul>
+    <ul id="u4">
+        <li>test1</li>
+        <li>test1</li>
+        <li>test1</li>
+    </ul>
+    <ol id ="o1">
+        <li>test1</li>
+        <li>test2</li>
+        <li>test3</li>
+    </ol>
+    <hr>
+    <ul id="u4">
+        <li>test1</li>
+        <li>test2</li>
+        <li>test3</li>
+    </ul>
+    <footer>
+        <hr>
+        <marquee scrollamount="11" direction="right">_@/</marquee>
     </footer>
-</body>
-</html>
+</body></html>

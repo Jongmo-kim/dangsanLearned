@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>layout</title>
+    <style>
+        #div1{
+            width:200px;
+            height: 200px;
+            background-color: red;
+            display:inline;
+        }
+        #div1:hover{
+            background-color:blue;
+        }
+        #span1{
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+        }
+        #div2{
+            width: 80%;
+            height: 200px;
+            background-color: green;
+        }
+        #a1{
+            width:100px;
+            height: 100px;
+            background-color: beige;
+            display:block;
+        }
+        #a1:hover{
+            background-color: deepskyblue;
+        }
+        .display-test{
+            width:200px;
+            height: 200px;
+            color:white;
+        }
+        #s1{
+            background-color: red;
+        }
+        #s2{
+            background-color: blue;
+        }
+        #s3{
+            background-color: darkblue;
+        }
+        #s4 { 
+            background-color:darkseagreen;
+            display:none;
+        }
+        #s5{
+            background-color:darkslategray;
+            display:inline-block;
+        }
+        #menu-detail{
+            display:none;
+        }
+        #menu-test:hover + ul{
+            display:block;
+        }
+        .b-test{
+            width : 100px;
+            height: 100px;
+            border-top-width: 10px;
+            border-bottom-width: 5px;
+            border-left-width:2px;
+            border-right-width: 7px;
+            border-color: dimgray;
+            border-bottom-color: dimgrey;
+            border-top-color:darkseagreen;
+            border-left-color: azure;
+            border-right-color:coral;
+        }
+        #d1{
+            border-style: dotted;
+        }
+        #d2{
+            border-style:dashed;
+        }
+        #d3{
+            border-style:groove;
+        }
+        #d4{
+            border-style: inset;
+        }
+        #d5{
+            border-style:outset;
+        }
+        #d6{
+            border-style:ridge;
+        }
+        #d7{
+            border-style:solid;
+        }
+        #d8{
+            border-style:none;
+        }
+        #d9{
+            border-bottom-style: dotted;
+            border-top-style: solid;
+            border-left-style:dashed;
+            border-right-style:double;
+        }
+        #d10{
+            border-style:hidden;
+        }
+        #d11{
+            border: 1px solid black;
+        }
+        #d12{
+            width:100px;
+            height:100px;
+            border-right:10px dashed red;
+        }
+    </style>
+</head>
+<body>
+    <div id = "div1"></div>
+    <div id = "div2"></div>
+    <span id = "span1"></span>
+    <br>
+    <a id = "a1" href="#" >앵커태그 </a>
+    <a href="#">테스트!!!</a>
+    <hr>
+    <span id="s1" class="display-test">1. 테스트 문구</span>
+    <span id="s2" class="display-test">1. 테스트 문구</span>
+    <span id="s3" class="display-test">1. 테스트 문구</span>
+    <span id="s4" class="display-test">1. 테스트 문구</span>
+    <span id="s5" class="display-test">1. 테스트 문구</span>
+    <hr>
+    <span id="menu-test">FRONTEND</span>
+    <ul id="menu-detail">
+        <li>html</li>
+        <li>css</li>
+        <li>javascript</li>
+        <li>jQuery</li>
+    </ul>
+    <hr>
+    <h3>dotted</h3>
+    <div id = "d1" class="b-test"></div>
+    
+    <h3>dashed</h3>
+    <div id = "d2" class="b-test"></div>
+    
+    <h3>double</h3>
+    <div id = "d3" class="b-test"></div>
+    
+    <h3>groove</h3>
+    <div id = "d4" class="b-test"></div>
+    
+    <h3>inset</h3>
+    <div id = "d5" class="b-test"></div>
+    
+    <h3>outset</h3>
+    <div id = "d6" class="b-test"></div>
+    
+    <h3>ridge</h3>
+    <div id = "d7" class="b-test"></div>
+    
+    <h3>solid</h3>
+    <div id = "d8" class="b-test"></div>
+    
+    <h3>방향마다 다르게</h3>
+    <div id = "d9" class="b-test"></div>
+    
+    <h3>dotted</h3>
+    <div id = "d10" class="b-test"></div>
+    
+    
+    <div id = "d11" class="b-test"></div>
+    <div id = "d12"></div>
+    <hr>
+    <div id = "d21" class="radius"></div>
+</body>
+</html>

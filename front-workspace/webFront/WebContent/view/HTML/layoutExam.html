@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>layoutExam</title>
+    <style>
+        .inline-block{
+            
+            width:100px;
+            height: 100px;
+            display:inline-block;
+            border-width: 30px;
+            border-color:black;
+            border-style: dashed;
+        }
+        .default{
+            width:100px;
+            height: 100px;
+            display:inline-block;
+            border-width: 30px;
+            border-color:black;
+            border-style: dashed;
+        }
+        #center{
+            border-style: dotted;
+            border-color: pink;
+        }
+        #t11{
+            border-color:blue;
+            border-top-left-radius: 20px;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-style:dashed; 
+            border-right-style: dashed;
+        }
+        #t1{
+            border-color:green;
+            border-top-style: solid;
+            border-right-style: solid;
+            border-left-style: dashed;
+            border-bottom-style: dashed;
+            border-top-right-radius: 20px
+        }
+        #t5{
+            border-color:red;
+            border-top-style: dashed;
+            border-right-style: solid;
+            border-left-style: dashed;
+            border-bottom-style: solid;
+            border-bottom-right-radius: 20px;
+        }
+        #t7{
+            border-color:yellow;
+            border-top-style: dashed;
+            border-right-style: dashed;
+            border-left-style: solid;
+            border-bottom-style: solid;
+            border-bottom-left-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+    다음과 같이 테이블을 꾸며보세요
+    
+    <table>
+        <tr>
+            <td id="t11" class="default"></td>
+            <td id="t12" class="default"></td>
+            <td id="t1" class="default"></td>
+        </tr>
+        <tr>
+            <td id="t9" class="default"></td>
+            <td id="center" class="default"></td>
+            <td id="t3" class="default"></td>
+        </tr>
+        <tr>
+            <td id="t7" class="default"></td>
+            <td id="t6" class="default"></td>
+            <td id="t5" class="default"></td>
+        </tr>
+    </table>
+    <div id="t11" class="inline-block"></div>
+    <div id="t12" class="inline-block"></div>
+    <div id="t1"  class="inline-block"></div>
+    <br>
+    <div id="t3"  class="inline-block"></div>
+    <div id="center" class="inline-block"></div>
+    <div id="t9" class="inline-block"></div>
+    <br>
+    <div id="t7" class="inline-block"></div>
+        <div id="t6" class="inline-block"></div>
+    <div id="t5" class="inline-block"></div>
+
+</body>
+</html>
