@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>position</title>
+    <style>
+/*        포지션 앱솔루트는 relative를 기준으로 움직인다*/
+        .outer{
+            position: relative;
+        }
+        .position{
+            border: 1px solid black;
+            
+        }
+        .fixed-area{
+            position:fixed;
+            width:100px;
+            height: 100px;
+            background-color: red;
+            
+        }
+        .first{
+            width : 300px;
+            height :300px;
+            background-color: yellowgreen;
+        }
+        .second{
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            background-color: yellow;
+            top:50px;
+            left:50px;
+        }
+        .third{
+            width:100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+            top:100px;
+            left:100px;
+        }
+        .z-test1{
+            width: 150px;
+            height: 100px;
+            border: 1px solid black;
+            position: absolute;
+            top:100px;
+            left: 100px;
+            background-color: yellow;
+            z-index: 1;
+        }
+        .z-test2{
+            width: 150px;
+            height: 100px;
+            border: 1px solid black;
+            position: absolute;
+            top:50px;
+            left: 50px;
+            background-color: darkslategrey;
+            z-index: 2;
+        }
+        .z-test3{
+            width: 150px;
+            height: 100px;
+            border: 1px solid black;
+            position: absolute;
+            top:0px;
+            left: 0px;
+            background-color: red;
+            
+        }
+        #vi-test{
+            width:100px;
+            height: 100px;
+            background-color: blue;
+            visibility: hidden;
+            opacity: 0.5;
+        }
+        .float-test{
+            width: 100px;
+            height: 50px;
+            border: 1px solid red;
+            float:left;
+        }
+        #test11{
+            width: 100px;
+            height: 50px;
+            border: 1px solid black;
+            clear:both;
+        }
+        .f-test{
+            border: 1px solid black;
+            overflow:hidden;
+
+        }
+        .over{
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            margin : 50px;
+            font-size: 18px;
+        }
+        .d1{
+            overflow: visible;
+        }
+        .d2{
+            overflow:scroll;
+        }
+        .d3{
+            overflow:auto;
+        }
+        .d4{
+            overflow:hidden
+        }
+    </style>
+</head>
+<body>
+    <h3>절대위치 상대위치</h3>
+    <div class="outer">
+        <div class="position first"></div>
+        <div class="position second"></div>
+        <div class="position third"></div>
+    </div>
+    <h3> 고정위치</h3>
+    <div class="position fixed-area"></div>
+    <br><br><br><br><br><br>
+    <h3>z-index</h3>
+    <div class="outer">
+        <div class="z-test1">요소1</div>
+        <div class="z-test2">요소2</div>
+        <div class="z-test3">요소3</div>
+    </div>
+    <br><br><br>,br><br><br><br><br><br><br><br>
+    <h3>viTest</h3>
+    <div id="vi-test"></div>
+    <h1>테스트문구</h1>
+    <div class="f-test">
+        <div class="float-test">1111</div>
+        <div class="float-test">2222</div>
+        <div class="float-test">3333</div>
+        <div class="float-test">4444</div>
+        <div id = "test11">테스트</div>
+    </div>
+    <h3>over flow</h3>
+    <div class="over d1">(디지털 컨버전스 기반 융합 응용 SW 개발자 양성과정)</div>
+    <div class="over d2">(디지털 컨버전스 기반 융합 응용 SW 개발자 양성과정)</div>
+    <div class="over d3">(디지털 컨버전스 기반 융합 응용 SW 개발자 양성과정)</div>
+    <div class="over d4">(디지털 컨버전스 기반 융합 응용 SW 개발자 양성과정)</div>
+</body>
+</html>

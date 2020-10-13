@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Exam1</title>
+    <style>
+        div {
+
+            border: 1px solid black;
+            box-sizing: border-box;
+        }
+
+        #wrap {
+            height: 850px;
+            width: 1000px;
+        }
+
+        #upper {
+
+            height: 150px;
+            width: 1000px;
+        }
+
+        #upper>* {
+            height: 100%;
+        }
+
+        #upper-first {
+            width: 25%;
+            float: left;
+        }
+
+        #upper-second {
+            width: 50%;
+            float: left;
+        }
+
+        #upper-thrid {
+            width: 25%;
+            float: left;
+        }
+
+        #middle {
+            height: 500px;
+            width: 1000px;
+            overflow: hidden;
+        }
+
+        #lower {
+            height: 150px;
+            width: 1000px;
+        }
+
+        #middle>* {
+            height: 100%;
+        }
+
+        #middle-box1 {
+            float: left;
+            width: 20%;
+        }
+
+        #middle-box2 {
+            float: left;
+            background-color: aquamarine;
+            width: 50%;
+        }
+
+        #middle-box3 {
+            float: left;
+            width: 30%;
+            
+        }
+
+        #navi {
+            height: 50px;
+            width: 1000px;
+            background-color: aqua;
+        }
+        #upper-leftbox{
+            float:left;
+            width : 65%;
+            height: 60px;
+        }
+        #upper-rightbox{
+            float:left;
+            width: 35%;
+            height: 60px;
+        }
+        #idform-upper{
+            height: 85%;
+            width: 100%;
+        }
+        #idform-lower{
+            height: 15%;
+            width: 100%;
+            text-align: center;
+        }
+        #middle-box3-upperbox{
+            
+        }
+        #inputSubmit{
+            width: 90%;
+            height: 90%;
+            margin: 3px 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrap">
+        <div id="upper">
+            <div id="upper-first"></div>
+            <div id="upper-second"></div>
+            <div id="upper-thrid"></div>
+        </div>
+        <div id="navi"></div>
+        <div id="middle">
+            <div id="middle-box1">m box 1</div>
+            <div id="middle-box2">mboxsadsadsadsada 2</div>
+            <div id="middle-box3">
+                <div id="middle-box3-upperbox">
+                    <div id="idform">
+                        <div id="idform-upper">
+                            <form action="#">
+                            <div id="upper-leftbox">
+                                <input type="text" placeholder="아이디를 입력하세요"><br>
+                                <input type="password" placeholder="pw를 입력하세요">
+                            </div>
+                            <div id="upper-rightbox">
+                                
+                                <input type="submit" value="로그인" id="inputSubmit">
+                            </div>
+                                </form>
+                        </div>
+                        <div id="idform-lower">
+                            <a href="#">회원가입</a> <a href="#">ID</a> <a href="#">/PW찾기</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="lower"></div>
+    </div>
+    <br><br><br>
+
+
+</body></html>

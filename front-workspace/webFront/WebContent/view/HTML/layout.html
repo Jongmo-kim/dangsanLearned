@@ -155,11 +155,32 @@
             padding : 50px;
         }
         #margin-test{
-            width: 100px;
+            width: 200px;
             height: 100px;
             background-color: red;
 /*            한가운데로*/
-            margin: 0 auto;
+/*            margin: 0 auto;*/
+            color:white;
+            text-align: center;
+            line-height: 100px;
+        }
+        #div-wrap{
+            width: 500px;
+            height: 500px;
+            border: 1px solid black;
+        }
+        .inner-div{
+            width: 250px;
+            height: 248px;
+            border: 1px dashed red;
+            float:left;
+            box-sizing: border-box;
+        }
+        .red{
+            background-color: red;
+        }
+        .blue{
+            background-color: blue;
         }
     </style>
 </head>
@@ -230,6 +251,11 @@
     <hr>
     <div class="test" id="test1">테스트문구</div>
     <div class="test" id="test2">테스트문구2</div>
-    <div class="test" id="margin-test"></div>
+    <div class="test" id="margin-test">테스트문구</div>
+    <hr>
+    <div id="div-wrap">
+        <div class="inner-div red"></div>
+        <div class="inner-div blue" ></div>
+    </div>
 </body>
 </html>

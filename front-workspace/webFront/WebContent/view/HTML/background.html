@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>background</title>
+    <style>
+        .d1{
+            background-color: aqua;
+        }
+        .div{
+            background-color: skyblue;
+            width:20%;
+            padding: 20px;
+            border: 5px dashed black;
+        }
+        .dd1{
+            background-clip: border-box;
+        }
+        .dd2{
+            background-clip: padding-box;
+        }
+        .dd3{
+            background-clip: content-box;
+        }
+        .dd4{
+            width: 500px;
+            height: 500px;
+            background-image: url(img/img.png);
+            border: 10px solid blue;
+            background-repeat: no-repeat;
+            background-size: 300px 300px
+        }
+        .dd5{
+            width:500px;
+            height: 500px;
+            border: 1px solid black;
+            background-image: url(img/kakao.jpg);
+            background-repeat:no-repeat;
+            background-position: right center;
+            
+        }
+        .dd6{
+            background:
+        }
+        body{
+            background-image:url(img/img.png);
+            background-repeat: no-repeat;
+            background-attachment: scroll;
+        }
+    </style>
+</head>
+<body>
+    <div class="d1"> 안녕하세용!</div>
+    <hr>
+    <div class="div dd1">테스트문구1</div>
+    <div class="div dd2">테스트문구2</div>
+    <div class="div dd3">테스트문구3</div>    
+    <hr>
+    <div class="dd4"></div>
+    <div class="dd5"></div>
+    <div class="dd6"></div>
+</body>
+</html>

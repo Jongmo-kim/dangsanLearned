@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>background2</title>
+    <style>
+        .linear{
+            width: 300px;
+            height: 300px;
+            border : 1px solid black;
+        }
+        #gra1{
+            background: linear-gradient(to left, blue,white);
+        }
+        #gra2{
+            background: linear-gradient(90deg,blue,white)
+        }
+        #gra3{
+            background: linear-gradient(to right,blue,white 50%,red);
+        }
+        #gra4{
+            background: linear-gradient(135deg,red,orange 15%, yellow 30%, green 45%, blue 60%, navy 75%, purple 90%);
+        }
+        #gra5{
+            background: repeating-linear-gradient(60deg, blue,red 25%);
+        }
+        #gra6{
+            background: repeating-linear-gradient(135deg,red,red 5%, orange 10%, yellow 10%, yellow 15%,green 15%, green 20%, blue 20%, blue 25%, navy 25%, navy 30%, purple 30%, purple 35%);
+        }
+        #gra7{
+/*            크롬,사파리*/
+            background: -webkit-radial-gradient(white,blue,red);
+/*            ie*/
+            background: -ms-radial-gradient(white,blue,red);
+        }
+        #gra8{
+            background: -webkit-radial-gradient(circle,white,blue,red);
+        }
+        .circle{
+            width: 500px;
+            height: 300px;
+            border: 1px solid black;
+        }
+        #gra9{
+             background: -webkit-radial-gradient(90% 90%,circle,white,blue,red);
+        }
+        #gra10{
+            background: -webkit-radial-gradient(90% 90%,circle closest-side,white,blue,red);
+        }
+        
+        #gra11{
+            background: -webkit-radial-gradient(90% 90%,circle farthest-side,white,blue,red);
+        }
+        #gra12{
+            background: -webkit-radial-gradient(90% 90%,circle closest-corner,white,blue,red);
+        }        
+        #gra13{
+            background: -webkit-radial-gradient(90% 90%,circle farthest-corner,white,blue,red);
+        }   
+    </style>
+</head>
+<body>
+    <h1>그라데이션</h1>
+    <h3>선형그라데이션</h3>
+    <p>색상이, 수직, 수평, 대각선 방향으로 일정하게 변하는것</p>
+    <h4>색상만 지정</h4>
+    <div id="gra1" class="linear"></div>
+    
+    <h4>방향을 지정(각도)</h4>
+    <div id="gra2" class="linear"></div>
+    
+    <h4>중간 색 지정</h4>
+    <div id="gra3" class="linear"></div>
+    
+    <h4>중간 여러색 지정</h4>
+    <div id="gra4" class="linear"></div>
+    
+    <h4>그라데이션 반복</h4>
+    <div id="gra5" class="linear"></div>
+    
+    <h4>그라데이션 반복(색구분 명확하게)</h4>
+    <div id="gra6" class="linear"></div>
+    
+    <h3>원형 그라데이션</h3>
+    <p>색상이 원이나 타원의 중심부터 동심원을 그리며 바깥 방향으로 색상이 변경 되는 것</p>
+    
+    <h4>색상만 지정</h4>
+    <div id="gra7" class="circle"></div>
+    
+    <h4>모양을 지정</h4>
+    <div id="gra8" class="circle"></div>
+    
+    <h4>시작점을 지정</h4>
+    <div id="gra9" class="circle"></div>
+    
+    
+    <h4>사이즈 지정</h4>
+    <div id="gra10" class="circle"></div>
+    
+    <div id="gra11" class="circle"></div>
+    <div id="gra12" class="circle"></div>
+    <div id="gra13" class="circle"></div>
+    
+</body>
+</html>
