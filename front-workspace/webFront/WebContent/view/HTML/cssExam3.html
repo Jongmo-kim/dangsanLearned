@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Go Green</title>
+<style>
+    div{
+        
+        margin:0 auto;
+    }   
+    .wrap{
+        width: 1000px;
+        height: 800px;
+    }
+    .wrap > div + div + div + div{
+        width: 100%;
+    }
+    .header{
+        margin: 3px 3px;
+        height: 20%;
+        overflow: hidden;
+    }
+    .header > div{
+        height: 100%;
+        float:left;
+        
+    }
+    .logo{
+        width:25%;
+    }
+    .biglogo{
+        width:50%;
+    }
+    .emptylogo{
+        width:25%;
+    }
+    .navi{
+        margin: 3px 3px;
+        height: 5%;
+        overflow:hidden;
+    }
+    .navi > div{
+        height: 100%;
+        float : left;
+        width:25%
+    }
+    .contents{
+        margin: 3px 3px;
+        height: 60%;
+        overflow:hidden;
+    }
+    .contents > div{
+        float:left;
+        height: 100%;
+    }
+    .left-side{
+        
+        margin:2px;
+        width:20%;
+    }
+    .right-side{
+        margin:2px;
+        width:30%;
+    }
+    .contents-center{
+        width:48%;
+        overflow:hidden;
+    }
+    .contents-center > div{
+        float:left;
+        height: 50%;
+        width: 48%;
+        margin:2px;
+    }
+    .right-side-idform  {
+        height: 20%;
+    }
+    .right-side-ad{
+        height: 50%;
+    }
+    .right-side-say{
+        height: 30%;
+    }
+    .right-side{
+        overflow:hidden;
+    }
+    .right-side > div{
+        width: 100%;
+        float:left;
+    }
+    
+    .footer{
+        height: 15%
+    }
+    img{
+        
+        width:100%;
+        height: 100%;
+    }
+
+    .footer{
+        text-align: center;
+        line-height: 120px;
+    }
+    .footer > p {
+        font-weight: bold;
+    }
+    .idform-upper{
+        height: 75%;
+        overflow: hidden;
+    }
+    .idform-lower{
+        height: 25%;
+    }
+    .idform-upper-left{
+        float: left;
+        width: 80%;
+        height: 100%;
+    }
+    .idform-upper-right{
+        float:left;
+        width:20%;
+        height: 100%;
+    }
+    #form{
+        height: 100%;
+    }
+    #id{
+        height: 42%;
+        width: 100%;
+    }
+    #pw{
+        height: 42%;
+        width: 100%;
+    }
+    #submit{
+        width: 100%;
+        height: 100%;
+    }
+    .idform-lower{
+        text-align: center;
+    }
+    .say-main{
+        font-weight: lighter;
+    }
+    .right-side-say > table{
+        width: 100%;
+        height: 100%;
+    }
+    .contents-center > div >img{
+        height: 80%;
+        
+    }
+    .contents-center > div {
+        text-align: center;
+    }
+    .navi > div{
+        background-color:yellowgreen;
+        color:white;
+        text-align: center;
+        line-height: 38px;
+    }
+    #tr{
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="header">
+            <div class="logo"><img src="cssexamImg/logo.jpg"></div>
+            <div class="biglogo"><img src="cssexamImg/mainlogo.jpg"></div>
+            <div class="emptylogo"></div>
+        </div>
+        
+        <div class="navi">
+          <div class="navi-home">Home</div>
+          <div class="navi-profile">Profile</div>
+          <div class="navi-board">Board</div>
+          <div class="navi-contract">Contract</div>  
+        </div>
+        <div class="contents">
+            <div class="left-side"><img src="cssexamImg/left_img.jpg"></div>
+            <div class="contents-center">
+               
+                <div class="contents-center-11"><img src="cssexamImg/main_img1.jpg">나무를 심는 사람들</div>
+                <div class="contents-center-1"><img src="cssexamImg/main_img2.jpg">아이들에게 녹색 미래를</div>
+                <div class="contents-center-7"><img src="cssexamImg/main_img3.jpg">설알산을 살리는 길</div>
+                <div class="contents-center-5"><img src="cssexamImg/main_img4.jpg">사라지는 북극곰들</div>
+            </div>
+            <div class="right-side">
+                <div class="right-side-idform">
+                    <div class="idform-upper">
+                       <form id="form" action="login.html" method="post">
+                        <div class="idform-upper-left">
+                            <input type="text" placeholder="아이디를 입력하세요" id="id">
+                            <input type="password" placeholder="비밀번호를 입력하세요" id="pw">
+                        </div>
+                        <div class="idform-upper-right">
+                            <input id="submit" type="submit" value="로그인">
+                        </div>
+                        </form>
+                    </div>
+                    <div class="idform-lower">
+                        <a href="#">회원가입</a>
+                        <a href="#">ID/PW찾기</a>
+                    </div>
+                </div>
+                <div class="right-side-ad"><img src="cssexamImg/right_img.jpg"></div>
+                <div class="right-side-say">
+                    <table >
+                        <tr id="tr">
+                            <td colspan="2">나도 한마디</td>
+                        </tr>
+                        <tr>
+                            <th>이름</th>
+                            <th>메시지</th>
+                        </tr>
+                        <tr>
+                            <td>홍길동</td>
+                            <td>자연을 살리자</td>
+                        </tr>
+                        <tr>
+                            <td>영희</td>
+                            <td>곰이 불쌍해요 ㅠㅠ</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+        <p>ⓒExample from KH Academy</p>
+        </div>
+    </div>
+</body>
+</html>

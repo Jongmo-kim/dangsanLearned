@@ -1,15 +1,23 @@
 package kh.java.trie;
 
 public class Node {
-	private String character; 
-	private int value; 
-	private Node[] next;
-	private boolean hasNext;
+	private String character;
+	private int value;
+	private Node[] children;
+	private boolean leaf;
+	public Node(String character) {
+		this.character = character;
+		this.children = new Node[Constants.ALPHABET_SIZE];
+	}
 	public String getCharacter() {
 		return character;
 	}
+	public Node getChild(int index) {
+		return children[index];
+	}
 	public void setCharacter(String character) {
 		this.character = character;
+		this.children = new Node[Constants.ALPHABET_SIZE];
 	}
 	public int getValue() {
 		return value;
@@ -17,25 +25,27 @@ public class Node {
 	public void setValue(int value) {
 		this.value = value;
 	}
-	public Node[] getNext() {
-		return next;
+	public Node[] getChildren() {
+		return children;
 	}
-	public void setNext(Node[] next) {
-		this.next = next;
+	public void setChildren(Node[] children) {
+		this.children = children;
 	}
-	public boolean isHasNext() {
-		return hasNext;
+	public boolean isLeaf() {
+		return leaf;
 	}
-	public void setHasNext(boolean hasNext) {
-		this.hasNext = hasNext;
-	}
-	public Node(String character) {
-		super();
-		this.character = character;
+	public void setLeaf(boolean leaf) {
+		this.leaf = leaf;
 	}
 	@Override
 	public String toString() {
 		return "Node [character=" + character + "]";
 	}
+	public void setChild(int index, Node node,int value) {
+		node.setValue(value);
+		this.children[index] = node;
+	}
+	
+	
 	
 }

@@ -69,7 +69,7 @@
         #middle-box3 {
             float: left;
             width: 30%;
-            
+
         }
 
         #navi {
@@ -77,32 +77,46 @@
             width: 1000px;
             background-color: aqua;
         }
-        #upper-leftbox{
-            float:left;
-            width : 65%;
+
+        #upper-leftbox {
+            float: left;
+            width: 65%;
             height: 60px;
         }
-        #upper-rightbox{
-            float:left;
+
+        #upper-rightbox {
+            float: left;
             width: 35%;
             height: 60px;
+            text-align: center;
+            line-height: 58px;
         }
-        #idform-upper{
+
+        #idform-upper {
             height: 85%;
             width: 100%;
+            overflow: hidden;
         }
-        #idform-lower{
+
+        #idform-lower {
             height: 15%;
             width: 100%;
             text-align: center;
         }
-        #middle-box3-upperbox{
-            
-        }
-        #inputSubmit{
+
+        #middle-box3-upperbox {}
+
+        #inputSubmit {
             width: 90%;
             height: 90%;
-            margin: 3px 5px;
+
+
+        }
+
+        #upper-leftbox>input {
+
+            width: 95%;
+            height: 42%;
         }
     </style>
 </head>
@@ -122,16 +136,16 @@
                 <div id="middle-box3-upperbox">
                     <div id="idform">
                         <div id="idform-upper">
-                            <form action="#">
-                            <div id="upper-leftbox">
-                                <input type="text" placeholder="아이디를 입력하세요"><br>
-                                <input type="password" placeholder="pw를 입력하세요">
-                            </div>
-                            <div id="upper-rightbox">
-                                
-                                <input type="submit" value="로그인" id="inputSubmit">
-                            </div>
-                                </form>
+                            <form action="login.html" method="post">
+                                <div id="upper-leftbox">
+                                    <input type="text" placeholder="아이디를 입력하세요" id="input-id"><br>
+                                    <input type="password" placeholder="pw를 입력하세요" id="input-pw">
+                                </div>
+                                <div id="upper-rightbox">
+
+                                    <input type="submit" value="로그인" id="inputSubmit">
+                                </div>
+                            </form>
                         </div>
                         <div id="idform-lower">
                             <a href="#">회원가입</a> <a href="#">ID</a> <a href="#">/PW찾기</a>
