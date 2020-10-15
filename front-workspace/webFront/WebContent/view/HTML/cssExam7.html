@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>메뉴만들기2</title>
+</head>
+<style>
+    .navi {
+        margin: 100px auto;
+        width: 500px;
+        height: 50px;
+        background-color: #FFE761;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+    }
+
+    .navi>ul {
+        width: 100%;
+        height: 100%;
+        display: block;
+        /*        border: 1px solid black;*/
+        box-sizing: border-box;
+
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+
+    }
+
+    .navi>ul>li {
+
+        width: calc(100%/4);
+        height: 100%;
+        /*           border: 1px solid red;*/
+        box-sizing: border-box;
+        float: left;
+        line-height: 50px;
+        text-align: center;
+    }
+
+    .navi>ul>li>a {
+        color: #234f32;
+        display: block;
+    }
+
+    .sub {
+
+        width: 100%;
+        height: 0%;
+        display: none;
+        /*       border:1px solid blue;*/
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        float: left;
+        background-color: #234f32;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+
+    }
+
+    .navi>ul>li:hover>.sub {
+        overflow: hidden;
+        animation-name: drop-down;
+        animation-duration: 2s;
+        display: block;
+        height: 400%;
+    }
+
+    .navi>ul>li:hover>a {
+        background-color: #326342;
+        color: #FFE761;
+        
+        font-weight: bolder;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+
+
+    }
+
+    .sub:hover>li>a:hover {
+        font-weight: bolder;
+        
+    }
+
+    .sub>li>a {
+        color: #FFE761;
+        display:block;
+    }
+
+    a {
+        text-decoration: none;
+
+    }
+
+    @keyframes drop-down {
+        from {
+            height: 0%;
+        }
+
+        to {
+            height: 400%;
+        }
+    }
+
+    #FFE761 노란색 #092e20 검정 #234f32 진한초록 #326342 연한 초록
+</style>
+
+<body>
+    <h1>
+        드롭다운메뉴 만들기
+    </h1>
+    <hr>
+    <div class="navi">
+        <ul>
+            <li>
+                <a href="#">프로그램언어</a>
+                <ul class="sub">
+                    <li><a href="#">JAVA</a></li>
+                    <li><a href="#">C</a></li>
+                    <li><a href="#">C++</a></li>
+                    <li><a href="#">Phthon</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#">데이터베이스</a>
+            </li>
+            <li>
+                <a href="#">FrontEnd</a>
+                <ul class="sub">
+                    <li><a href="#">HTML5</a></li>
+                    <li><a href="#">CSS3</a></li>
+                    <li><a href="#">javascript</a></li>
+                    <li><a href="#">jQuery</a></li>
+                </ul>
+            </li>
+            <li><a href="#">게시판</a></li>
+        </ul>
+    </div>
+</body></html>
