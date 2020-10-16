@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>over exam 1</title>
+</head>
+<link href="over_exam_1_header_footer.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;900&display=swap" rel="stylesheet">
+<style>
+    .contents {
+        
+    }
+    .aside {
+        border: 1px solid red;
+        width: 25%;
+        height: 80%;
+        float: left;
+    }
+
+    .aside>div>img {
+        width: 100%;
+        height: 60%;
+    }
+
+    .ad1 {
+        border: 1px solid blue;
+        height: 50%;
+    }
+
+    .ad2 {
+        border: 1px solid blue;
+        height: 50%;
+    }
+
+    .main-contents>h2{
+        text-align: center;
+        color:white;
+        text-shadow: 1px 1px 1px black;
+        margin : 0;
+        padding : 0;
+    }
+    .main-contents {
+        border: 1px solid black;
+        width: 75%;
+        height: 100%;
+        float: left;
+        background-color: azure;
+        margin:0;
+        padding:0;
+    }
+    .main-contents>form{
+        margin-left: 20px;
+    }
+    .main-contents>form>div{
+        margin: 10px 10px;
+        padding: 5px;
+        border-bottom: 1px solid wheat;
+    }
+    .main-contents>form>div>input[type="text"]
+    ,.main-contents>form>div>input[type="password"]{
+        
+        width: 45%;
+    }
+    .main-contents>form>div>label:first-child
+    {
+        display:block;
+        float:left;
+        width: 150px;
+        height: 100%;
+    }
+    .main-contents>form>div>p:first-child{
+        display:block;
+        float:left;
+        width: 150px;
+        height: 100%;
+    }
+    #male + label ,#female + label{
+        background-color:black;
+        color:white;
+    }
+    #male, #female{
+        display:none;
+    }
+    #male:checked + label,
+    #female:checked + label{
+        background-color:white;
+        color:black;
+    }
+    #female:checked + label{
+        
+        background-color:white;
+        color:black;
+    }
+    
+    #zipcode + input{
+        width : 20%;
+    }
+    #zipcode{
+        width : 24%;
+    }
+    #phone{
+        width:10%;
+    }
+    #phone~input{
+        width: calc(33%/2);
+    }
+    .gender>input{
+        width: 10%; 
+    }
+    
+    .confirm{
+        text-align: center;
+    }
+    .confirm > input{
+        width: 120px;
+        height: 30px;
+        background-color: deepskyblue;
+        color:white;
+        font-weight: bolder;
+        border: none;
+    }
+
+    .confirm > input:hover{
+        cursor:pointer;
+        background-color: dodgerblue;
+        box-shadow: 1px 1px 1px 1px grey;
+    }
+    .main-contents>form>div>{
+        font-family: "굴림체";
+        font-weight: bolder;
+        font-size:13px
+    }
+    .agree{
+        font-size:12px;
+    }
+</style>
+
+<body>
+    <div class="wrap">
+        <div class="character">
+            <img src="css_ovenexam_img/character.png">
+        </div>
+        <div class="logomenu">
+            <h2>Welcome To Lee's World</h2>
+            <div class="loginmenu">
+                <div class="login">
+                    <a href="#" class="menufont">로그인</a>
+                </div>
+                <div class="signup">
+                    <a href="over_exam_1_signup.html">회원가입</a>
+                </div>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="#">JAVA</a></li>
+                    <li><a href="#">ORACLE</a></li>
+                    <li><a href="#">HTML/CSS</a></li>
+                    <li><a href="over_exam_1_board.html">게시판</a></li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="contents">
+            <div class="aside">
+                <div class="ad1">
+                    <img src="css_ovenexam_img/ad1.jpg">
+                    <p>어서와 광고는 처음이지</p>
+                </div>
+                <div class="ad2">
+                    <img src="css_ovenexam_img/ad2.jpg">
+                    <p>키보드 $ 위치 기억하는 꿀팁 4 딸라 = 4$</p>
+                </div>
+            </div>
+            <div class="main-contents">
+               <h2>회원가입</h2>
+                <form action="#" method="post">
+                    <div class="id">
+                        <label for="id">아이디</label>
+                        <input id = "id" type="text" autocomplete="off"><small>4~12자리 영숫자</small>
+                    </div>
+                    <div class="pw">
+                        <label for="pw">비밀번호</label><input type="password" id ="pw"><small>8 자리이상</small>
+                    </div>
+                    <div class="pw-check">
+                        <label for="pw-check">비밀번호확인</label>
+                        <input type="password" id ="pw-check">
+                    </div>
+                    <div class="name">
+                        <label for="name">이름</label>
+                        <input type="text" id="name" autocomplete="off">
+                    </div>
+                    <div class="zipcode">
+                        <label for="zipcode">우편번호</label>
+                        <input type="text" id="zipcode" autocomplete="off">
+                        <input type="button" value="우편번호찾기">
+                    </div>
+                    <div class="addr">
+                       <label for="addr">주소</label>
+                        <input type="text" id="addr" autocomplete="off">
+                    </div>
+                    <div class="addr-detail">
+                       <label for="addr-detail">상세주소</label>
+                        <input type="text" id="addr-detail" autocomplete="off">
+                    </div>
+                    <div class="phone">
+                       <label for="phone">전화번호</label>
+                        <input type="text" id="phone" autocomplete="off">-<input type="text" autocomplete="off">-<input type="text" autocomplete="off">
+                    </div>
+                    <div class="gender">
+                        <label>성별</label>
+                        <input type="radio" id="male" value="남자" name="gender"><label for="male">남자</label>
+                        
+                        
+                        <input type="radio" value="여자" id="female" name="gender">
+                        <label for="female">여자</label>
+                    </div>
+
+                    <div class="agree">
+                        <label>약관동의</label>
+                        <input type="checkbox" id="agree">
+                        <label for="agree">약관동의(필수)</label>
+                        
+                        
+                        <input type="checkbox" id="agree-choice">
+                        <label for="agree-choice">개인 정보 처리 약관 (선택)</label>
+                    </div>
+                    <div class="confirm">
+                        <input type="submit" value="회원가입">
+                        <input type="button" value="취소">
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        <div class="footer">
+            <a>COPY RIGHT ⓒ Lee's Cooperation</a>
+        </div>
+    </div>
+</body></html>

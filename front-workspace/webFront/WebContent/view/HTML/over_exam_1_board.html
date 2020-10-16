@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>over exam 1</title>
+</head>
+<link href="over_exam_1_header_footer.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;900&display=swap" rel="stylesheet">
+<style>
+    .contents {
+        
+    }
+    .aside {
+        
+        width: 25%;
+        height: 80%;
+        float: left;
+    }
+
+    .aside>div>img {
+        width: 100%;
+        height: 60%;
+    }
+
+    .ad1 {
+        height: 50%;
+    }
+
+    .ad2 {
+        height: 50%;
+    }
+
+    .main-contents>h2{
+        text-align: center;
+        color:white;
+        text-shadow: 1px 1px 1px black;
+        margin : 0;
+        padding : 0;
+    }
+    .main-contents {
+        width: 75%;
+        height: 100%;
+        float: left;
+        background-color: azure;
+        margin:0;
+        padding:0;
+    }
+    .main-contents>form{
+        margin-left: 20px;
+    }
+    .main-contents>form>div{
+        margin: 10px 10px;
+        padding: 5px;
+        border-bottom: 1px solid wheat;
+    }
+    .main-contents>form>div>input[type="text"]
+    ,.main-contents>form>div>input[type="password"]{
+        
+        width: 45%;
+    }
+    .main-contents>form>div>label:first-child
+    {
+        display:block;
+        float:left;
+        width: 150px;
+        height: 100%;
+    }
+    .main-contents>form>div>p:first-child{
+        display:block;
+        float:left;
+        width: 150px;
+        height: 100%;
+    }
+    #male + label ,#female + label{
+        background-color:black;
+        color:white;
+    }
+    #male, #female{
+        display:none;
+    }
+    #male:checked + label,
+    #female:checked + label{
+        background-color:white;
+        color:black;
+    }
+    #female:checked + label{
+        
+        background-color:white;
+        color:black;
+    }
+    
+    #zipcode + input{
+        width : 20%;
+    }
+    #zipcode{
+        width : 24%;
+    }
+    #phone{
+        width:10%;
+    }
+    #phone~input{
+        width: calc(33%/2);
+    }
+    .gender>input{
+        width: 10%; 
+    }
+    
+    .confirm{
+        text-align: center;
+    }
+    .confirm > input{
+        width: 120px;
+        height: 30px;
+        background-color: deepskyblue;
+        color:white;
+        font-weight: bolder;
+        border: none;
+    }
+
+    .confirm > input:hover{
+        cursor:pointer;
+        background-color: dodgerblue;
+        box-shadow: 1px 1px 1px 1px grey;
+    }
+    .main-contents>form>div>{
+        font-family: "굴림체";
+        font-weight: bolder;
+        font-size:13px
+    }
+    .agree{
+        font-size:12px;
+    }
+    
+    
+    
+/*    ㄴㅇㄴㅁㅇㅁㄴㅇㄴㅁㅇㅁㄴㅇㅁㄴㄴㅇㅁ*/
+    .main-contents{
+        
+    }
+    .main-contents > form{
+        text-align: right;
+    }
+    .main-contents > form > input{
+        border:none;
+        background-color: aquamarine;
+        color:white;
+    }
+    .main-contents>ul{
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    .main-contents>ul>li{
+        float:left;
+        border-right:1px solid white;
+        background-color: black;
+        color:white;
+        text-shadow: 1px 1px 1px yellow;
+        text-align: center;
+         border: 1px solid white;
+    }
+    .title-contents{
+        width: 100%;
+        height: 20%;
+    }
+ .title-contents>ul{
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    .title-contents>ul>li{
+        float:left;
+        border-right:1px solid white;
+        background-color: black;
+        color:white;
+        text-shadow: 1px 1px 1px yellow;
+        text-align: center;
+         border: 1px solid white;
+    }
+
+ 
+    .main-contents>ul>:first-child{
+        width: 10%;
+    }
+    
+    .title-contents>ul>:first-child{
+        width: 10%;
+    }
+    .title{
+        width: 35%;
+    }
+    .writer{
+        width: 15%;
+    }
+    .date{
+        width: 20%;
+    }
+    .hit{
+        width: 20%;
+    }
+    .next-page{
+        float:left;
+        display:block;
+        width: 100%;
+        
+    }
+    .next-page>a{
+        text-align: center;
+        display:block;
+        float:left;
+        background-color: beige;
+        margin-right: 3px;
+        border: 1px solid black;
+        
+    }
+    .search{
+        display:block;
+        float:left;
+        width: 100%;
+        height: 20%;
+        text-align: center;
+    }
+    .title-contents{
+        height: 70%;
+        float:left;
+    }
+
+</style>
+
+<body>
+    <div class="wrap">
+        <div class="character">
+            <img src="css_ovenexam_img/character.png">
+        </div>
+        <div class="logomenu">
+            <h2>Welcome To Lee's World</h2>
+            <div class="loginmenu">
+                <div class="login">
+                    <a href="#" class="menufont">로그인</a>
+                </div>
+                <div class="signup">
+                    <a href="over_exam_1_signup.html">회원가입</a>
+                </div>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="#">JAVA</a></li>
+                    <li><a href="#">ORACLE</a></li>
+                    <li><a href="#">HTML/CSS</a></li>
+                    <li><a href="over_exam_1_board.html">게시판</a></li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="contents">
+            <div class="aside">
+                <div class="navi">
+                    <a href="#">공지사항</a>
+                    <a href="#">자유게시판</a>
+                    <a href="#">사진게시판</a>
+                </div>
+                <div class="ad1">
+                    <img src="css_ovenexam_img/ad1.jpg">
+                    <p>어서와 광고는 처음이지</p>
+                </div>
+                <div class="ad2">
+                    <img src="css_ovenexam_img/ad2.jpg">
+                    <p>키보드 $ 위치 기억하는 꿀팁 4 딸라 = 4$</p>
+                </div>
+            </div>
+            <div class="main-contents">
+                <form action="#">
+                    <input type="submit" value="글쓰기">
+                </form>
+                <ul>
+                    <li>번호</li>
+                    <li class="title">제목</li>
+                    <li class="writer">글쓴이</li>
+                    <li class="date">날짜</li>
+                    <li class="hit">조회수</li>
+                </ul>
+       
+               <div class="title-contents">
+                         
+                   <ul>
+                    <li>1</li>
+                    <li class="title">커피우유가모기에 물면?</li>
+                    <li class="writer">아재개그</li>
+                    <li class="date">2020-20-20</li>
+                    <li class="hit">144</li>
+                </ul>
+                   <ul>
+                    <li>1</li>
+                    <li class="title">커피우유가모기에 물면?</li>
+                    <li class="writer">아재개그</li>
+                    <li class="date">2020-20-20</li>
+                    <li class="hit">144</li>
+                </ul>
+                   <ul>
+                    <li>1</li>
+                    <li class="title">커피우유가모기에 물면?</li>
+                    <li class="writer">아재개그</li>
+                    <li class="date">2020-20-20</li>
+                    <li class="hit">144</li>
+                </ul>
+                   <ul>
+                    <li>1</li>
+                    <li class="title">커피우유가모기에 물면?</li>
+                    <li class="writer">아재개그</li>
+                    <li class="date">2020-20-20</li>
+                    <li class="hit">144</li>
+                </ul>
+                   <ul>
+                    <li>1</li>
+                    <li class="title">커피우유가모기에 물면?</li>
+                    <li class="writer">아재개그</li>
+                    <li class="date">2020-20-20</li>
+                    <li class="hit">144</li>
+                </ul>
+                   <ul>
+                    <li>1</li>
+                    <li class="title">커피우유가모기에 물면?</li>
+                    <li class="writer">아재개그</li>
+                    <li class="date">2020-20-20</li>
+                    <li class="hit">144</li>
+                </ul>
+                   <ul>
+                    <li>1</li>
+                    <li class="title">커피우유가모기에 물면?</li>
+                    <li class="writer">아재개그</li>
+                    <li class="date">2020-20-20</li>
+                    <li class="hit">144</li>
+                </ul>
+                   <ul>
+                    <li>1</li>
+                    <li class="title">커피우유가모기에 물면?</li>
+                    <li class="writer">아재개그</li>
+                    <li class="date">2020-20-20</li>
+                    <li class="hit">144</li>
+                </ul>
+                      <ul>
+                    <li>1</li>
+                    <li class="title">커피우유가모기에 물면?</li>
+                    <li class="writer">아재개그</li>
+                    <li class="date">2020-20-20</li>
+                    <li class="hit">144</li>
+                </ul>
+                   <ul>
+                    <li>1</li>
+                    <li class="title">커피우유가모기에 물면?</li>
+                    <li class="writer">아재개그</li>
+                    <li class="date">2020-20-20</li>
+                    <li class="hit">144</li>
+                </ul>
+                   <ul>
+                    <li>1</li>
+                    <li class="title">커피우유가모기에 물면?</li>
+                    <li class="writer">아재개그</li>
+                    <li class="date">2020-20-20</li>
+                    <li class="hit">144</li>
+                </ul>
+                   <ul>
+                    <li>1</li>
+                    <li class="title">커피우유가모기에 물면?</li>
+                    <li class="writer">아재개그</li>
+                    <li class="date">2020-20-20</li>
+                    <li class="hit">144</li>
+                </ul>
+                   <ul>
+                    <li>1</li>
+                    <li class="title">커피우유가모기에 물면?</li>
+                    <li class="writer">아재개그</li>
+                    <li class="date">2020-20-20</li>
+                    <li class="hit">144</li>
+                </ul>
+                   <ul>
+                    <li>1</li>
+                    <li class="title">커피우유가모기에 물면?</li>
+                    <li class="writer">아재개그</li>
+                    <li class="date">2020-20-20</li>
+                    <li class="hit">144</li>
+                </ul>
+                   <ul>
+                    <li>1</li>
+                    <li class="title">커피우유가모기에 물면?</li>
+                    <li class="writer">아재개그</li>
+                    <li class="date">2020-20-20</li>
+                    <li class="hit">144</li>
+                </ul>
+                
+           
+                </div>
+                <div class="next-page">
+                    <a href="#">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">4</a>
+                    <a href="#">5</a>
+                    <a href="#">6</a>
+                    <a href="#">7</a>
+                    <a href="#">8</a>
+                    <a href="#">9</a>
+                    <a href="#">10</a>
+                    <a href="#">></a>
+                    <a href="#">>></a>
+                </div>
+                 
+                <div class="search">
+                    <hr>
+                    <input type="text" placeholder="제목">
+                    <input type="search">
+                    <input type="button" value="검색">
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <a>COPY RIGHT ⓒ Lee's Cooperation</a>
+        </div>
+    </div>
+</body></html>
