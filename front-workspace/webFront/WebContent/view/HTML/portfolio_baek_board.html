@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<link href="portfolio_menu_logo_footer.css" rel="stylesheet" type="text/css">
+<style>
+    .board-form {
+    }
+
+    .board-form {
+        float: left;
+        background-color: lightgrey;
+        width: 100%;
+        height: 70%;
+
+    }
+
+    .aside-menu {
+        float: left;
+        width: 20%;
+        height: 50%;
+    }
+
+    .aside-menu > ol{
+        margin: 0;
+        padding: 0;
+    }
+    .aside-menu > ol >li {
+        float:left;
+        width: 100%;
+        height: 70px;
+        display:block;
+        text-align: center;
+        line-height: 70px;
+        background-color: dimgrey;
+        color:white;
+    }
+    .aside-menu > ol >li >a{
+                display:block;
+        text-decoration: none;
+        color:white;
+    }
+    #aside-selected{
+        background-color: darkgrey;
+        color:black;
+    }
+    .board-form > h2{
+        color:dodgerblue;
+        text-decoration: underline;
+    }
+    .search-form {
+        float: left;
+        margin-left: 690px;
+    }
+
+    .search-form>form>input {
+        height: 25px;
+        float: left;
+        margin-right: 3px;
+    }
+
+    .search-form>form>select {
+        height: 25px;
+        float: left;
+        margin-right: 3px;
+    }
+    .search-form>form>label[for="submit"]>img{
+        width: 25px;
+        height: 25px;
+        display: block;
+        float: left;
+        cursor: pointer;
+    }
+    .search-form>form>input[type="submit"] {
+        display: none;
+    }
+    .board-wrap{
+        float:left;
+        width: 80%;
+        background-color: white;
+    }
+    .board-title > ul{
+        float:left;
+        display: block;
+        margin: 0;
+        padding: 0;
+        
+        width: 100%;
+        border-bottom: 1px dashed grey;
+    }
+    .board-title > ul > li{
+        float:left;
+        width: calc(100%/4);
+        text-align: center;
+    }
+    .board-contents > ul{
+        float:left;
+        display: block;
+        margin: 0;
+        padding: 0;
+        border-bottom: 1px solid black;
+        width: 100%;
+    }
+    .board-contents > ul > li{
+        float:left;
+        width: calc(100%/4);
+        text-align: center;
+    }
+    .page-navi{
+        float:left;
+        margin-left: 650px;
+        margin-top:100px;
+    }
+    .page-navi >ul>li> a{
+        display:block;
+        text-decoration: none;
+        color:white;
+        background-color: darkgrey;
+    }
+    .page-navi > ul{
+        padding: 0;
+        margin: 0;        
+    }
+    .page-navi > ul > li{
+        float:left;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        line-height: 30px;
+    }
+    #selected{
+        background-color: dimgrey;
+    }
+</style>
+
+<body>
+
+    <div class="wrap">
+        <div class="logo">
+            <h2>김종모</h2>
+        </div>
+        <div class="menubar">
+            <ul>
+                <li>
+                    <a href="#">백준</a>
+                    <ul class="sub">
+                        <li><a href="#">그리디</a></li>
+                        <li><a href="#">DP</a></li>
+                        <li><a href="#">자료구조</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">웹페이지</a>
+                    <ul class="sub">
+                        <li><a href="#">웹 크롤링</a></li>
+                        <li><a href="#">서버</a></li>
+                        <li><a href="#">HTTPS 서버 구현</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">자바</a>
+                    <ul class="sub">
+                        <li><a href="#">유틸리티</a></li>
+                        <li><a href="#">스레드활용</a></li>
+                        <li><a href="#">자바스윙</a></li>
+                        <li><a href="#">기타</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">C++</a>
+                    <ul class="sub">
+                        <li><a href="#">QT IDE</a></li>
+                        <li><a href="#">C++ 관련서적 독후감</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="login">
+            <a href="#">관리자로 로그인</a>
+        </div>
+
+        <div class="board-form">
+            <div class="aside-menu">
+                <ol type="1">
+                    <li id="aside-selected"><a href="#">그리디 알고리즘</a></li>
+                    <li><a href="#">DP</a></li>
+                    <li><a href="#">자료구조</a></li>
+                </ol>
+            </div>
+            <h2>그리디 알고리즘</h2>
+            <div class="search-form">
+                <form action="search.html" method="get">
+                    <select id="search-type">
+                        <option value="title">제목으로 검색하기</option>
+                        <option value="contents">내용으로 검색하기</option>
+                    </select>
+                    <input type="text" placeholder="입력할 내용 입력">
+                    <input type="submit" id="submit"><label for="submit"><img src="portfolio_img/search.png"></label>
+                </form>
+            </div>
+            <div class="board-wrap">
+                <div class="board-title">
+                    <ul>
+                        <li>글번호</li>
+                        <li>제목</li>
+                        <li>조회수</li>
+                        <li>날짜</li>
+                    </ul>
+                </div>
+                <div class="board-contents">
+                    <ul>
+                        <li>1</li>
+                        <li><a href="#">그리디 알고리즘</a></li>
+                        <li>20</li>
+                        <li>2020-09-13</li>
+                    </ul>
+                </div>
+                <div class="board-contents">
+                    <ul>
+                        <li>2</li>
+                        <li><a href="#">동적 알고리즘</a></li>
+                        <li>21</li>
+                        <li>2020-10-13</li>
+                    </ul>
+                </div>
+                <div class="board-contents">
+                    <ul>
+                        <li>3</li>
+                        <li><a href="#">아이우에오 알고리즘</a></li>
+                        <li>20</li>
+                        <li>2020-11-13</li>
+                    </ul>
+                </div>
+                <div class="board-contents">
+                    <ul>
+                        <li>4</li>
+                        <li><a href="#">점심먹는 알고리즘</a></li>
+                        <li>20</li>
+                        <li>2020-11-14</li>
+                    </ul>
+                </div>
+                <div class="board-contents">
+                    <ul>
+                        <li>5</li>
+                        <li><a href="#">저녁먹는 알고리즘</a></li>
+                        <li>10</li>
+                        <li>2021-01-13</li>
+                    </ul>
+                </div>
+                <div class="board-contents">
+                    <ul>
+                        <li>6</li>
+                        <li><a href="#">그리디 알고리즘</a></li>
+                        <li>20</li>
+                        <li>2020-09-13</li>
+                    </ul>
+                </div>
+                <div class="board-contents">
+                    <ul>
+                        <li>7</li>
+                        <li><a href="#">굉장한 알고리즘</a></li>
+                        <li>20</li>
+                        <li>2020-09-13</li>
+                    </ul>
+                </div>
+                <div class="board-contents">
+                    <ul>
+                        <li>8</li>
+                        <li><a href="#">멋진 알고리즘</a></li>
+                        <li>20</li>
+                        <li>2020-09-13</li>
+                    </ul>
+                </div>
+                <div class="board-contents">
+                    <ul>
+                        <li>9</li>
+                        <li><a href="#">탐욕적인 알고리즘</a></li>
+                        <li>20</li>
+                        <li>2020-09-13</li>
+                    </ul>
+                </div>
+                
+            </div>
+            <div class="page-navi">
+                <ul>
+                    <li><a href="#">&lt;</a></li>
+                    <li><a href="#" id="selected">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">&gt;</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer">
+            <h2>CONTACT ME</h2>
+            <p>CONTACT EMAIL : for@example.com</p>
+            <p>GITHUB :<a href="#">HTTPS://GITHUB.COM/Jongmo-kim</a></p>
+        </div>
+    </div>
+</body></html>

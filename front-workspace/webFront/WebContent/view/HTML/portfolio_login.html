@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<link href="portfolio_menu_logo_footer.css" rel="stylesheet" type="text/css">
+<style>
+    .loginform{
+        border: 1px solid black;
+    }    
+    
+    .loginform{
+        float:left;
+        background-color: lightgrey;
+        width: 100%;
+        height: 70%;
+        
+    }
+    .loginform > h2{
+        margin-left:70px;
+        margin-top: 100px;
+        text-align: center;
+    }
+    .loginform > form{
+        height: 300px;
+        
+        overflow: hidden;
+    }
+    .loginform > form > input{
+        height: 50px;
+        width: 20%;
+        FLOAT:LEFT;
+        display: block;
+    }
+    .loginform > form > label {
+        width: 50px;
+        height: 50px;
+        margin-left: 40%;
+        float:left;
+        display: block;
+    }
+    *{
+        
+    }
+    label > img{
+        width: 50px;
+        height: 50px;
+        display: block;
+        float:left;
+        background-color: grey;
+    }
+</style>
+<body>
+    
+    <div class="wrap">
+        <div class="logo">
+            <h2>김종모</h2>
+        </div>
+        <div class="menubar">
+            <ul>
+                <li>
+                    <a href="#">백준</a>
+                    <ul class="sub">
+                        <li><a href="#">그리디</a></li>
+                        <li><a href="#">DP</a></li>
+                        <li><a href="#">자료구조</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">웹페이지</a>
+                    <ul class="sub">
+                        <li><a href="#">웹 크롤링</a></li>
+                        <li><a href="#">서버</a></li>
+                        <li><a href="#">HTTPS 서버 구현</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">자바</a>
+                    <ul class="sub">
+                        <li><a href="#">유틸리티</a></li>
+                        <li><a href="#">스레드활용</a></li>
+                        <li><a href="#">자바스윙</a></li>
+                        <li><a href="#">기타</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">C++</a>
+                    <ul class="sub">
+                        <li><a href="#">QT IDE</a></li>
+                        <li><a href="#">C++ 관련서적 독후감</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+       <div class="loginform">
+          <h2> 관리자 로그인</h2>
+           <form action="login.html" method="post">
+               <label for="id"><img src="portfolio_img/loginLabel.png"></label><input id = "id"type="text" placeholder="ID" autocomplete="off"><br><br><br>
+               <label for="pw"><img src="portfolio_img/pwLabel.png"></label><input id="pw" type="password" placeholder="PW">
+               <br><br><br><label></label><input type="submit" value="로그인">
+               
+           </form>
+       </div>
+        <div class="footer">
+            <h2>CONTACT ME</h2>
+            <p>CONTACT EMAIL : for@example.com</p>
+            <p>GITHUB :<a href="#">HTTPS://GITHUB.COM/Jongmo-kim</a></p>
+        </div>
+    </div>
+</body>
+</html>

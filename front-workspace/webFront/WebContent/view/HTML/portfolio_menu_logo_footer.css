@@ -1,0 +1,133 @@
+@charset "UTF-8";
+  *{
+        box-sizing: border-box;
+        list-style: none;
+    }
+    .wrap {
+        position: relative;
+    margin: 0 auto;
+        width: 1280px;
+        height: 800px;
+        background-image: url(portfolio_img/main-background-image.jpg);
+    }
+    .login>a{
+        text-decoration: none;
+        color:grey;
+        font-size: 10px;
+        display:block;
+    }
+    .login>a:hover{
+        color:black;
+        font-weight: bolder;
+        text-shadow: 1px 1px 1px grey;
+    }
+    .logo {
+        margin-top: 12px;
+        margin-left: 130px;
+        margin-right: 190px;
+        width: 150px;
+        height: 100px;
+        text-align: center;
+        line-height: 1px;
+        color: white;
+        font-size: 2em;
+        text-shadow: 1px 1px 1px black;
+        float: left;
+    }
+
+    .menubar {
+        float: left;
+        width: 60%;
+        height: 12%;
+        
+    }
+
+    .menubar>ul {
+        float: left;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        display: block;
+        
+    }
+    .menubar>ul>li>a{
+        display:block;
+        width:100%;
+        height: 100%;
+        text-decoration: none;
+        text-align: center;
+        font-size: 2.7em;
+        line-height: 2;
+        color:darkgrey;
+    }
+
+    .menubar>ul>li {
+        width: calc(100%/4);
+        height: 100%;
+        display: block;
+        float: left;
+        position: relative;
+}
+    .sub{
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 0;
+        overflow: hidden;
+        box-shadow: 1px 1px 10px grey;
+    }
+    .sub>li{
+        
+        float:left;
+        width: 100%;
+        
+    }
+    .sub>li>a{
+        background-color:white;
+        display:block;
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+        color:black;
+        font-size: 1em;
+        text-align: center;
+        line-height: 3;
+        
+    }
+    .menubar>ul>li:hover>a{
+        color:black;
+        text-shadow: 1px 1px 5px grey;
+        
+    }
+    .menubar>ul>li:hover>ul{
+        animation:drop-down;
+        animation-duration: 0.2s;
+        height: 100%;
+    }
+    .menubar>ul>li:hover>ul>li:hover>a{
+               color:black;
+        text-shadow: 1px 1px 1px grey;
+        font-size: 1em;
+        font-weight: bolder;
+    }
+    @keyframes drop-down{
+        from{
+            height: 0%;
+        }
+        to {
+            height: 100%;
+        }
+    }
+    
+
+   
+    .footer{
+        background-color: black;
+        color:white;
+        width: 100%;
+        height: 20%;
+        margin-top: 50%;
+        position: absolute;
+        float:left;
+    }

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>김종모 포트폴리오</title>
+</head>
+<style>
+    *{
+        box-sizing: border-box;
+        list-style: none;
+    }
+    .wrap {
+    margin: 0 auto;
+        width: 1280px;
+        height: 800px;
+        background-image: url(portfolio_img/main-background-image.jpg);
+    }
+
+    .logo {
+        margin: 75px;
+        width: 300px;
+        height: 200px;
+        text-align: center;
+        line-height: 1px;
+        color: white;
+        font-size: 4em;
+        text-shadow: 1px 1px 1px black;
+        float: left;
+    }
+
+    .menubar {
+        float: left;
+        width: 60%;
+        height: 12%;
+        
+    }
+
+    .menubar>ul {
+        float: left;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        display: block;
+        
+    }
+    .menubar>ul>li>a{
+        display:block;
+        width:100%;
+        height: 100%;
+        text-decoration: none;
+        text-align: center;
+        font-size: 2.7em;
+        line-height: 2;
+        color:darkgrey;
+    }
+
+    .menubar>ul>li {
+        width: calc(100%/4);
+        height: 100%;
+        display: block;
+        float: left;
+        position: relative;
+    }
+    .login>a{
+        text-decoration: none;
+        color:grey;
+        font-size: 12px;
+        display:block;
+    }
+    .login>a:hover{
+        color:black;
+        font-weight: bolder;
+        text-shadow: 1px 1px 1px grey;
+    }
+    .sub{
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 0;
+        overflow: hidden;
+        box-shadow: 1px 1px 10px grey;
+    }
+    .sub>li{
+        
+        float:left;
+        width: 100%;
+        
+    }
+    .sub>li>a{
+        background-color:white;
+        display:block;
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+        color:black;
+        font-size: 1em;
+        text-align: center;
+        line-height: 3;
+        
+    }
+    .menubar>ul>li:hover>a{
+        color:black;
+        text-shadow: 1px 1px 5px grey;
+        
+    }
+    .menubar>ul>li:hover>ul{
+        animation:drop-down;
+        animation-duration: 0.2s;
+        height: 100%;
+    }
+    .menubar>ul>li:hover>ul>li:hover>a{
+               color:black;
+        text-shadow: 1px 1px 1px grey;
+        font-size: 1em;
+        font-weight: bolder;
+    }
+    @keyframes drop-down{
+        from{
+            height: 0%;
+        }
+        to {
+            height: 100%;
+        }
+    }
+    
+
+    .introduce{
+        float:left;
+        margin-top: 100px;
+        width: 62%;
+    }
+    .introduce > p{
+        float:left;
+        width: 100%;   
+    }
+    
+    .recent-add-board{
+        float:left;
+        width: 62%;
+        height: 19%;
+        margin-left:430px; 
+        margin-top : 100px;
+    }
+
+    .recent-add-board > ul{
+        margin: 0;
+        padding: 0;
+        float:left;
+        width: 100%;
+    }
+    .recent-add-board > ul > li{
+        float:left;
+        width: calc(120%/5);
+        text-align: center;
+    }
+    .recent-add-board>ul>li:hover>a{
+        
+    }
+    .footer{
+        background-color: black;
+        color:white;
+        width: 100%;
+        float:left;
+    }
+</style>
+
+<body>
+
+    <div class="wrap">
+        <div class="logo">
+            <h2>김종모</h2>
+        </div>
+        <div class="menubar">
+            <ul>
+                <li>
+                    <a href="#">백준</a>
+                    <ul class="sub">
+                        <li><a href="#">그리디</a></li>
+                        <li><a href="#">DP</a></li>
+                        <li><a href="#">자료구조</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">웹페이지</a>
+                    <ul class="sub">
+                        <li><a href="#">웹 크롤링</a></li>
+                        <li><a href="#">서버</a></li>
+                        <li><a href="#">HTTPS 서버 구현</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">자바</a>
+                    <ul class="sub">
+                        <li><a href="#">유틸리티</a></li>
+                        <li><a href="#">스레드활용</a></li>
+                        <li><a href="#">자바스윙</a></li>
+                        <li><a href="#">기타</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">C++</a>
+                    <ul class="sub">
+                        <li><a href="#">QT IDE</a></li>
+                        <li><a href="#">C++ 관련서적 독후감</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="login">
+            <a href="#">관리자로 로그인</a>
+        </div>
+        <div class="introduce">
+            <h2>김종모의 포트폴리오 모음 사이트입니다.</h2>
+            <p>서울에사는 김종모이고 컴푸타를 좋아합니다.<br>
+            반갑습니다.<br>
+            남들에게 보여주려는 마음 20프로 
+            이 홈페이지로 인해 나태해지기 싫다는 마음 80프로로 이사이트를 만들었습니다.<br>
+            계속 이 홈페이지가 업데이트 될수 있었으면 좋겠습니다.
+            감사합니다.</p>
+        </div>
+        <div class="recent-add-board">
+            <ul class="add-board-title">
+                <li>번호</li>
+                <li>제목</li>
+                <li>날짜</li>
+                <li>게시판</li>
+            </ul>
+            <ul class="add-board-contents">
+                <li>196번</li>
+                <li><a href="#">DP알고리즘 예제</a></li>
+                <li>2020-12-29</li>
+                <li>백준</li>
+            </ul>
+
+            <ul class="add-board-contents">
+                <li>197번</li>
+                <li><a href="#">초성완성 알고리즘 구현</a></li>
+                <li>2021-01-03</li>
+                <li>자바</li>
+            </ul>
+            <ul class="add-board-contents">
+                <li>198번</li>
+                <li><a href="#">자동완성 알고리즘 구현</a></li>
+                <li>2021-02-03</li>
+                <li>자바</li>
+            </ul>
+            <ul class="add-board-contents">
+                <li>199번</li>
+                <li><a href="#">검색 알고리즘 구현</a></li>
+                <li>2021-03-03</li>
+                <li>자바</li>
+            </ul>
+            <ul class="add-board-contents">
+                <li>200번</li>
+                <li><a href="#">한글완성 알고리즘 구현</a></li>
+                <li>2021-05-03</li>
+                <li>자바</li>
+            </ul>
+        </div>
+        <div class="footer">
+            <h2>CONTACT ME</h2>
+            <p>CONTACT EMAIL : for@example.com</p>
+            <p>GITHUB :<a href="#">HTTPS://GITHUB.COM/Jongmo-kim</a></p>
+        </div>
+    </div>
+</body></html>
