@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <title>example1</title>
+</head>
+
+<body>
+    <fieldset style="border:1px solid">
+        <legend>보기</legend>
+        <label for="id" id="la1">이름 :</label><input type="text" id="id" placeholder="아이디를 입력하세요"><br>
+        <label for="id" id="la2">pass :</label><input type="text" id="pw" placeholder="비밀번호를 입력하세요"><br>
+        <label for="id" id="la3">name :</label><input type="text" id="name" placeholder="비밀번호를 입력하세요"><br>
+        <label for="addr" id="la4">addr :</label><input type="text" id="addr" placeholder="주소를 입력하세요">
+    </fieldset>
+    <p>
+        문제1. <br>
+        보기에 있는 "이름 : " -> "ID : 로 변경 <br>
+        <button onclick="test1();">문제1</button>
+        
+    </p>
+    <p>
+        문제2. <br>
+        현재 패스워드는 입력시 그대로 노출되는 형태이므로 비밀번호 입력시
+        노출되지 않게 변경 <br>
+        <button onclick="test2();">문제2</button>
+        
+    </p>
+    <p>
+        문제3. <br>
+        name의 기본 노출값이 이상하므로 "이름을 입력하세요"로 변경<br>
+        <button onclick="test3();">문제3</button>
+    </p>
+    <p>
+        문제4. <br>
+        addr 주소 입력창이 너무 짧으므로 50글자가 보이도록 길게 늘려주세요<br>
+        <button onclick="test4();">문제4</button>
+    </p>
+    <p>
+        문제5. <br>
+        보기에 있는 내용들을 작성한 후 작성된 내용을 모두 가져와서 alert을 이용해 출력<br>
+        단, getelmentsbyid를 사용하지말것<br>
+        ID : 입력값 <br>
+        PW : 입력값<br>
+        이름 : 입력값 <br>
+        주소 : 입력값<br>
+        <button onclick="test5();">문제5</button>
+    </p>
+    <script>
+        function test1(){
+            var la1 = document.getElementById("la1");
+            la1.innerHTML = "ID :";
+        }
+        function test2(){
+            var input2 = document.getElementById("pw");
+            input2.type="password";
+        }
+        function test3(){
+            var input3 = document.getElementById("name");
+            input3.placeholder = "이름을 입력하세요."
+        }
+        function test4(){
+            var input4 = document.getElementById("addr");
+            input4.size=50;
+        }
+        function test5(){
+            var arr = document.getElementsByTagName("input");
+            var label = document.getElementsByTagName("label");
+            var str = "";
+//            이건 3번 더돔
+//            for(var tag in arr){
+//                
+//                str += label[tag].innerHTML;
+//                str += arr[tag].value;
+//                str += "\n";
+//            }
+            
+            for(var i = 0; i < 4 ; ++i){                
+                str += label[i].innerHTML;
+                str += arr[i].value;
+                str += "\n";
+            }
+            alert(str);
+        }
+    </script>
+</body>
+</html>

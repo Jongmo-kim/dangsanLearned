@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <title>javascriptfirst</title>
+</head>
+
+<body>
+    <p id="p1" class="hh">안녕하세요</p>
+    <button onclick="func1();">클릭</button>
+    <button onclick="func2();">클릭2</button>
+    <button onclick="func3();">클릭3</button>
+    <hr>
+    <input type="text" placeholder="1~3중 하나를 입력하세요" id="if">
+    <button onclick="func4();">z클릭</button>
+
+    <input type="text" placeholder="숫자입력" id="if2">
+    <button onclick="func5();">z클릭</button>
+    <p id="pp">
+        킹종모,KingJongmo,종모
+    </p>
+    <button onclick="stringTest();">클릭</button>
+    <style>
+        #div1{
+            width:200px;
+            height:200px;
+            border: 1px dashed black;
+            background-color: red;
+        }
+        #div2{
+            
+            width:200px;
+            height:200px;
+            border: 1px dashed black;
+            background-color: blue;
+        }
+    </style>
+    <div id="div1" onclick="redFunc();"></div>
+    <div id="div2" onclick="blueFunc();"></div>
+    <br>
+    <button onclick="showBlue();" style="clear:left;">클릭</button>
+    <script>
+        function showBlue(){
+            var d2 = document.getElementById("div2");
+            d2.style.display="block";
+        }
+        function redFunc(){
+            var d1 = document.getElementById("div1");
+            d1.style.width = "400px";
+            d1.style.height = "400px";
+            d1.style.backgroundColor = "black";
+            d1.style.display="none";
+        }
+        
+        function blueFunc(){
+            var d2 = document.getElementById("div2");
+               d2.style.width = "400px";
+            d2.style.height = "400px";
+            d2.style.backgroundColor = "black";
+            d2.style.display="none";
+        }
+        function stringTest() {
+            var obj = document.getElementById("pp");
+            //             obj.innerHTML = obj.innerHTML.toUpperCase();
+            //             obj.innerHTML = obj.innerHTML.length;
+            //             obj.innerHTML = obj.innerHTML.indexOf("모");
+            //             obj.innerHTML = obj.innerHTML.lastIndexOf("모");
+            var date = obj.innerHTML.split(",");
+            console.log(date[0]);
+            console.log(date[1]);
+            console.log(date[2]);
+        }
+
+        function func1() {
+            var p1 = document.getElementById("p1");
+            p1.innerHTML = "hello";
+        }
+
+        function func2() {
+            var p2 = document.getElementById("p1");
+            p1.innerHTML = "안녕하세요";
+        }
+
+        function func3() {
+            var inputMsg = prompt("변경할 메시지를 입력하세요");
+            var chk = confirm("[" + inputMsg + "]로 변경하시겠습니까?")
+            if (chk) {
+                p1.innerHTML = inputMsg;
+            }
+        }
+
+        function func4() {
+            var input = document.getElementById("if");
+            input.placeholder = "asd";
+            var inputNumber = input.value;
+            if (inputNumber == "1") {
+                alert("1을 입력했군요");
+            } else if (inputNumber == "2") {
+                alert("1을 입력했군요");
+            } else if (inputNumber == "3") {
+                alert("1을 입력했군요");
+            } else {
+                alert(inputNumber + "을 입력했군요");
+            }
+        }
+
+        function func5() {
+            var input = document.getElementById("if2");
+            var inputNum = input.value;
+            inputNum % 2 == 0 || alert("홀수");
+            inputNum % 2 == 0 && alert("짝수");
+            if (inputNum % 2 == 0) {
+                alert("even");
+            } else {
+                alert("odd")
+            }
+        }
+    </script>
+</body></html>

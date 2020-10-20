@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    #img1{
+        width: 500px;
+        height: 500px;
+        float:left;
+    }
+    .img1{
+        width: 500px;
+        height: 500px;
+        float:left;
+    }
+    img{
+        width: 100%;
+        height: 100%;
+        float: left;
+    }
+    *{
+        border : 1px solid;
+    }
+    </style>
+<body>
+    <h2>다음중 가장 이쁜것은 무엇인가요</h2>
+    <button onclick="reset();">초기화</button>
+    <hr>
+    <div  class="img1" onclick="chose(1);" ><img  src="compare_img/%EB%B9%84%EA%B5%901.png" alt=""></div>
+    <div class="img1" onclick="chose(2);" ><img src="compare_img/%EB%B9%84%EA%B5%902.png" alt=""></div>
+    <script>
+        var div = document.getElementsByClassName("img1");
+        
+    function chose(num){
+        num==1 ? num=0 : num=1;
+        othernum= num==1? 0:1;
+        div[num].style.width = "1000px";
+        div[num].style.height = "1000px";
+        div[num].style.border = "5px dashed red";
+        div[othernum].style.display = "none";
+        
+    }
+    function reset(){
+        if(div[0].style.width=="1000px"){
+            num = 0;
+            othernum =1 ;
+        }else{
+            num= 1;
+            othernum =0 ;
+        }
+        div[num].style.width = "500px";
+        div[num].style.height = "500px";
+        div[num].style.border = "none";
+        div[othernum].style.display = "block";
+    }
+    
+    </script>
+</body>
+</html>
