@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <title>계산기만들기</title>
+</head>
+<style>
+    *{
+        box-sizing: border-box;
+    }
+    .wrap{
+        
+        margin: 0 auto;
+        width: 300px;
+        height: 400px;
+    }
+    .wrap>div{
+        text-align: center;
+        line-height: 4;
+        font-weight: bolder;
+        background-color: grey;
+        border-radius: 2px 2px 2px 2px;
+        margin: 2px;
+        float:left;
+        width: calc(94%/4);
+        height: calc(100%/6);
+    }
+    .wrap>div:hover{
+        background-color: white;
+    }
+    .wrap>div:active{
+        background-color: darkgrey;
+    }
+    .wrap>:first-child{
+        background-color: white;
+        width:100%;
+    }
+    </style>
+<body>
+    <h2>연습4</h2>
+    <hr>
+    .wrap>#button$$[onclick="add(this)"]{$}*20
+    <div class="wrap">
+        <div id="button01">0</div>
+        <div onclick="add(this);" id="button02">(</div>
+        <div onclick="add(this);" id="button03">)</div>
+        <div onclick="add(this);" id="button04">%</div>
+        <div onclick="clearform();" id="button05">AC</div>
+        <div onclick="add(this);" id="button06">7</div>
+        <div onclick="add(this);" id="button07">8</div>
+        <div onclick="add(this);" id="button08">9</div>
+        <div onclick="add(this);" id="button09">/</div>
+        <div onclick="add(this);" id="button10">4</div>
+        <div onclick="add(this);" id="button11">5</div>
+        <div onclick="add(this);" id="button12">6</div>
+        <div onclick="add(this);" id="button13">*</div>
+        <div onclick="add(this);" id="button14">1</div>
+        <div onclick="add(this);" id="button15">2</div>
+        <div onclick="add(this);" id="button16">3</div>
+        <div onclick="add(this);" id="button17">-</div>
+        <div onclick="add(this);" id="button18">0</div>
+        <div onclick="add(this);" id="button19">.</div>
+        <div onclick="execute(this);" id="button20">=</div>
+        <div onclick="add(this);" id="button21">+</div>
+    </div>
+    <script>
+        var bar = document.getElementById("button01");
+        var inputStr='0';
+        
+        function execute(div){
+            var result = eval(bar.innerHTML);
+            console.log("result : %d",result);
+            clearform();
+        }
+        function clearform(){
+            inputStr='0';
+            updateTextBar();
+        }
+        function add(div){
+        
+            inputStr += div.innerHTML;
+            updateTextBar();
+        }
+        function updateTextBar(){
+            bar.innerHTML = inputStr;
+        }
+    </script>
+</body>
+</html>

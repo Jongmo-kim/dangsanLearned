@@ -1,0 +1,80 @@
+    <!DOCTYPE html>
+    <html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Insert title here</title>
+    </head>
+
+    <body>
+
+
+        <h1> 배열 실습 문제 3</h1>
+        <br><br>
+        문제5. 다음 보기의 그림을 클릭하면 그림이 사라지고 그림을 모두 클릭하면 클릭한 순서대로 그림이 나올수 있도록 만들어라.<br>
+        (힌트 : outerHTML)<br>
+
+        <fieldset>
+            <style>
+                .divss {
+                    float: left;
+                    width:100px;
+                    height:100px;
+                    border: 1px solid black;
+
+                }
+
+            </style>
+            <legend>보기</legend>
+            <div id="div5">
+                <div onclick="clicked(this);" style="background-color:red;" class="divss">1</div>
+                <div onclick="clicked(this);" style="background-color:blue;" class="divss">2</div>
+                <div onclick="clicked(this);" style="background-color:green;" class="divss">3</div>
+                <div onclick="clicked(this);" style="background-color:pink;" class="divss">4</div>
+                <div onclick="clicked(this);" style="background-color:yellow;" class="divss" id="yellow">5</div>
+            </div>
+
+        </fieldset><br>
+    <script>
+        var arr = [];
+        var div5 = document.getElementById("div5");
+        var first = true;
+        function clicked(div){
+            var div5arr = div5.innerHTML.split("\n");
+            if(isrealfirsttime()){
+                div5arr.pop();
+                div5arr.shift();
+            }
+            
+            for(var i = 0 ; i < div5arr.length;++i){
+                div5arr[i] = div5arr[i].trim();    
+            }
+            for(var i = 0 ; i < div5arr.length; ++i){
+                if(div.outerHTML.includes(div5arr[i]))
+                   {
+                    for(var j = i ; j < div5arr.length-1; ++j){
+                        div5arr[j] = div5arr[j+1];
+                    }
+                    div5arr.pop();
+                    break;
+                }
+                
+            }
+            div5.innerHTML = div5arr.join('\n').trim();
+            arr.push(div.outerHTML);
+            if(arr.length==5){
+                div5.innerHTML = arr.join('\n').trim();
+                arr = [];
+            }
+        }    
+        function isrealfirsttime(){
+            if(first){
+                first = !first;
+                return true;
+            }
+            return false;
+        }
+    </script>
+    </body>
+
+    </html>

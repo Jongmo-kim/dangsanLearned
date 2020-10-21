@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <title>function</title>
+</head>
+
+<body>
+    <button onclick="func1();">클릭</button>
+    <button onclick="func2('매개변수전달')">클릭2</button>
+    <button onclick="func3('이번에도 매개변수 전달')">클릭3</button>
+    <button onclick="clickBtn();">클릭4</button>
+    <button onclick="func6();">클릭5</button>
+    <br>
+    <input type="text" id="num1">
+    <input type="text" id="num2">
+    <button onclick="func7();">클릭6</button>
+    <input type="radio" onclick="exam();" name="gender">남자
+    <input type="radio" onclick="exam();" name="gender">여자
+    <p id="p1"></p>
+    <p id="p1"></p>
+    <script>
+        function exam(){
+            var test = document.getElementsByName("gender");
+            for(var i=0;i<test.length;++i){
+                console.log(test[i].checked);
+            }
+        }
+        function func7(){
+            var str1 = "document.getElementById('num1').value+'+'";
+            str1 += "+document.getElementById('num2').value+'='";
+            str1 += "+(parseInt(document.getElementById('num1').value)";
+            str1 += "+parseInt(document.getElementById('num2').value))";
+            console.log(str1);
+            var p1 = document.getElementById("p1");
+            p1.innerHTML = eval(str1);
+        }
+        function func6() {
+            var str = "http://www.iei.or.kr?name=ㅎㅇㅇㄹ";
+            console.log(str);
+            var enc = escape(str);
+            console.log(enc);
+            var dec = unescape(enc);
+            console.log(dec);
+        }
+
+        function inc() {
+            var count = 0;
+            return function inc2() {
+                count++;
+                return count;
+            }
+        }
+        var incNum = inc();
+
+        function clickBtn() {
+            var cnt = incNum();
+            console.log(cnt);
+
+        }
+
+        function func1() {
+            //        매개변수x 인자x
+            alert("기본함수");
+        }
+
+        function func2(str) {
+            alert(str);
+        }
+//        func1();
+        (function() {
+            alert("한번만 실행되고 다시 실행하수 업슨ㄴ 함수 브라우저 초기화할떄씀")
+        })
+
+        function func1() {
+            alert('')
+            var returnValue = func4();
+            alert()
+        }
+
+        function func4() {
+            return 10;
+        }
+
+        function func5() {
+            console.log(10);
+        }
+
+        function func3() {
+            //        선언적함수
+            alert(arguments[0])
+        }
+    </script>
+</body></html>

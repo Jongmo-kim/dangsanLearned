@@ -28,7 +28,62 @@
     <input type="text" id="in1"><button onclick="func2();">indexOf</button>
     <input type="text" id="in2">
     <button onclick="func3();">concat()</button>
+    <button onclick="func4();">join()</button>
+    <button onclick="func5();">reverse()</button>
+    <button onclick="func6();">sort()</button>
+    <button onclick="func7();">push(),pop(),shift()</button>
+    <button onclick="func8();">slice()</button>
+    <p id="p1"></p>
     <script>
+        function func8(){
+            var arr = ['사과','바나나','키위','딸기','망고'];
+//            매개변수의 번호부터 뒤에 모두 잘라냄
+            var arr1 = arr.slice(1);
+//            1,2까지 잘라내기
+            var arr2 = arr.slice(1,4);
+            console.log(arr);
+            console.log(arr1);
+            console.log(arr2);
+        }
+        function func7(){
+//            stack의 자료구조형태
+            var arr = ['사과','바나나','키위'];
+            arr.push('딸기');
+            arr.pop();
+//            unshift는 앞에 들어감
+            arr.unshift('딸기');
+//            제일 앞 삭제
+            arr.shift();
+            
+        }
+        function func6(){
+//            sort는 유니코드표를 기준으로 정렬 따라서 정수등 숫자를 정렬할떄는 함수선언후 해당 함수를 매개변수로 전달해야함
+            var arr = ["아","이","가","나","쿠","쉬","소"];
+            console.log(arr);
+            arr.sort();
+            console.log(arr);
+        }
+        function sortASC(a,b){
+            return a-b;
+        }
+        function sortDESC(a,b){
+            return b-a;
+        }
+        function func5(){
+            var arr1 = [1,2,3,4,5];
+            console.log(arr1);
+            arr1.reverse();
+            console.log(arr1);
+        }
+        function func4(){
+            var arr1 = ['사과','복숭아','망고','멜론'];
+            var arr2 = ['딸기','키위','파인애플'];
+            var arr3 = [1,2,3,4,5,6,7];
+            var arr4 = ['이윤수',true,false,[9,8,7]];
+            var data = arr1.concat(arr2,arr3,arr4);
+            var p1 = document.getElementById("p1");
+            p1.innerHTML=data.join(' ');
+        }
         function func2(){
             var fruits = ['사과','복숭아','망고','멜론'];
             var in1 = document.getElementById("in1");
