@@ -39,8 +39,42 @@
 <body>
     <h2>연습4</h2>
     <hr>
-    .wrap>#button$$[onclick="add(this)"]{$}*20
-    <div class="wrap">
+       <tabel border="1">
+           <tr colspan="4">
+               <div id="result">0</div>
+           </tr>
+           <tr>
+               <td><button onclick="btnClick(this);">(</button></td>
+               <td><button onclick="btnClick(this);">)</button></td>
+               <td><button onclick="btnClick(this);">%</button></td>
+               <td><button onclick="btnClick(this);">AC</button></td>
+           </tr>
+           <tr>
+               <td><button onclick="btnClick(this);">7</button></td>
+               <td><button onclick="btnClick(this);">8</button></td>
+               <td><button onclick="btnClick(this);">9</button></td>
+               <td><button onclick="btnClick(this);">/</button></td>
+           </tr>
+           <tr>
+               <td><button onclick="btnClick(this);">4</button></td>
+               <td><button onclick="btnClick(this);">5</button></td>
+               <td><button onclick="btnClick(this);">6</button></td>
+               <td><button onclick="btnClick(this);">*</button></td>
+           </tr>
+           <tr>
+               <td><button onclick="btnClick(this);">1</button></td>
+               <td><button onclick="btnClick(this);">2</button></td>
+               <td><button onclick="btnClick(this);">3</button></td>
+               <td><button onclick="btnClick(this);">-</button></td>
+           </tr>
+           <tr>
+               <td><button onclick="btnClick(this);">0</button></td>
+               <td><button onclick="btnClick(this);">.</button></td>
+               <td><button onclick="btnClick(this);">=</button></td>
+               <td><button onclick="btnClick(this);">+</button></td>
+           </tr>
+       </tabel>
+        <div class="wrap">
         <div id="button01">0</div>
         <div onclick="add(this);" id="button02">(</div>
         <div onclick="add(this);" id="button03">)</div>
@@ -65,24 +99,30 @@
     </div>
     <script>
         var bar = document.getElementById("button01");
-        var inputStr='0';
-        
+        var inputStr='';
+        var first = true;
         function execute(div){
             var result = eval(bar.innerHTML);
             console.log("result : %d",result);
-            clearform();
+            bar.innerHTML = result;
+            inputStr = result;
         }
         function clearform(){
-            inputStr='0';
-            updateTextBar();
+            bar.innerHTML='0';
+            inputStr = '';
         }
         function add(div){
-        
+            if(inputStr == '0'){
+                bar.innerHTML = '0';
+                inputStr = '';
+            }
             inputStr += div.innerHTML;
             updateTextBar();
         }
         function updateTextBar(){
+            
             bar.innerHTML = inputStr;
+        
         }
     </script>
 </body>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="func1();">객체생성1</button>
+    <br>
+    <button onclick="func2();">객체생성2</button>
+    <br>
+    <button onclick="func3();">in/with</button>
+    <br>
+    <button onclick="func4();">객체속성추가/삭제</button>
+    <br>
+    <button onclick="func5();">객체 데이터 추가/출력</button>
+    <br>
+    <button onclick="func6();">객체배열</button>
+    <br>
+    <button onclick="func7();">student 생성자</button>
+    <br>
+    <button onclick="func8();"></button>
+    <br>
+    <button onclick="func9();"></button>
+    <br>
+    <button onclick="func10();"></button>
+    <br>
+    <button onclick="func11();"></button>
+    <br>
+    <button onclick="func12();"></button>
+    <br>
+    <button onclick="func13();"></button>
+    <br>
+    <button onclick="func14();"></button>
+    <br>
+    <button onclick="func15();"></button>
+    <br>
+    <button onclick="func16();"></button>
+    <br>
+    <button onclick="func17();"></button>
+    <br>
+    <button onclick="func18();"></button>
+    <br>
+    <button onclick="func19();"></button>
+    <br>
+    <button onclick="func20();"></button>
+    <br>
+    <script>
+        function func1() {
+            var testObj = {
+                a: 100,
+                b: 200
+            };
+            console.log(testObj);
+            testObj.a = 300;
+            testObj['b'] = 400;
+            console.log(testObj);
+        }
+
+        function func2() {
+            var testObj = {
+                a: 100,
+                b: 200,
+                c: function() {
+                    alert("TEST");
+                    return 'something';
+                }
+            }
+            console.log(testObj);
+            console.log(testObj.c());
+        }
+
+        function func3() {
+            var testObj = {
+                a: 100,
+                b: 200
+            };
+            //            in > 객체에 해당하는 속성이 있는지 검사
+            console.log('a' in testObj);
+            console.log('c' in testObj);
+            with(testObj) {
+                a = 300;
+                b = 400;
+            }
+            console.log(testObj);
+        }
+
+        function func4() {
+            var testObj = {
+                a: 100,
+                b: 200
+            }
+            console.log(testObj);
+            testObj.c = 300;
+            console.log(testObj);
+            testObj.d = function() {
+                alert("객체내부함수입니다.");
+            }
+            console.log(testObj);
+            delete(testObj.a);
+            console.log(testObj);
+        }
+
+        function func5() {
+            var name = prompt("이름입력");
+            var age = prompt("나이입력");
+            var addr = prompt("주소입력");
+            var object = {
+                name: name,
+                age: age,
+                addr: addr,
+                print: function() {
+                    var str =
+                        "이름 : " + this.name + "\n나이 : " + this.age + "\n주소 : " + this.addr;
+                        return str;
+
+                }
+            }
+        alert(object.print());
+
+        }
+        function func6(){
+            var objectArr = new Array();
+            var test1 = {a:100,b:200};
+            var test2 = {name:"킹윤수",addr:"소울"};
+            var test3 = {a:300,b:400};
+            objectArr.push(test1);
+            objectArr.push(test2);
+            objectArr.push(test3);
+            console.log(objectArr);
+            alert(objectArr[1].addr);
+        }
+        function func7(){
+            var s = new Student('이윤수',20,'서울');
+            console.log(s);
+        }
+        function Student(name,age,address){
+            this.name = name;
+            this.age = age;
+            this.address=  address;
+        }
+    </script>
+</body></html>
