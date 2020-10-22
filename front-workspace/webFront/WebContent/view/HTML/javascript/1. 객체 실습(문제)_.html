@@ -82,29 +82,31 @@ ex) <br>
         member = new Member(name,age,addr);
     }
     function printMember(){
+        if(member == undefined){
+            alert("안대여");
+        }else{
         var str = member.print();
         var print = document.getElementById("print");
         print.innerHTML = str;
+            }
     }
     function student(){
         var arr = [];
+         var nameArr = document.getElementsByName("name");
+        var ageArr = document.getElementsByName("age");
+        var addrArr = document.getElementsByName("addr");
+
         for(var i = 0 ; i < 3 ; ++i){
              var name = prompt("이름 입력");
             var age = prompt("나이 입력");
             var addr = prompt("주소 입력");
             var member = new Member(name,age,addr);
-            arr.push(member);
+            
+            nameArr[i].innerHTML = member.name;
+            ageArr[i].innerHTML = member.age;
+            addrArr[i].innerHTML = member.addr;
         }
-        var nameArr = document.getElementsByName("name");
-        var ageArr = document.getElementsByName("age");
-        var addrArr = document.getElementsByName("addr");
-
-        
-        for(var i = 0 ; i < 3 ; ++i){
-            nameArr[i].innerHTML = arr[i].name;
-            ageArr[i].innerHTML = arr[i].age;
-            addrArr[i].innerHTML = arr[i].addr;
-        }
+       
     }
     </script>
 </body>

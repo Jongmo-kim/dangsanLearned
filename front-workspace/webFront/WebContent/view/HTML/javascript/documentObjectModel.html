@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    .div{
+        border: 5px solid;
+        height: 500px;
+        width : 800px;
+    }
+    </style>
+<body>
+    <div id="d1" class="div"></div>
+    <button onclick="func1();">클릭1</button>
+    <button onclick="func2();">클릭2</button>
+    <button onclick="func3();">삭제할 요소추가</button>
+    <button onclick="func4();">삭제버튼(부모에서 삭제)</button>
+    <button onclick="func5();">삭제버튼(해당객체삭제)</button>
+    <button onclick="func6();"></button>
+    <button onclick="func7();"></button>
+    <button onclick="func8();"></button>
+    <button onclick="func9();"></button>
+    <button onclick="func10();"></button>
+    
+    <script>
+        function func1(){
+//            1.요소생성
+            var d1 = document.getElementById("d1");
+            var h3 = document.createElement("h3");
+            var a = document.createElement("a");
+            
+            
+            var textNode = document.createTextNode("추가문구");
+            a.appendChild(textNode);
+            h3.appendChild(a);
+            
+            d1.appendChild(h3);
+        }
+        function func2(){
+            var d1 = document.getElementById("d1");
+//            1.이미지태그생성
+            var img = document.createElement("img");
+            img.src="compare_img/%EB%B9%84%EA%B5%901.png";
+            img.width="150";
+            img.height="300";
+            
+//            존재하지 않는 속성은 줄 수 없음
+//            img.testProperty= 'test';
+//            존재하지 앟ㄴ는 속성을 강제로 지정
+            img.setAttribute("testProperty",'test');
+            console.log(img.getAttribute("testProperty"));
+//            2.이미지태그삽입
+            d1.appendChild(img);
+        }
+        function func3(){
+            var d1 = document.getElementById("d1");
+            var obj = document.createElement("p");
+            obj.style.border = "1px solid red";
+            obj.style.backgroundColor = "pink";
+            obj.style.width = "100px";
+            obj.style.height = " 100px";
+            obj.style.float= " left";
+            obj.setAttribute("id","pp");
+            d1.appendChild(obj);
+        }
+        function func4(){
+            var d1 = document.getElementById("d1");
+            var pp  = document.getElementById("pp");
+            d1.removeChild(pp);
+        }
+        function func5(){
+            var pp = document.getElementById("pp");
+            pp.remove();
+        }
+    </script>
+</body>
+</html>

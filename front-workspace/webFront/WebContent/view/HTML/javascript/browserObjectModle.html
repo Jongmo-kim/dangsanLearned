@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    .pp{
+        border: 1px solid;
+        height: 200px;
+        width: 500px;
+        font-size: 70px;
+        color:blue;
+    }
+    </style>
+</head>
+<body>
+   <div name="top"></div>
+    <button onclick="func11();">아래로</button>
+    <button onclick="func1();">window.open()</button>
+    <button onclick="func2();">setTimeout</button>
+    <button onclick="func3();">setInterval</button>
+    <button onclick="func4();">시작</button>
+    <button onclick="func5();">중단</button>
+    <p id="p1" class="pp"></p>
+    <p id="p2" class="pp"></p>
+    <button onclick="func6();">시작</button>
+    <button onclick="func7();">중단</button>
+    <button onclick="func8();"></button>
+    <button onclick="func9();">screen객체</button>
+    <p4 id="p4" class="pp" style="font-size: 15px;"></p4>
+    <button onclick="func10();">위로</button>
+   
+    <button onclick="func12();">네이버로</button>
+    <button onclick="func13();">새로고침</button>
+    <button onclick="func14();">assign</button>
+    <button onclick="func15();">replace</button>
+    <p id="pp1"></p>
+    <button onclick="func17();"></button>
+    <button onclick="func18();"></button>
+    <button onclick="func19();"></button>
+    <button onclick="func20();"></button>
+    
+    
+    <div name="bottom"></div>
+    <script>
+        var time1;
+        var time2;
+        
+        function func1(){
+            window.open("http://www.w3schools.com/jsref/met_win_open.asp","_blank","width=500,height=500");
+        }
+        function func2(){
+            var myWindow = window.open();
+            var intervalId = window.setTimeout(function(){
+                myWindow.close();
+            },3*100)
+            window.clearTimeout(intervalId);
+        }
+        function func3(){
+            var intervalId = window.setInterval(function(){
+                console.log("인터벌함수 실행");
+            },3*10);
+            
+            window.setTimeout(function(){
+                window.clearInterval(intervalId);
+            },10*1000);
+        }
+        function func4(){
+            var p1 = document.getElementById("p1");
+            time1 = window.setInterval(function(){
+                var date = new Date(); //현재 시스템시간 가져오기
+                p1.innerHTML = date.getHours()
+                + " : " + date.getMinutes() + " : " + date.getSeconds();
+            },1*1000);
+            
+        }
+        function func5(){
+            window.clearInterval(time1);
+        }
+        function func6(){
+            var p2 = document.getElementById("p2");
+            var count = 0;
+            time2 =window.setInterval(function(){
+               var date = new Date();
+                var mill = date.getMilliseconds();
+                p2.innerHTML = count + " : " + mill;
+                if(mill>= 990){
+                    count++;
+                }
+            },10)
+        }
+        function func7(){
+            window.setTimeout(function(){
+                window.clearInterval(time2);
+            })
+        }
+        function func9(){
+            var p4 = document.getElementById("p4");
+            var str = "";
+            str += "화면 높이값 : "+screen.height+"<br>";
+            str += "화면 너비 : "+screen.width+"<br>";
+            str += "실제 사용 가능한 높이 :"+screen.availHeight+"<br>";
+            str += "실제 사용 가능한 너비 :"+screen.availWidth+"<br>";
+            str += "컬러깊이 :"+screen.colorDepth+"<br>";
+            str += "픽셀깊이 :"+screen.pixelDepth+"<br>";
+            p4.innerHTML = str;
+        }
+        function func10(){
+            location.hash = "top";
+        }
+        function func11(){
+            location.hash = "bottom";
+        }
+        function func12(){
+            location.href = "http://www.naver.com"
+        }
+        function func13(){
+            location.reload();
+        }
+        function func14(){
+            location.assign("http://www.naver.com");
+        }
+        function func15(){
+            location.replace("http://www.naver.com");
+        }
+        var lat; //we do
+        var lng ; // kung do
+        window.onload = function(){
+            navigator.geolocation.getCurrentPosition(showYourLocation);
+        }
+        function showYourLocation(position){
+            lat = position.coords.latitude;
+            lng = position.coords.longitude;
+        }
+        function func16(){
+            console.log(lat);
+            console.log(lng);
+        }
+    </script>
+        <button onclick="func16();">위/경도확인</button>
+
+    <script>
+//        onload는 HTML이 모두 만들어져있을때 실행됨
+        window.onload= function(){
+            p3 = document.getElementById("p3");
+        }
+        function func8(){
+            var p3 = document.getElementById("p3");
+            p3.innerHTML="버튼클릭!";
+        }
+        
+    </script>
+    <p id="p3"></p>
+    <button onclick="func8();">클릭</button>
+</body>
+</html>
