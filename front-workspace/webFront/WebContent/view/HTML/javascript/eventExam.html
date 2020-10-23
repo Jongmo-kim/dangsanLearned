@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>시험</title>
+</head>
+<link rel="stylesheet" type="text/css" href="eventExam.css">
+<script>
+    var contentsArr = [];
+    var userArr = ["user01", "user02", "user03", "user04", "user05"];
+    window.onload = function() {
+        var nextbuttons = document.getElementsByClassName("submitbox");
+
+        var chk_all = document.getElementById("chk_all");
+
+        var check_contents = document.getElementById("check_contents");
+
+        var input_contents = document.getElementById("input_contents");
+
+        var detail_input_contents = document.getElementById("detail_input_contents");
+
+        var doneSignup = document.getElementById("doneSignup");
+
+        contentsArr = [check_contents, input_contents, detail_input_contents, doneSignup];
+
+        chk_all.addEventListener("click", toggleSelect);
+
+        for (var i = 0; i < nextbuttons.length; ++i) {
+            nextbuttons[i].addEventListener("click", nextpage);
+        }
+        setInputIdEvent();
+        setInputPwEvent();
+        setDetailInputEmailEvent();
+        setLoginButtonEvent();
+        setLoginCancelEvent();
+    }
+    function setLoginCancelEvent(){
+        var canclelogin = document.getElementById("canclelogin");
+        canclelogin.addEventListener("click",cancleloginListener);
+    }
+    function cancleloginListener(){
+        var canclelogin = document.getElementById("loginform");
+        canclelogin.style.display = "none";
+    }
+    function setLoginButtonEvent(){
+        var loginbutton = document.getElementById("loginbutton");
+        loginbutton.addEventListener("click",loginListener);
+    }
+    function loginListener(){
+        setLoginFormVisible();
+    }
+    
+    function setLoginFormVisible(){
+        var loginform = document.getElementById("loginform");
+        loginform.style.display = "block";
+        console.log(loginform);
+        
+    }
+    function setDetailInputEmailEvent() {
+        var drop = document.getElementById("drop");
+        drop.addEventListener("change", emailListener);
+    }
+
+    function emailListener() {
+        var site = document.getElementById("site");
+        site.value = this.value;
+    }
+
+    function setInputPwEvent() {
+        var pwchk = document.getElementById("pwchk");
+        var pw = document.getElementById("pw");
+
+        pwchk.addEventListener("keyup", pwListener);
+        pw.addEventListener("keyup", pwListener);
+    }
+
+    function pwListener() {
+        var pwchk = document.getElementById("pwchk");
+        var pw = document.getElementById("pw");
+
+        if (pwchk.value == pw.value) {
+            setPwChkSpanOkay();
+        } else {
+            setPwChkSpanNotOkay();
+        }
+    }
+
+    function setPwChkSpanOkay() {
+        var pwchktext = document.getElementById("pwchktext");
+        pwchktext.innerHTML = "맞습니다.";
+    }
+
+    function setPwChkSpanNotOkay() {
+        var pwchktext = document.getElementById("pwchktext");
+        pwchktext.innerHTML = "틀립니다.";
+    }
+
+    function setInputIdEvent() {
+        var id = document.getElementById("id");
+        id.addEventListener("keyup", idListener);
+    }
+
+    function idListener() {
+        str = this.value;
+
+        if (checkIdNested(str)) {
+            setIdSpanNested();
+        } else {
+            setIdSpanNotNested();
+        }
+    }
+
+    function setIdSpanNested() {
+        var idspan = document.getElementById("idtext");
+        var id = document.getElementById("id");
+        id.style.backgroundColor = "red";
+        idspan.innerHTML = "중복된 아이디입니다."
+    }
+
+    function setIdSpanNotNested() {
+        var idspan = document.getElementById("idtext");
+        var id = document.getElementById("id");
+        id.style.border = "1px solid green;"
+        id.style.backgroundColor = "green";
+        idspan.innerHTML = "정상 아이디입니다."
+    }
+
+    function checkIdNested(str) {
+        for (var i = 0; i < contentsArr.length; ++i) {
+            if (str == userArr[i]) {
+                return true;
+
+            }
+        }
+        return false;
+    }
+    var NextPageCount = new NextPageCount();
+
+    function NextPageCount() {
+        this.currPage = 1;
+        this.nextPage = function() {
+            return this.currPage++;
+        };
+        this.getPage = function() {
+            return this.currPage;
+        };
+        this.seekNextPage = function() {
+            if (this.currPage + 1 == 5) {
+                return 1;
+
+            }
+            return this.currPage + 1;
+        }
+    }
+
+    function toggleSelect() {
+        var chk1 = document.getElementById("chk_agree1");
+        var chk2 = document.getElementById("chk_agree2");
+
+        toggleSelected(chk1);
+        toggleSelected(chk2);
+    }
+
+    function toggleSelected(chk) {
+        chk.checked = !chk.checked;
+    }
+
+    function nextpage() {
+        var curNum = NextPageCount.currPage - 1;
+        var nextNum = NextPageCount.nextPage();
+
+
+        if (checkEachCondition(contentsArr[curNum])) {
+            makeEveryContentsDisappear();
+            highlightNextTap(curNum, nextNum);
+            makeNextContentAppear(nextNum);
+        } else {
+
+        }
+    }
+
+    function checkEachCondition(div) {
+        var str = div.getAttribute("id");
+        if (str.includes("check")) {
+            return checkAgreeChecked();
+        } else if (str.includes("input")) {
+            console.log("check2;")
+        } else if (str.includes("detail")) {
+            console.log("check3;")
+        } else {
+
+        }
+    }
+
+    function checkAgreeChecked() {
+        if (chk_agree1.checked) {
+
+            return true;
+        } else {
+            alert("체크가 안되어잇네요");
+            return false;
+        }
+
+    }
+
+    function makeNextContentAppear(nextNum) {
+        contentsArr[nextNum].style.display = "block";
+    }
+
+    function highlightNextTap(curNum, nextNum) {
+
+        var taps = document.getElementsByClassName("taps");
+
+        taps[curNum].removeAttribute("id");
+        taps[nextNum].setAttribute("id", "selectedTap");
+
+    }
+
+    function makeEveryContentsDisappear() {
+        check_contents.style.display = "none";
+        input_contents.style.display = "none";
+        detail_input_contents.style.display = "none";
+        doneSignup.style.display = "none";
+
+    }
+
+</script>
+
+
+<body>
+    <h1>실습</h1>
+    <small>ID배열 5개를 선언후 중복검사</small>
+    <br>
+    <hr>
+    <div class="wrap">
+        <div class="tap">
+            <ul>
+                <li class="taps" id="selectedTap">약관확인</li>
+                <li class="taps">필수정보입력</li>
+                <li class="taps">상세정보입력</li>
+                <li class="taps">가입완료</li>
+            </ul>
+        </div>
+
+
+        <div class="check_contents" id="check_contents">
+            <h2>이용약관 확인 및 동의</h2>
+
+            <div class="chk_allbox">
+                <input type="checkbox" id="chk_all"><label for="chk_all">이용약관전체 체크</label>
+            </div>
+
+            <div class="chk_agree1box">
+                <input type="checkbox" id="chk_agree1"><label for="chk_agree1">개인정보 수집 및 이용에 동의 <a>(필수)</a></label>
+
+                <div class="agreeContents" id="submitbox">
+                    <ul>
+                        <li>수집항목:이름,휴대전화번호,생년월일,비밀번호</li>
+                        <li>수집 이용목적: 회원제 서비스 제공</li>
+                        <li>보유 및 이용기간 : 회원탈퇴 시 까지</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="chk_agree2box">
+                <input type="checkbox" id="chk_agree2"><label for="chk_agree2">개인정보 수집 및 이용에 동의 <a>(선택)</a></label>
+                <div class="agreeContents">
+                    <ul>
+                        <li>수집항목:이름,휴대전화번호,생년월일,비밀번호</li>
+                        <li>수집 이용목적: 회원제 서비스 제공</li>
+                        <li>보유 및 이용기간 : 회원탈퇴 시 까지</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="submitbox" id="check_submit">
+                <input type="submit" value="다음">
+            </div>
+
+        </div>
+        <div class="input_contents" id="input_contents">
+            <h2>필수정보입력</h2>
+            <div class="idbox">
+                <label for="id">아이디</label>
+                <input type="text" id="id"><span id="idtext">test</span>
+            </div>
+            <div class="pwbox">
+                <label for="pw">비밀번호</label>
+                <input type="text" id="pw">
+                <span id="pwtext">test</span>
+            </div>
+            <div class="pwchkbox">
+                <label for="pwchk">비밀번호 확인</label>
+                <input type="text" id="pwchk">
+                <span id="pwchktext">test</span>
+            </div>
+            <div class="namebox">
+                <label for="name">이름</label>
+                <input type="text" id="name">
+            </div>
+            <div id="submitbox2" class="submitbox">
+                <input type="submit" value="다음">
+            </div>
+        </div>
+
+        <div class="detail_input_contents" id="detail_input_contents">
+            <h2>추가정보입력</h2>
+            <div class="inputform">
+                <div class="emailform">
+                    <label for="email">이메일</label><input type="text">@<input type="text" id="site">
+                    <select name="emaildrop" id="drop">
+                        <option value="naver">naver.com</option>
+                        <option value="google">google.com</option>
+                        <option value="daum">daum.net</option>
+                    </select>
+                </div>
+
+                <div class="genderform">
+                    <label>성별</label>
+
+                    <input type="radio" name="gender" id="male">
+                    <label for="male">남자</label>
+
+                    <input type="radio" name="gender" id="female">
+                    <label for="female">여자</label>
+                </div>
+                <div class="introduceform">
+                    <label>자기소개</label><textarea size="fixed" resize="none" style="resize:none" name="introduce" id="intro" cols="30" rows="10">?</textarea>
+                </div>
+                <div class="submitbox" id="submitbox">
+                    <input type="submit" value="다음">
+                </div>
+            </div>
+
+        </div>
+        <div class="doneSignup" id="doneSignup">
+            <h2>가입을 안축하 합니다.</h2>
+            <div class="loginbutton" id="loginbutton">로그인하기</div>
+            
+            <div class="loginform" id="loginform">
+                <div class="idform">
+                    <div class="idlabel">
+                        <label>아이디</label>
+                    </div>
+                    <div class="idinput">
+                        <input type="text">
+                    </div>
+                    <div class="pwlabel">
+                        <label>비밀번호</label>
+                    </div>
+                    <div class="pwinput">
+                        <input type="password">
+                    </div>
+
+                    <div class="realloginbutton">
+                        로그인하기
+                    </div>
+                    <div class="canclelogin" id="canclelogin">
+                        취소
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</body>
+
+</html>

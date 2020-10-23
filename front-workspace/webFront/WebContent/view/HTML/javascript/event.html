@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<script>
+    window.onload = function() {
+        var div2 = document.getElementById("div2");
+        div2.onclick = function() {
+            alert('두번째함수');
+        };
+        var div3 = document.getElementById("div3");
+        div3.addEventListener('click', function() {
+            alert('세번째함수');
+        });
+        var test = document.getElementsByClassName("test");
+        for(var i = 0 ; i < test.length; ++i){
+            test[i].onclick = function(){
+//                test[i] == this
+                alert(this.innerHTML);
+            }
+        }
+    }
+    function func2(msg){
+        alert(msg);
+        event.stopPropagation();
+//        ie전용
+        event.cancelBubble=true;
+    }
+    function func1() {
+        //        인라인 이벤트 모델
+        alert('첫번째 함수');
+    }
+    
+</script>
+<style>
+    .div{
+        border:1px solid black;
+        padding:20px;
+    }
+    
+    .or{
+        background-color: orange;
+    }
+    .ye{
+        background-color: yellow;
+    }
+    .gr{
+        background-color: green;
+    }
+    .re {
+        background-color: red;
+    }
+    
+    </style>
+    
+<body>
+
+    <div id="div1" onclick="func1();">111</div>
+    <div id="div2" onclick="func2();">222</div>
+    <div id="div3" onclick="func3();">333</div>
+    <div class="test">004</div>
+    <div class="test">005</div>
+    <div class="test">006</div>
+    <hr>
+    <div class="div re" onclick="func2('빨간 div()');">
+        <div class="div or" onclick="func2('주황 div()');">
+            <div class="div ye" onclick="func2('노랑 div()');">
+                <div class="div gr" onclick="func2('그린 div()');"></div>
+            </div>
+        </div>
+    </div>
+    <a href="javascript:void(0)" onclick="goNaver();">네이버</a>
+    <form action="/login.html" method="post">
+        <input type="text" name="id"><br>
+        <input type="password" name="pass"><br>
+        <input type="submit" onclick="return chk();" value="로그인"><br>
+        
+        
+    </form>
+    <div id="dd">이벤트테스트</div>
+    <form action="test.html">
+        <input type="text" id="in1"><br>
+        <input type="text" id="in2"><span id="msg"></span><br>
+        <input type="submit"> 
+    </form>
+    <script>
+        var in1 = document.getElementById("in1");
+        var in2 = document.getElementById("in2");
+        in1.addEventListener('focus',function(){
+            in1.style.backgroundColor = red;
+        })
+        in1.addEventListener('blur',function(){
+            in1.style.backgroundColor='white';
+        })
+//        in2.addEventListener('change',function(){
+//            var pw = in1.value;
+//            var pw_re = in2.value;
+//            if(pw != pw_re){
+//                alert("패스워드가 다릅니다.")
+//                in2.style.border="1px solid red";
+//            }
+//        })
+        in2.addEventListener('keyup',function(){
+            var pw = in1.value;
+            var pw_re = in2.value;
+            var msg = document.getElementById("msg");
+            if(pw != pw_re){
+                msg.style.color = "red";
+                msg.innerHTML = "! 패스워드가 다릅니다.";
+                in2.style.border="1px solid red";
+            }else{
+            msg.style.color="green";
+            msg.innerHTML = "GOOD";
+                }
+        })
+        var dd= document.getElementById("dd");
+//        dd.onclick = function(){
+//            alert("클릭이벤트");
+//        }
+        dd.ondblclick = function(){
+            alert("더블클릭이벤트");
+        }
+        dd.addEventListener('mouseenter',function(){
+            dd.style.color="red";
+        })
+        dd.addEventListener('mouseleave', function(){
+            dd.style.color="black";
+        })
+    function goNaver(){
+        if(confirm("네이버로이동?")){
+            location.href="http://www.naver.com";
+        }
+    }
+        
+        function chk(){
+            var id= document.getElementsByName("id")[0].value;
+            if(id != 'user01'){
+                return false;
+            }
+        }
+    </script>
+</body></html>    

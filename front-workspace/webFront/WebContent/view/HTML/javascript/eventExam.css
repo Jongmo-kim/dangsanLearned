@@ -1,0 +1,223 @@
+@charset "UTF-8";
+    .wrap {
+        margin: 0 auto;
+        margin-top: 50px;
+        width: 800px;
+        height: 600px;
+        border: 1px solid lightgrey;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .wrap>* {}
+
+    #selectedTap {
+        border-top: 15px solid;
+        line-height: 350%;
+        font-weight: bolder;
+        border-bottom: none;
+    }
+
+    .tap {
+        width: 100%;
+        height: 15%;
+    }
+
+    .tap>ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        height: 100%;
+    }
+
+    .tap>ul>li {
+        border-right: 1px solid lightgrey;
+        border-bottom: 1px solid lightgrey;
+        float: left;
+        width: calc(100%/4);
+        height: 100%;
+        text-align: center;
+        line-height: 5;
+    }
+
+    .tap>ul>:last-child {
+        border-right: none;
+    }
+
+    /*TAPTAPTAPTAPTAPTAPTAPTAPTAPTAPTAPTAPTAPTAPTAPTAPTAP*/
+    /*약관확인약관확인약관확인약관확인약관확인약관확인약관확인약관확인약관확인약관확인약관확인약관확인*/
+    .check_contents {
+        width: 100%;
+        height: 85%;
+        display:block;
+    }
+
+    .check_contents>h2 {
+        margin-top: 5%;
+
+    }
+
+    .check_contents>.chk_allbox {
+        margin-top: 2%;
+        margin-bottom: 2%;
+        height: 6%;
+        /*        height : 10%사용*/
+    }
+
+    .check_contents>.chk_agree1box {
+        height: 24%;
+        width: 94%;
+        margin-left: 3%;
+        margin-right: 3%;
+        margin-bottom: 3%;
+        /*        여기까지 height : 30%*/
+    }
+
+    .check_contents>.chk_agree2box {
+        width: 94%;
+        margin-left: 3%;
+        margin-right: 3%;
+        margin-top: 2%;
+        height: 23%;
+        /*        height 50%*/
+    }
+
+    .check_contents>.submitbox {
+        height: 40%;
+        height: 0;
+        text-align: center;
+        line-height: 1000%;
+    }
+
+    .agreeContents {
+        margin-top: 2%;
+        border: 2px solid black;
+    }
+
+    .check_contents>.submit {}
+
+    /*약관확인약관확인약관확인약관확인약관확인약관확인약관확인약관확인약관확인약관확인약관확인약관확인*/
+    /*필수정보입력*/
+    .input_contents {
+        height: 85%;
+        width: 100%;
+        display: none;
+    }
+
+    .input_contents>* {}
+
+    .input_contents>div {
+        border: 1px solid lightgrey;
+        margin-left: 3%;
+        margin-right: 3%;
+        height: 6%;
+        /*        height = input(4개) * 6% = 24%*/
+    }
+
+    .input_contents>h2 {
+        margin-top: 5%;
+        margin-left: 3%;
+
+        height: 8%;
+
+        /*        height: 24(이전)+13 = 37%*/
+    }
+
+    .input_contents>div>label {
+        display: inline-block;
+        width: 30%;
+        height: 100%;
+        background-color: antiquewhite;
+        font-weight: bolder;
+        text-indent: 45px;
+    }
+
+    .input_contents>div>label>* {}
+
+    .input_contents>div>input {
+        display: inline-block;
+        width: 40%;
+
+
+
+    }
+
+    .input_contents>idbox {}
+
+    .input_contents>pwbox {}
+
+    .input_contents>pwchkbox {}
+
+    .input_contents>namebox {}
+
+    #submitbox2>input {}
+
+    #submitbox2 {
+        text-align: center;
+    }
+
+    /*필수정보입력 필수정보입력*/
+    /*    상세정보입력상세정보입력상세정보입력상세정보입력상세정보입력상세정보입력*/
+    .detail_input_contents {
+        display: none;
+        height: 85%;
+        border: 2px solid red;
+    }
+
+    .detail_input_contents>* {
+        /*        border:1px solid;*/
+    }
+
+    .detail_input_contents>h2 {
+        margin-top: 5%;
+        height: 8%;
+        /*height 13%;*/
+    }
+
+    .detail_input_contents>.inputform {
+        height: 80.5%;
+        /*        왜 80.5프로인지 설명하시오 원래라면 h2에서 사용한 height 13%에서 87%가 남아야 정상임*/
+
+    }
+
+    .inputform>div {
+        border: 1px solid black;
+
+    }
+
+    .inputform>div>label:first-child {
+        display: inline-block;
+        width: 30%;
+    }
+
+    .inputform>.emailform {
+        height: 7%;
+    }
+
+    .inputform>.genderform {
+        height: 7%;
+        /*        height14%*/
+    }
+
+    .inputform>.introduceform {
+        height: 60%;
+    }
+              .genderform>input[type=radio]{
+                        display:none;
+                    }
+                    .genderform>input:checked+label{
+                        color:blue;
+                        background-color: aqua;
+                    }
+
+    /*    상세정보입력상세정보입력상세정보입력상세정보입력상세정보입력상세정보입력*/
+    /*   가입완료가입완료가입완료가입완료가입완료가입완료가입완료/*/
+    .doneSignup{
+        display: none;
+    }
+.loginform{
+    display:none;
+}
+    /*   가입완료가입완료가입완료가입완료가입완료가입완료가입완료/*/
