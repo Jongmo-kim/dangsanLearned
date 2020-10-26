@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    
+    <meta charset="UTF-8">
+    <title>객체탐색</title>
+ <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
+ <style>
+     .ancestores *,.descendants *,.siblings *{
+         display:block;
+         border: 1px solid lightgrey;
+         color:lightgrey;
+         padding: 5px;
+         margin: 15px;
+     }
+    </style>
+</head>
+<body>
+   <script>
+    $(document).ready(function(){
+        var h3 = $("h3");
+        $("h3").css('color','red');
+        h3.first().css('background-color','yellow');
+        h3.last().css('background-color','grey');
+        h3.eq(2).css('background-color','pink');
+        h3.filter(".hh").css('background-color','blue');
+        h3.not('.hh').css('background-color','yellow');
+    });
+    </script>
+    <h3>header-0</h3>
+    <h3 class="hh">header-1</h3>
+    <h3 class="hh">header-2</h3>
+    <h3>header-3</h3>
+    <h2 class="hh">header-00</h2>
+    <hr>
+    <div class="ancestores">
+        <div style="width:500px">
+            div(great grandparent)
+              <ul>
+               ul(grandparent)
+                <li>
+                li(direct aprent)
+                <span>span</span></li>
+            </ul>
+        </div>
+        <div style="width: 500px">
+           div(grandparent)
+            <p>
+               li(direct parent)
+                <span>
+                    span
+                </span>
+            </p>
+        </div>
+    </div>
+    <div class="descendants" style="width:500px">
+       div(current element)
+        <p class="child1">
+           p(child)
+            <span class="child1">
+                span(grandchild)
+            </span>
+        </p>
+        <p class="child2">
+           p(child)
+            <span class="child2">
+                span(grandchild)
+            </span>
+        </p>
+    </div>
+    <hr>
+    <div class="siblings">
+        <div>
+           div(parent)
+            <p>p</p>
+            <span>span</span>
+            <h2>h2</h2>
+            <h3>h3</h3>
+            <h4>h4</h4>
+            <h5>h5</h5>
+            <h6>h6</h6>
+            <p>p</p>
+        </div>
+    </div>
+    <hr>
+    <div class="isTest">
+        <h2 class="select">테스트</h2>
+        <h2>테스트</h2>
+        <h2>테스트</h2>
+        <h2 class="select">테스트</h2>
+    </div>
+    <script>
+        $(document).ready(function(){
+            var h2 = $(".siblings h2");
+           // h2.siblings().css("border","2px solid red");
+            //h2.next().css('border','2px solid red');
+//            h2.nextAll().css('border','2px solid red');
+//            h2.nextUntil('h6').css('border','2px solid red');
+//            h2.prev('p').css('border','2px solid red');
+//            h2.prevAll().css('border','2px solid red');
+//            h2.prevUntil('p').css('border','2px solid red');
+//            h2.nextAll().last().css('border','2px solid red');
+//            h2.parent().children().last().css('border','2px solid red');
+            var isH2 = $(".isTest>h2");
+            for(var i = 0 ; i < isH2.length ; ++i){
+                if(isH2.eq(i).is(".select")){
+                isH2.eq(i).css('border','2px solid red');
+                }
+            }
+        });
+    </script>
+    <script>
+    $(document).ready(function(){
+        var span =$(".ancestores span");
+     //   span.parent().css("border","2px solid red");
+       //span.parents('div').css("border"," 2px solid red") ;
+        span.parentsUntil('div').css("border"," 2px solid red") ;
+        var span2 = $(".descendants");
+//        span2.children('.child1').css("border","2px solid red");
+        span2.find(".child1").css("border","2px solid red");
+    })
+    </script>
+</body>
+</html>

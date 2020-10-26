@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <title>객체조작</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>       
+</head>
+<body>
+   <script>
+       $(document).ready(function(){
+//           var btn1 = $("#btn1");
+//           var btn11 = document.getElementById("btn1");
+//           btn11.onclick=function(){
+//               
+//           }
+           var btn1 = $("#btn1");
+           btn1.click(function(){
+               var arr = $("li");
+               arr.each(function(index,item){
+                   alert('인덱스번호' + index + '/ 값'+item.innerHTML);                   
+               });
+               /*
+               $.each(arr,function(index,item){
+//                   alert('인덱스번호' + index + '/ 값'+item.innerHTML);
+                   alert('인덱스번호' + index + '/ 값'+$(item).html());
+               })
+               */
+               
+           });
+       });
+    
+    </script>
+    <ul>
+        <li>coffee</li>
+        <li>milk</li>
+        <li>soda</li>
+    </ul>    
+    <button id="btn1">목록 값 가져오기</button>
+    <button id="btn2"></button>
+    <button id="btn3"></button>
+    <button id="btn4"></button>
+    <button id="btn5"></button>
+</body>
+</html>

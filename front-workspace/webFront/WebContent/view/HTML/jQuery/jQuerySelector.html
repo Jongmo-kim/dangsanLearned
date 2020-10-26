@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
+</head>
+<body>
+    <p id="p1">테스트1</p>
+    <p class="pp">테스트2</p>
+    <p class="pp">테스트3</p>
+    <p class="pp">테스트4</p>
+    <button onclick="func1();">클릭(js)</button>
+    <button onclick="func2();">클릭(jquery)</button>
+    <button onclick="func3();">클릭(js)</button>
+    <button onclick="func4();">클릭(jquery)</button><br>
+    <input type="text">
+    <button onclick="func5();">클릭</button>
+    <div>
+        <ul>
+            <li>
+                <h3>테스트1</h3>
+            </li>
+            <li>테스트2</li>
+            <li>테스트3</li>
+            <li>테스트4</li>
+        </ul>
+        <h3>테스트5</h3>
+    </div>
+    <input type="text" name="first" value="사과">
+    <br>
+    <input type="text" name="second" value="키위">
+    <br>
+    <input type="password" name="third" value="바나나">
+    <br>
+    <input type="password" name="fourth" value="포도">
+    <br>
+    <input type="checkbox" name="hobby" CHECKED value="독서">독서
+    <input type="checkbox" name="hobby" value="독서">운동
+    <table>
+        <tr>
+            <th>이름</th>
+            <th>혈액형</th>
+            <th>나이</th>
+        </tr>
+        <tr>
+            <td>이름1</td>
+            <td>혈액형1</td>
+            <td>20</td>
+        </tr>
+        <tr>
+            <td>이름2</td>
+            <td>혈액형2</td>
+            <td>21</td>
+        </tr>
+        <tr>
+            <td>이름3</td>
+            <td>혈액형3</td>
+            <td>22</td>
+        </tr>
+        <tr>
+            <td>이름4</td>
+            <td>혈액형4</td>
+            <td>23</td>
+        </tr>
+        <tr>
+            <td>이름5</td>
+            <td>혈액형5</td>
+            <td>24</td>
+        </tr>
+    </table>
+</body>
+<script>
+    function func1(){
+//        id=p1인 태그의 내용을 '변경완료'로 수정
+        var p1 = document.getElementById("p1");
+        p1.innerHTML="변경완료";
+    }
+    function func2(){
+//        id=p1인 태그의 내용을 '변경완료'로 수정
+        var p1 = $("#p1");
+        console.log(p1.html());
+        p1.css('color','red');
+        p1.html("킹경완료");
+    }
+    function func3(){
+//        class=pp인 태그의 내용을 변경완료로 수정
+        var ppArr = document.getElementsByClassName("pp");
+        for(var i = 0 ; i < 3 ; ++i ){
+            ppArr[i].innerHTML = "변경완료";
+        }
+    }
+    function func4(){
+        $(".pp").html("변경");
+    }
+    function func5(){
+        console.log($("input").val());
+        $("input").val("vla");
+    }
+    $(document).ready(function(){
+        $("div h3").css('color','red');
+        $("div>h3").css('background-color','aqua');
+        $("[name=first]").css('color','red');
+        $("input:text").css('background-color','red');
+        $("input:password").css('background-color','aqua');
+        console.log($("input:checked").val());
+//        $("tr:odd").css("color","red");
+//        $("tr:even").css("color","blue");
+//        $("tr:first").css("background-color","black").css("color","white");
+//        $("tr:last").css('background-color','black');
+        $('tr:eq(0)').css('background-color','black').css('color','white');
+        $('tr:gt(1)').css('background-color','aqua');
+        $('tr:lt(2)').css('background-color','wheat');
+        $('td:nth-child(3n+1)').css('background-color','red');
+        $('td:nth-child(3n+2)').css('background-color','lightgrey');
+    });
+
+    </script>
+</html>
