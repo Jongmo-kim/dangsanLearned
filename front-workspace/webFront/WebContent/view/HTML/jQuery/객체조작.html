@@ -36,9 +36,39 @@
         <li>soda</li>
     </ul>    
     <button id="btn1">목록 값 가져오기</button>
-    <button id="btn2"></button>
-    <button id="btn3"></button>
-    <button id="btn4"></button>
-    <button id="btn5"></button>
+    <div id="removeTest">
+        <h1>test1</h1>
+        <h1>test2</h1>
+        <h1>test3</h1>
+    </div>
+    <button id="btn31">삭제(본인삭제)</button>
+    <button id="btn32">삭제(부모에서삭제)</button>
+    
+    <script>
+        $("#btn31").click(function(){
+            $("#removeTest").children().eq(1).remove();
+        })
+        $("#btn32").click(function(){
+            $("#removeTest").empty();
+        })
+    </script>
+
+    <div id="copytest">
+        <h1>test1</h1>
+        <h2>test2</h2>
+        <div></div>
+    </div>
+    <button id="btn33">객체이동</button>
+    <button id="btn34">객체복사</button>
+    <script>
+        $(function(){
+            $("#btn33").click(function(){
+                $("#copytest>div").append($("#copytest>h1"));
+            });
+              $("#btn34").click(function(){
+                $("#copytest>div").append($("#copytest>h1").clone());
+            });
+        })
+    </script>
 </body>
 </html>
