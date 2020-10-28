@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
+    <style>
+        .reverse {
+            background-color: black;
+            color: white;
+        }
+
+        .outer {
+            width: 200px;
+            height: 200px;
+            background-color: orange;
+            padding: 50px;
+        }
+
+        .inner {
+            width: 100%;
+            height: 100%;
+            background-color: pink;
+            border: 1px solid black;
+        }
+
+        #test {
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>test1</h1>
+    <h1>test2</h1>
+    <h1>test3</h1>
+    <script>
+        function onMouse1() {
+            $(this).addClass("reverse");
+        }
+
+        function offMouse1() {
+            $(this).removeClass("reverse");
+        }
+        $(function() {
+
+            $(생성자).hover(마우스 올라올때, 내려올때)
+            $("h1").hover(onMouse(this), offMouse(this));
+            $("h1").on('hover', onMouse)
+            $("h1").hover(function() {
+                $(this).addClass("reverse");
+            }, function() {
+                $(this).removeClass("reverse");
+            })
+            $('h1').hover(onMouse1, offMouse1);
+            //            $('h1').on('mouseenter', onMouse1);
+            //            $('h1').on('mouseleave', offMouse1);
+            $(document).on({
+                mouseenter: onMouse1,
+                mouseleave: offMouse1
+            }, "h1");
+            //            $('h1').on('hover',function() {
+            //                $(this).addClass("reverse");
+            //            }, function() {
+            //                $(this).removeClass("reverse");
+            //            });
+
+        });
+    </script>
+    <button class="levelup">레밸업</button>
+    TOP: <span class="level">0</span><br>
+    <button class="levelup">레밸업</button>
+    MID: <span class="level">0</span><br>
+    <button class="levelup">레밸업</button>
+    BOTTOM: <span class="level">0</span><br>
+    <button class="allLevelup">전체레밸업</button>
+    <div id="div1">
+        <span>버블링테스트</span>
+    </div>
+    <script>
+        $(function() {
+            var tempCount = 0;
+            $(".levelup").on('click', function() {
+                tempCount = ($(this).next().text()) * 1;
+                $(this).next().empty();
+                $(this).next().append(++tempCount);
+
+            });
+            $(".allLevelup").on('click', function() {
+                //                $(".levelup").trigger("click");
+                var str = $(".level");
+                var intArr = [];
+                for (var i = 0; i < str.length; ++i) {
+                    var ch = $(str[i]).text();
+                    var int = ch * 1;
+                    intArr.push(++int);
+                }
+                for (var i = 0; i < intArr.length; ++i) {
+                    $(".level").eq(i).empty();
+                    $(".level").eq(i).append(intArr[i]);
+                }
+            });
+            $("#div1").click(function() {
+                alert("div클릭이벤트");
+            });
+            $("#div1>span").click(function(event) {
+                alert("span클릭이벤트");
+                //                return false; 이벤트버블링방지 stopProgation이랑 같은효과ㅣ
+                event.preventDefault();
+
+            })
+        });
+    </script>
+    <button id="btn1">버튼</button>
+    <button id="btn2">이벤트연결</button>
+    <button id="btn3">이벤트취소</button>
+
+    <script>
+        $(function() {
+            $("#btn2").click(function() {
+                $("#btn1").on("click", function() {
+                    alert("함수연결");
+                });
+            });
+            $("#btn3").click(function() {
+                $("#btn1").off("click");
+            })
+        })
+    </script>
+    <hr>
+    <p id="click">click</p>
+    <p id="dblclick">double click</p>
+    <div id="mouseEvent">Mouse event</div>
+    <script>
+        $(function() {
+            $("#click").click(function() {
+                $(this).css("color", "red");
+
+            });
+            $("#dblclick").dblclick(function() {
+                $(this).css('color', 'blue');
+            });
+            $("#mouseEvent").mousedown(function() {
+                $(this).css('background-color', 'red');
+            })
+            $("#mouseEvent").mouseup(function() {
+                $(this).css('background-color', 'blue');
+            })
+        })
+    </script>
+    <div class="outer">
+        outer
+        <div class="inner">inner</div>
+    </div>
+    <div id="test">test</div>
+    <script>
+        $(function() {
+            var plag = 0;
+            //            $(".outer").mouseover(function(){
+            $(".outer").mouseenter(function() {
+                if (plag == 0) {
+                    $("#test").css("background-color", 'black');
+                    plag = 1;
+                } else {
+                    $("#test").css("background-color", 'white');
+                    plag = 0;
+                }
+            });
+        });
+    </script>
+    <h1>
+        현재 마우스의 위치는 : <span id="span1"></span>
+    </h1>
+    <script>
+        $(function() {
+            $(document).mousemove(function(event) {
+                $("#span1").html(event.pageX + ", " + event.pageY);
+            })
+        })
+    </script>
+    <!--  키보드 이벤트 순서
+    1. 사용자가 키보드를 눌렀을때
+    2.keydown 이벤트 발생 (화면엔 글씨가 입력되진 않음)
+    3. 글자입력
+    4. keypress이벤트 발생
+    5. 사용자가 키보드에서 손을 땜
+    6. key up 이벤트 발생 -->
+    <p>글작성</p>
+    <h3>작성가능한 글자 수 : <span id="count">150</span></h3>
+    <textarea id="text" cols="70" rows="5"></textarea>
+    <script>
+        $(function() {
+            $("#text").keyup(function() {
+                var inputValue = $(this).val();
+                var remain = 150 - inputValue.length;
+                $("#count").html(remain);
+                if (remain <= 0) {
+                    $(this).prop("readonly", true);
+                } else {
+                    $(this).prop("readonly", false);
+                }
+            });
+        });
+    </script>
+    <hr>
+    <style>
+        input {
+            outline: none;
+        }
+    </style>
+    <form action="test.html" id="myForm" method="post">
+        아이디 : <input type="text" name="id"><br>
+        비밀번호 : <input type="password" name="pw"><br>
+        비밀번호확인 : <input type="password" name="pw_re"><br>
+        이름 : <input type="text" name="name"><br>
+        <input type="submit" value="회원가입">
+
+    </form>
+    <script>
+        $(function() {
+            $("input[name=name]").focusin(function() {
+                $(this).css("background-color", 'yellow');
+            });
+            $("input[name=name]").focusout(function() {
+                $(this).css("background-color", 'white');
+            })
+            $("#myForm").submit(function(event) {
+                var pw = $("input[name=pw]").val();
+                var pw_re = $("input[name=pw_re]").val();
+                if (pw != pw_re) {
+                    alert("비밀번호 확인");
+                    event.preventDefault(); //기본이벤트제거
+                }
+            });
+            //            아래랑 같은 이벤트 submit버튼누를때/ 실제로 sub이 실행될때
+            //           $("input[type=submit]").click(function(event){
+            //              var pw = $("input[name=pw]").val();
+            //               var pw_re = $("input[name=pw_re]").val();
+            //               if(pw != pw_re){
+            //                   alert("비밀번호 확인");
+            //                   event.preventDefault(); //기본이벤트제거
+            //               }
+            //           });
+
+        });
+    </script>
+</body></html>

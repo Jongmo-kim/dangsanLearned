@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import autoComplete.trie.*;
 import autoComplete.trie.trie.trieNode;
+import file.fileRead;
 
 public class start {
 
@@ -14,27 +15,12 @@ public class start {
 		list.add("going");
 		list.add("go");
 		list.add("gone");
-		
-		for(String str : list) {
+		fileRead f = new fileRead();
+		for(String str : f.getStringList()) {
 			t.insert(str);
 		}
-//		list.add("gon");
-//		list.add("goingf");
-//		list.add("g");
-//		list.add("goingsome'where");
-//		list.add("efgh");
-//		list.add("abcd");
-//		list.add("gone");
-		for(String str : list) {
-			System.out.printf("%s : %s\n",str,t.search(str));
-		}
-		ArrayList<trieNode> arr = new ArrayList<trieNode>();
-		arr = t.findAllLeafs("g");
-		
-	
 		Scanner sc = new Scanner(System.in);
 		System.out.println("종료하려면 0 입력 계속 하려면 다른거 입력");
-
 		while(sc.nextInt()!=0) {
 			System.out.println("자동완성할 문자 입력");
 			System.out.print(">");

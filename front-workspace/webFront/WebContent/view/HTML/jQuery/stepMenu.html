@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="kr">
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .wrap {
+        border: 1px solid grey;
+        margin: 0 auto;
+        background-color: lightblue;
+        width: 1000px;
+
+        overflow: hidden;
+    }
+    .wrap> *{
+        margin: 5px;
+    }
+    .navi{
+        padding: 3px;
+        overflow: hidden;
+    }
+    .contents{
+        border: 1px solid grey;
+        overflow: hidden;
+    }
+    .buttons{
+        overflow: hidden;
+    }
+    ul {
+        padding: 0;
+        margin: 0;
+    }
+
+    li {
+        list-style: none;
+    }
+
+    .content {
+        display: none;
+        float: left;
+        left: 0;
+        margin: 0;
+        
+    }
+
+    .tab {
+        float: left;
+        margin-right: 7px;
+        width: calc(97%/4);
+        border-top-right-radius: 40px;
+        border-bottom-right-radius:  40px;
+    }
+
+    a {
+        display: block;
+        overflow: hidden;
+    }
+
+    a:hover {
+        cursor: pointer;
+               border-top-right-radius: 40px;
+        border-bottom-right-radius:  40px;
+        background-color: lightgrey;
+        color: palevioletred;
+    }
+
+    .sub>li {
+        float: left;
+        overflow: hidden;
+    }
+
+    #selected {
+        display: block;
+    }
+    #selected-tap{
+        background-color: aquamarine;
+    }
+    #back {
+        display: none;
+        float:left;
+    }
+
+    #done {
+        float:right;
+        display: none;
+    }
+    #next {
+        float:right;
+    }
+    .buttons>button{
+        background-color: black;
+        color:white;
+        width: 120px;
+        height: 30px;
+    }
+    
+</style>
+<script>
+    $(function() {
+        var currPage = 0;
+        var tapMenus = $(".tab");
+        var contents = $(".content");
+        $(".tab").on('click', function() {
+            $(".tab").removeAttr('id');
+            $(this).attr('id', 'selected-tap');
+            currPage = findCurrPageById();
+
+            $(".content").removeAttr('id');
+            $(".content").eq(currPage).attr('id','selected');
+            
+            appearButtons();
+        });
+        $("#next").on('click', function() {
+            $(".tab").removeAttr('id');
+            $(".content").removeAttr('id');
+            $(tapMenus[++currPage]).attr('id', 'selected-tap');
+            $(contents[currPage]).attr('id', 'selected');
+            appearButtons();
+        });
+        $("#back").on('click', function() {
+            $(".tab").removeAttr('id');
+            $(".content").removeAttr('id');
+            $(tapMenus[--currPage]).attr('id', 'selected-tap');
+            $(contents[currPage]).attr('id', 'selected');
+            appearButtons();
+        });
+        function findCurrPageById() {
+            var temp = 0;
+            $.each(tapMenus, function(index, item) {
+                if ("selected-tap" == $(item).attr('id')) {
+                    temp = index * 1;
+                    return temp;
+                }
+            });
+            return temp;
+        }
+
+        function appearButtons() {
+            if (currPage >= 0 && currPage < 3) {
+                $("#next").css('display', 'block');
+                $("#done").css('display', 'none');
+            } else {
+                $("#next").css('display', 'none');
+                $("#done").css('display', 'block');
+
+            }
+            if (currPage >= 1) {
+                $("#back").css('display', 'block');
+            } else {
+                $("#back").css('display', 'none');
+            }
+
+
+        }
+    });
+</script>
+
+<body>
+    <h1>스탭메뉴 만들기</h1>
+    <hr>
+    <div class="wrap">
+        <ul class="navi">
+            <li class="tab" id="selected-tap"><a>
+                    <h2>Step 1</h2>HTML5
+                </a></li>
+            <li class="tab"><a>
+                    <h2>Step 2</h2>CSS
+                </a></li>
+            <li class="tab"><a>
+                    <h2>Step 3</h2>JavaScript
+                </a></li>
+            <li class="tab"><a>
+                    <h2>Step 4</h2>jQuery
+                </a></li>
+        </ul>
+        <div class="contents">
+            <div class="content" id="selected">
+                <h2>HTML5</h2>
+                HTML5는 HTML의 완전한 5번째 버전으로 월드 와이드 웹 (World Wide Web)의 핵심 마크업 언어이다. 2004년 7월 Web Hypertext Application Technology Working Group(WHATWG)에서 웹 애플리케이션 1.0이라는 이름으로 세부 명세 작업을 시작하였다.<br>
+
+                HTML5는 HTML 4.01, XHTML 1.0, DOM 레벨 2 HTML에 대한 차기 표준 제안이다. 비디오, 오디오 등 다양한 부가기능과 최신 멀티미디어 콘텐츠를 액티브X 없이 브라우저에서 쉽게 볼 수 있게 하는 것을 목적으로 한다.<br>
+
+                W3C는 2014년 10월 28일 HTML5 표준안을 확정했다고 발표했다.<br>
+
+                이후 2016년 11월 1일 HTML5의 마이너 업데이트 버전인 HTML5.1 표준안을 확정, 2017년 12월 14일 HTML5.2 표준안을 확정했다. HTML5.3 표준안은 현재 작업 초안 단계로 진행 중이다</div>
+            <div class="content">
+                <h2>CSS</h2>
+                종속형 시트 또는 캐스케이딩 스타일 시트(Cascading Style Sheets, CSS)는 마크업 언어가 실제 표시되는 방법을 기술하는 언어로[1], HTML과 XHTML에 주로 쓰이며, XML에서도 사용할 수 있다. W3C의 표준이며, 레이아웃과 스타일을 정의할 때의 자유도가 높다.<br>
+
+                마크업 언어(ex: HTML)가 웹사이트의 몸체를 담당한다면 CSS는 옷과 액세서리처럼 꾸미는 역할을 담당한다고 할 수 있다. 즉, HTML 구조는 그대로 두고 CSS 파일만 변경해도 전혀 다른 웹사이트처럼 꾸밀 수 있다.<br>
+
+                현재 개발 중인 CSS3의 경우 그림자 효과, 그라데이션, 변형 등 그래픽 편집 프로그램으로 제작한 이미지를 대체할 수 있는 기능이 추가되었다. 또한 다양한 애니메이션 기능이 추가되어 어도비 플래시를 어느 정도 대체하고 있다.</div>
+            <div class="content">
+            <h2>JavaScript</h2>
+            자바스크립트(영어: JavaScript)는 객체 기반의 스크립트 프로그래밍 언어이다. 이 언어는 웹 브라우저 내에서 주로 사용하며, 다른 응용 프로그램의 내장 객체에도 접근할 수 있는 기능을 가지고 있다. <br>
+            또한 Node.js와 같은 런타임 환경과 같이 서버 프로그래밍에도 사용되고 있다. 자바스크립트는 본래 넷스케이프 커뮤니케이션즈 코퍼레이션의 브렌던 아이크(Brendan Eich)가 처음에는 모카(Mocha)라는 이름으로, 나중에는 라이브스크립트(LiveScript)라는 이름으로 개발하였으며, 최종적으로 자바스크립트가 되었다. <br>
+            자바스크립트가 썬 마이크로시스템즈의 자바와 구문이 유사한 점도 있지만, 이는 사실 두 언어 모두 C 언어의 기본 구문에 바탕을 뒀기 때문이고, 자바와 자바스크립트는 직접적인 관련성이 없다. 이름과 구문 외에는 자바보다 셀프나 스킴과 유사성이 많다.</div>
+            <div class="content">
+               <h2>jQuery</h2>
+                jQuery(제이쿼리)는 HTML의 클라이언트 사이드 조작을 단순화 하도록 설계된 크로스 플랫폼의 자바스크립트 라이브러리다. 존 레식이 2006년 뉴욕 시 바캠프(Barcamp NYC)에서 공식적으로 소개하였다.<br>
+
+                jQuery는 MIT 라이선스를 가진 자유 오픈 소프트웨어이다.[1] jQuery의 문법은 코드 보기, 문서 객체 모델 찾기, 애니메이션 만들기, 이벤트 제어, Ajax 개발을 쉽게 할 수 있도록 디자인되었다. 또한, jQuery는 개발자가 플러그인을 개발할 수 있는 기능을 제공한다.<br>
+
+                마이크로소프트와 노키아는 자사 플랫폼에 jQuery를 포함하는 계획을 발표한 바 있다.[2] 마이크로소프트는 비주얼스튜디오[3]의 ASP.NET AJAX 프레임워크와 ASP.NET MVC 프레임워크에 적용했고, 노키아는 자사의 런타임 웹 위젯 개발 플랫폼에 통합하였다.[4]
+            </div>
+        </div>
+        <div class="buttons">
+            <button id="back">back</button>
+            <button id="next">next</button>
+            <button id="done">done</button>
+        </div>
+    </div>
+
+
+</body></html>

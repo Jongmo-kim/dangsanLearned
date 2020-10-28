@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="kr">
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="ul" style="display: none;">
+        <li>테스트1</li>
+        <li>테스트2</li>
+        <li>테스트3</li>
+        <li>테스트4</li>
+        <li>테스트5</li>
+    </ul>
+    <button id="btn1">show</button>
+    <button id="btn2">hide</button>
+    <button id="btn3">toggle</button>
+    <button id="btn4">slideDown</button>
+    <button id="btn5">slideUp</button>
+    <button id="btn6">slideToggle</button>
+    <button id="btn7">fadeIn</button>
+    <button id="btn8">fadeOut</button>
+    <button id="btn9">fadeToggle</button>
+    <script>
+        $(function() {
+            $("#btn1").click(function() {
+                $("#ul").show(1000);
+            });
+            $("#btn2").click(function() {
+                $("#ul").hide(1000);
+            });
+
+            $("#btn3").click(function() {
+                $("#ul").toggle(1000);
+            });
+
+            $("#btn4").click(function() {
+                $("#ul").slideDown(1000);
+            });
+
+            $("#btn5").click(function() {
+                $("#ul").slideUp(1000);
+            });
+
+            $("#btn6").click(function() {
+                $("#ul").slideToggle(1000);
+            });
+
+            
+            $("#btn7").click(function() {
+                $("#ul").fadeIn(1000);
+            });
+
+            $("#btn8").click(function() {
+                $("#ul").fadeOut(1000);
+            });
+
+            $("#btn9").click(function() {
+                $("#ul").fadeToggle(1000);
+            });
+        });
+    </script>
+    <style>
+        #div{
+            width: 50px;
+            height: 50px;
+            background-color: orange;
+        }
+    </style>
+    <div id="div"></div>
+    <button id="btn11">확대</button>
+    <button id="btn12">축소</button>
+    <button id="btn13">시간지연</button>
+    <script>
+        $(function(){
+//            animate 기본값은 0.4s
+            $("#btn11").click(function(){
+                $("#div").animate({
+                    height:'300px',
+                    width:'300px'
+                });
+            });
+            
+            $("#btn12").click(function(){
+                $("#div").animate({
+                    height: '50px',
+                    width: '50px'
+                }, 1000);
+            });
+            $("#btn13").click(function(){
+                
+                $("#div").delay(2000).animate({
+                    height: '300px',
+                    width: '300px'
+                });
+            })
+        });
+    </script>
+    <style>
+        .moveDiv{
+            width: 100px;
+            height: 100px;
+            background-color: orangered;
+            position: relative;
+        }
+    </style>
+    <div class="moveDiv"></div>
+    <div class="moveDiv"></div>
+    <div class="moveDiv"></div>
+    <div class="moveDiv"></div>
+    <div class="moveDiv"></div>
+    <div class="moveDiv"></div>
+    <div class="moveDiv"></div>
+    <div class="moveDiv"></div>
+
+    
+    <button id="btn21">옮기기</button>
+    <button id="btn22">되돌아가기</button>
+    <script>
+        $(function(){
+           $("#btn21").on('click',function(){
+               $(".moveDiv").each(function(item1,item){
+                  $(item).delay(item1*500).animate({
+                      left:500
+                  }); 
+               });
+           });
+          $("#btn22").on('click',function(){
+              $(".moveDiv").each(function(index,item){
+                  $(item).delay(index*57).animate({
+                      left : 0
+                  });
+              });
+          });
+        });
+    </script>
+</body></html>

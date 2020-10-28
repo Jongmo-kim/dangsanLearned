@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="kr">
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>별점 찍기</h1>
+    <hr>
+    별점 : <span id="stars">
+        <img src="eventExam_img/star-off.png">
+        <img src="eventExam_img/star-off.png">
+        <img src="eventExam_img/star-off.png">
+        <img src="eventExam_img/star-off.png">
+        <img src="eventExam_img/star-off.png">
+    </span>
+    <span id="score">
+        0점
+    </span>
+    <script>
+        $(function() {
+            $("img[src='eventExam_img/star-off.png'").mouseover(function(){
+                setStarsOff();
+                
+                var arr = $(this).prevAll();
+                arr.push($(this));
+                
+                $.each(arr,function(index,item){
+                   $(item).attr('src','eventExam_img/star-on.png');
+                    setCurStarCount(arr.length);
+                });
+                
+            });
+            function setStarsOff(){
+                $.each($("img"),function(index,item){
+                    $(item).attr('src','eventExam_img/star-off.png');
+                    setCurStarCount(0);
+                });
+            }
+            function setCurStarCount(str){
+                $("#score").html(str+"점");
+            }
+        });
+
+    </script>
+</body>
+
+</html>
