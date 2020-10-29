@@ -2,120 +2,142 @@ package kh.java.trie;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Trie {
-	private Node root;
-	private int indexOfSingleChild;
-	
+	public class trieNode{
+		private char data;
+		private trieNode parentNode;
+		private HashMap<Character, trieNode> children;
+		private boolean isLeaf;
+		public trieNode(char ch) {
+			this.data = ch;
+			parentNode = this;
+			children = new HashMap<Character, Trie.trieNode>();
+			isLeaf = false;
+		}
+		public char getData() {
+			return data;
+		}
+		public void setData(char data) {
+			this.data = data;
+		}
+		public trieNode getParentNode() {
+			return parentNode;
+		}
+		public void setParentNode(trieNode parentNode) {
+			this.parentNode = parentNode;
+		}
+		public HashMap<Character, trieNode> getChildren() {
+			return children;
+		}
+		public void setChildren(HashMap<Character, trieNode> children) {
+			this.children = children;
+		}
+		public boolean isLeaf() {
+			return isLeaf;
+		}
+		public void setLeaf(boolean isLeaf) {
+			this.isLeaf = isLeaf;
+		}
+		public trieNode getChild(char ch) {
+			trieNode tempNode = this.getChildren().get(ch);
+			return tempNode;
+		}
+		public trieNode putChild(char ch) {
+			trieNode tempNode = new trieNode(ch);
+			getChildren().put(ch, tempNode);
+			return tempNode;
+		}
+		public ArrayList<trieNode> getAllLeaf(){
+			ArrayList<trieNode> list = new ArrayList<trieNode>();
+			for(trieNode node : getChildren().values()) {
+				if(node.isLeaf) {
+					list.add(node);
+				}
+				list.addAll(node.getAllLeaf());
+			}
+			return list;
+		}
+		public String getCurrStr() {
+			String str = "";
+			
+			trieNode currNode = this;
+			while(currNode.getData() != ' ') {
+				char ch = currNode.getData();
+				str += Character.toString(currNode.getData());
+				currNode = currNode.getParentNode();
+			}
+			
+			StringBuilder sb = new StringBuilder(str);
+			sb.reverse();
+			return sb.toString();
+		}
+		public boolean search(String word) {
+			trieNode currNode = this;
+			for(char ch : word.toCharArray()) {
+				if(currNode.getChild(ch) != null) {
+					currNode = currNode.getChild(ch);
+				} else {
+					return false;
+				}
+			}
+			return true;
+		}
+	}//trieNode
+	private trieNode rootNode;
 	public Trie() {
-		this.root = new Node("");
+		rootNode = new trieNode(' '); 
 	}
-	public void insert(String key, int value) {
-		Node tempNode = root;
-		
-		for( int i = 0; i< key.length(); ++i) {
-			
-			char ch = key.charAt(i);
-			int asciiIndex = transformASCIIndex(ch);
-			
-			if(tempNode.getChild(asciiIndex) ==null) {
-				Node node = new Node(String.valueOf(ch));
-				tempNode.setChild(asciiIndex, node, value);
-				tempNode = node;
+	public void insert(String str) {
+		trieNode currNode = rootNode;
+		for(char ch : str.toCharArray()) {
+			if(currNode.getChild(ch) != null) {
+				currNode = currNode.getChild(ch);
 			} else {
-				tempNode = tempNode.getChild(asciiIndex);
+				trieNode tempNode = currNode.putChild(ch);
+				tempNode.setParentNode(currNode);
+				currNode = tempNode;
 			}
 		}
-		tempNode.setLeaf(true);
+		currNode.setLeaf(true);
 	}
-	private int transformASCIIndex(char ch){
-		return ch - 'a';
+	public ArrayList<trieNode> findAllLeafs(String word){
+		ArrayList<trieNode> list = new ArrayList<trieNode>();
+		trieNode currNode = rootNode;
+		for(char ch :  word.toCharArray()) {
+			if(currNode.getChild(ch)!= null) {
+				currNode = currNode.getChild(ch);
+			}else {
+				list.clear();
+				return list;
+			}
+		}
+		if(currNode.isLeaf()){
+			list.add(currNode);
+		}
+		list.addAll(currNode.getAllLeaf());
+		return list;
 	}
-	public boolean search(String key) {
-		Node trieNode = root;
-		
-		for(int i=0;i<key.length();++i) {
-			int asciiIndex = transformASCIIndex(key.charAt(i));
-			
-			if(trieNode.getChild(asciiIndex)==null) {
+	public ArrayList<String> getAllString(){
+		ArrayList<trieNode> trieList = new ArrayList<trieNode>();
+		ArrayList<String> strList = new ArrayList<String>();
+		trieList.addAll(rootNode.getAllLeaf());
+		for(trieNode node : trieList) {
+			strList.add(node.getCurrStr());
+		}
+		return strList;
+	}
+	public boolean search(String word) {
+		trieNode currNode = rootNode;
+		for(char ch : word.toCharArray()) {
+			if(currNode.getChild(ch) != null) {
+				currNode = currNode.getChild(ch);
+			} else {
 				return false;
-			} else {
-				trieNode=trieNode.getChild(asciiIndex);
 			}
 		}
-		return true;
-	}
-	public Integer searchAsMap(String key) {
-		Node trieNode = root;
-		
-		for(int i=0; i < key.length();++i) {
-			int asciiIndex = transformASCIIndex(key.charAt(i));
-			if(trieNode.getChild(asciiIndex) != null) {
-				trieNode = trieNode.getChild(asciiIndex);
-			} else {
-				return null;
-			}
-		}
-		return trieNode.getValue();
-	}
-	public java.util.List<String> allWordsWithPrefix(String prefix){
-		
-		Node trieNode = root;
-		
-		java.util.List<String> allWords = new ArrayList<>();
-		
-		for(int i = 0 ; i< prefix.length();++i) {
-			int asciiIndex = transformASCIIndex(prefix.charAt(i));
-			trieNode = trieNode.getChild(asciiIndex);
-		}
-		
-		collect(trieNode, prefix, allWords);
-		return allWords;
-	}
-	private void collect(Node node, String prefix, List<String> allWords) {
-		if(node == null) {
-			return;
-		}
-		
-		if(node.isLeaf()) {
-			allWords.add(prefix);
-		}
-		for(Node childNode : node.getChildren()) {
-			if(childNode == null) {
-				continue;
-			}
-			
-			String childCharacter = childNode.getCharacter();
-			collect(childNode, prefix + childCharacter, allWords);
-		}
-	}
-	public void sort() {
-		List<String> list = allWordsWithPrefix("");
-		for(String s : list) {
-			System.out.println(s+ " ");
-		}
-		System.out.println();
-	}
-	public String longestCommonPrefix() {
-		Node trieNode = root;
-		String longestCommonPrefix = "";
-		
-		while(countNumOfChildren(trieNode) == 1 && !trieNode.isLeaf()) {
-			trieNode = trieNode.getChild(indexOfSingleChild);
-			longestCommonPrefix = longestCommonPrefix + String.valueOf((char) (indexOfSingleChild + 'a'));
-		}
-		return longestCommonPrefix;
-	}
-	private int countNumOfChildren(Node trieNode) {
-		int numOfChildren = 0;
-		
-		for(int i = 0; i< trieNode.getChildren().length;++i) {
-			if(trieNode.getChild(i) != null) {
-				numOfChildren++;
-				indexOfSingleChild = i;
-			}
-		}
-		return numOfChildren;
+		return currNode.isLeaf;
 	}
 }
