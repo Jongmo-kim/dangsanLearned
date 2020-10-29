@@ -6,9 +6,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class fileRead {
+public class wordsRead {
 	ArrayList<String> list;
-	public fileRead() {
+	public wordsRead() {
 		list = new ArrayList<String>();
 		File file = new File("C:\\dangsanLearned\\autoComplete\\src\\words.txt");
 		try (BufferedReader br = new BufferedReader(new FileReader(file))) {

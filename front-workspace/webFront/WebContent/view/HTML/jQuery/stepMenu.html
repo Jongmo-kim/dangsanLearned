@@ -14,7 +14,7 @@
     .wrap {
         border: 1px solid grey;
         margin: 0 auto;
-        background-color: lightblue;
+        background-color: #f8f8f8;
         width: 1000px;
 
         overflow: hidden;
@@ -49,33 +49,29 @@
         margin: 0;
         
     }
-
     .tab {
         float: left;
         margin-right: 7px;
         width: calc(97%/4);
         border-top-right-radius: 40px;
         border-bottom-right-radius:  40px;
+        background-color: #ebebeb;
+        height: 70px;
+        
     }
-
     a {
         display: block;
         overflow: hidden;
+        height: 100%;
+        
     }
-
     a:hover {
         cursor: pointer;
-               border-top-right-radius: 40px;
+        border-top-right-radius: 40px;
         border-bottom-right-radius:  40px;
         background-color: lightgrey;
         color: palevioletred;
     }
-
-    .sub>li {
-        float: left;
-        overflow: hidden;
-    }
-
     #selected {
         display: block;
     }
@@ -94,13 +90,22 @@
     #next {
         float:right;
     }
+    .buttons>button:hover{
+        background-color: #ea8511;
+                cursor: pointer;
+
+    }
     .buttons>button{
-        background-color: black;
+        background-color:#5a5655;
         color:white;
         width: 120px;
         height: 30px;
     }
-    
+    .tab >a> h2{
+        padding: 0;
+        margin: 0;
+        
+    }
 </style>
 <script>
     $(function() {
@@ -110,17 +115,18 @@
         $(".tab").on('click', function() {
             $(".tab").removeAttr('id');
             $(this).attr('id', 'selected-tap');
+            $(this).prevAll().attr('id', 'selected-tap');
             currPage = findCurrPageById();
 
             $(".content").removeAttr('id');
             $(".content").eq(currPage).attr('id','selected');
-            
             appearButtons();
         });
         $("#next").on('click', function() {
             $(".tab").removeAttr('id');
             $(".content").removeAttr('id');
             $(tapMenus[++currPage]).attr('id', 'selected-tap');
+            $(tapMenus[currPage]).prevAll().attr('id', 'selected-tap');
             $(contents[currPage]).attr('id', 'selected');
             appearButtons();
         });
@@ -128,6 +134,7 @@
             $(".tab").removeAttr('id');
             $(".content").removeAttr('id');
             $(tapMenus[--currPage]).attr('id', 'selected-tap');
+            $(tapMenus[currPage]).prevAll().attr('id', 'selected-tap');
             $(contents[currPage]).attr('id', 'selected');
             appearButtons();
         });
@@ -136,7 +143,6 @@
             $.each(tapMenus, function(index, item) {
                 if ("selected-tap" == $(item).attr('id')) {
                     temp = index * 1;
-                    return temp;
                 }
             });
             return temp;

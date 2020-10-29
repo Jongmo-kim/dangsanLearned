@@ -1,36 +1,50 @@
 package autoComplete.main;
 
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import autoComplete.trie.*;
 import autoComplete.trie.trie.trieNode;
-import file.fileRead;
+import file.hangulWordsRead;
+import file.wordsRead;
 
 public class start {
 
 	public static void main(String[] args) {
 		trie t = new trie();
-		ArrayList<String> list = new ArrayList<String>();
-		list.add("going");
-		list.add("go");
-		list.add("gone");
-		fileRead f = new fileRead();
+		autoCompleteEng(t);
+//		new hangulWordsRead();
+//		String han = "가방";
+//		print(han);
+//		System.out.println("1");
+//		String nfd = Normalizer.normalize(han, Normalizer.Form.NFD);
+//		print(nfd);
+//		System.out.println(nfd.charAt(0));
+//		String nfc = Normalizer.normalize(han, Normalizer.Form.NFC);
+//		print(nfc);
+//		System.out.println(nfc);
+		
+		
+	}
+	private static void autoCompleteEng(trie t) {
+		wordsRead f = new wordsRead();
 		for(String str : f.getStringList()) {
 			t.insert(str);
 		}
 		Scanner sc = new Scanner(System.in);
-		System.out.println("종료하려면 0 입력 계속 하려면 다른거 입력");
-		while(sc.nextInt()!=0) {
-			System.out.println("자동완성할 문자 입력");
+		while(true) {
+			System.out.println("자동완성할 문자 입력 종료시 #입력");
 			System.out.print(">");
 			String input = sc.next();
+			if(input.charAt(0)=='#') {
+				break;
+			}
 			ArrayList<trieNode> finds = t.findAllLeafs(input);
 			printNodes(input,finds);
-			System.out.println("종료하려면 0 입력 계속 하려면 다른거 입력");
 		}
+		System.out.println("종료합니다.");
 	}
-	
 	private static void printNodes(String str,ArrayList<trieNode> finds) {
 		for(trieNode node : finds) {
 			

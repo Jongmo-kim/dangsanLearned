@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        font-family: 'Noto Sans KR', sans-serif;
+        color: #282828;
+    }
+    label{
+        font-size: 20px;
+    }
+  
+    .wrap {
+        
+        border: 1px solid #d8d8d8;
+        margin: 0 auto;
+        width: 1200px;
+        box-sizing: border-box;
+    }
+
+    .mainmenu {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        overflow: hidden;
+
+    }
+
+    .mainmenu>li {
+        overflow: hidden;
+        width: calc(100%/4);
+        float: left;
+
+    }
+
+    .mainmenu>li>a {
+        float: left;
+        width: 100%;
+        height: 70px;
+        border: 1px solid #d8d8d8;
+        box-sizing: border-box;
+        line-height: 70px;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    #selected-tap{
+        border-top: 10px solid #1f4787;
+        box-sizing: border-box;
+        line-height: 50px;
+        border-bottom: none;
+        color: #1f4787;
+        font-weight: bolder;
+    }
+    .content{
+        padding: 20px;
+    }
+    .h1title {
+        color: #1f4787;
+        font-size: 30px;
+    }
+    .agreecontents{
+        border: 1px solid #282828;
+        margin: 20px;
+        }
+    .agreecontents li{
+        color:grey;
+    }
+    .btnBox{
+        padding: 20px;
+        padding-top:50px;
+        text-align: center;
+    }
+    .nextbtn{
+        background-color: #1f4787;
+        color: white;
+        width: 150px;
+        height: 50px;
+        font-size: 20px;
+    
+        outline: none;
+        border: none;
+        cursor: pointer;
+    }
+    .highlightSpan{
+        color:#1f4787;
+        font-size: 20px;
+    }
+    .nessInputContent{
+        
+    }
+    .nessInputContent>table{
+        
+        width: 98%;
+        border-top: 2px solid #1f4787;
+        border-bottom: 1px solid #b3b3b3;
+        border-spacing: 0;
+    }
+    .nessInputContent>table>tbody>tr>td:first-child{
+        width: 25%;
+        text-indent: 35px;
+        background-color: #FBFCFD;
+        border-right: 1px solid #ebebeb;
+        
+    }
+    .nessInputContent>table>tbody>tr>td{
+        border-bottom: 1px solid #b3b3b3;
+    }
+    .nessInputContent>table>tbody>tr>td>input{
+        width: 40%;
+    }
+    .detailInputContent>table{
+        
+        width: 98%;
+        border-top: 2px solid #1f4787;
+        border-bottom: 1px solid #b3b3b3;
+        border-spacing: 0;
+    }
+    .detailInputContent>table>tbody>tr>td:first-child{
+        width: 25%;
+        text-indent: 35px;
+        background-color: #FBFCFD;
+        border-right: 1px solid #ebebeb;
+        
+    }
+    .detailInputContent>table>tbody>tr>td{
+        border-bottom: 1px solid #b3b3b3;
+    }
+    .detailInputContent>table>tbody>tr>td>input[type="text"]{
+        width: 30%;
+    }
+    .detailInputContent>table>tbody>tr>td>input[type="radio"]{
+        display: none;
+    }
+    .detailInputContent>table>tbody>tr>td>input[type="radio"]+label{
+        display: inline-block;
+        width: 150px;
+        height: 37px;
+        line-height: 37px;
+        margin-left: 20px;
+        color:#1f4787;
+        background-color: white;
+        border: 1px solid #1f4787;
+        text-align: center;
+    }
+    .detailInputContent>table>tbody>tr>td>input[type="radio"]:checked+label{
+        display: inline-block;
+        color:white;
+        background-color: #1f4787;
+    }
+    .detailInputContent>table>tbody>tr>td>textarea{
+        width: 70%;
+    }
+   
+    .doneSignUpContent{
+        display: block;
+    }
+    .doneSignUpContent>button{
+         background-color: #1f4787;
+        color: white;
+        width: 150px;
+        height: 50px;
+        font-size: 20px;
+    
+        outline: none;
+        border: none;
+        cursor: pointer;
+    }
+    .doneSignUpContent>form{
+        width: 50%;
+        margin: 0 auto;
+        margin-top: 100px;
+    }
+    .doneSignUpContent>form>div>label{
+        width: 100%;
+        display: block;
+    }
+    .doneSignUpContent>form>div>*{
+        width: 100%;   
+    }
+    .doneSignUpContent>form>.btnBox *{
+        background-color: #1f4787;
+        color: white;
+        width: 150px;
+        height: 50px;
+        font-size: 20px;
+        outline: none;
+        border: none;
+        cursor: pointer;
+    }
+     .agreeContent,.nessInputContent,.detailInputContent,.doneSignUpContent{
+        display: none;
+    }
+</style>
+
+<body>
+    <h1>단계가 있는 회원가입</h1>
+    <small>최초에 전역변수에 배열을 선언하고 중복체크용 아이디 5개를 push하고 시작</small>
+    <hr>
+
+    <div class="wrap">
+        <ul class="mainmenu">
+            <li><a href="#">약관확인</a></li>
+            <li><a href="#">필수정보입력</a></li>
+            <li><a href="#">상세정보입력</a></li>
+            <li><a href="#">가입완료</a></li>
+        </ul>
+        <div class="content">
+            <div class="agreeContent">
+                <h1 class="h1title">이용약관 확인 및 동의</h1>
+
+                <input type="checkbox" id="chkAll"><label for="ckbox">이용약관 전체체크</label><br><br>
+                <div class="agreebox">
+                    <input type="checkbox"><label>개인정보 수집 및 이용에 동의</label>
+                    <span class="highlightSpan">(필수)</span>
+                    <div class="agreecontents">
+                        <ul>
+                            <li>수집항목: 이름,휴대전화번호, 생년원일, 비밀번호</li>
+                            <li>수집 이용목적 : 회원제 서비스 제공</li>
+                            <li>보유 및 이용기간: 회원 탈퇴시까지</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="agreebox">
+                    <input type="checkbox"><label>개인정보 수집 및 이용에 동의</label>
+                    <span class="highlightSpan">(선택)</span>
+                    <div class="agreecontents">
+                        <ul>
+                            <li>수집항목: 이름,휴대전화번호, 생년원일, 비밀번호</li>
+                            <li>수집 이용목적 : 회원제 서비스 제공</li>
+                            <li>보유 및 이용기간: 회원 탈퇴시까지</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="btnBox">
+                    <button class="nextbtn">다음</button>
+                </div>
+            </div>
+            <div class="nessInputContent">
+                <h1 class="h1title">필수정보입력</h1>
+                <table >
+                    <tr>
+                        <td><label for="id">아이디</label></td>
+                        <td>
+                            <input type="text" id="id">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="pw">비밀번호</label></td>
+                        <td><input type="password" id="pw"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="pw_re">비밀번호 확인</label></td>
+                        <td><input type="password" id="pw_re"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="name">이름</label></td>
+                        <td><input type="text" id="name"></td>
+                    </tr>
+                </table>
+                <div class="btnBox">
+                    <button class="nextbtn">다음</button>
+                </div>
+            </div>
+            <div class="detailInputContent">
+                <h1 class="h1title">추가정보입력</h1>
+                <table>
+                    <tr>
+                        <td><label for="email">이메일</label></td>
+                        <td><input type="text">@<input type="text">
+                            <select name="emailbar" id="emailbar">
+                                <option value="">직접입력</option>
+                                <option value="gmail.com">gmail.com</option>
+                                <option value="naver.com">naver.com</option>
+                                <option value="daum.net">daum.net</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="gender">성별</label></td>
+                        <td>
+                            <input type="radio" name="gender" id="male">
+                            <label for="male">남자</label>
+                            <input type="radio" name="gender" id="female">
+                            <label for="female">여자</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="introduce">자기소개</label></td>
+                        <td><textarea name="introduct" style="resize:none" id="introduct" size cols="30" rows="10"></textarea></td>
+                    </tr>
+                </table>
+                <div class="btnBox">
+                    <button class="nextbtn">다음</button>
+                </div>
+            </div>
+            <div class="doneSignUpContent">
+                <h1 class="h1title">가입을 축하합니다.</h1>
+                <button id="makelogin">로그인하기</button>
+                <form action="/login.html" id="loginForm">
+                    <div class="inputDiv">
+                        <label class="loginTitle">아이디</label>
+                        <input type="text" name="loginId">
+                    </div>
+                    <div class="inputDiv">
+                        <label class="loginTitle">비밀번호</label>
+                        <input type="text" name="loginPw">
+                    </div>
+                    <div class="btnBox">
+                        <input type="submit" value="로그인">
+                        <button>취소</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+   <script>
+    function setUserArr(){
+            for(var i = 1 ; i <= 5 ;  ++i){
+                var str = "user0";
+                str += i;
+                userArr.push(str);
+            }
+        }
+        function setBlockCurrContent(){
+            $(contentArr[currPage]).css('display','block');
+        }
+       function chkAllFunction(){
+           
+       }
+       function nextBtnFunction(){
+           currPage++;
+           setNoneOtherContents();
+           setBlockCurrContent();
+           setHighlightTap();
+           setUnhighlightTap();
+       }
+       function setHighlightTap(){
+           $('.mainmenu>li>a').eq(currPage).attr('id','selected-tap');
+       }
+       function setUnhighlightTap(){
+           $('.mainmenu>li>a').eq(currPage-1).removeAttr('id');
+       }
+       function setNoneOtherContents(){
+           if(currPage==-1){
+               
+           } else{
+               for(var i = currPage ; -1 != i; --i){
+                   $(contentArr[i]).css('display','none');
+               }
+           }
+       }
+    </script>
+    <script>
+    
+        var userArr = [];
+        var currPage = 0;
+                var contentArr = $(".content").children();
+
+        setUserArr();
+        setHighlightTap();
+        
+        setBlockCurrContent();
+        $('#chkAll').on('click',chkAllFunction);
+        $('.nextbtn').on('click',nextBtnFunction);
+
+    </script>
+</html>

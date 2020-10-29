@@ -169,11 +169,12 @@
     function nextpage() {
         var curNum = NextPageCount.currPage - 1;
         var nextNum = NextPageCount.nextPage();
-
+        console.log(nextNum);
 
         if (checkEachCondition(contentsArr[curNum])) {
             makeEveryContentsDisappear();
             highlightNextTap(curNum, nextNum);
+            console.log(nextNum);
             makeNextContentAppear(nextNum);
         } else {
 
@@ -182,12 +183,13 @@
 
     function checkEachCondition(div) {
         var str = div.getAttribute("id");
+        console.log(str);
         if (str.includes("check")) {
             return checkAgreeChecked();
         } else if (str.includes("input")) {
-            console.log("check2;")
+            return true;
         } else if (str.includes("detail")) {
-            console.log("check3;")
+            return true;
         } else {
 
         }

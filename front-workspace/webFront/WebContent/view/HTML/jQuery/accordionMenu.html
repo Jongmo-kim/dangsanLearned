@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="kr">
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    .wrap {
+        margin: 0 auto;
+        border: 5px dashed black;
+        width: 250px;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        background-color: #DA4453;
+        color: #FFF;
+        line-height: 45px;
+    }
+
+    li>a {
+        display: block;
+        text-decoration: none;
+        color: #FFF;
+
+    }
+
+    li:hover {
+        cursor: pointer;
+        background-color: #DA4453;
+    }
+
+    .mainTaps {
+        text-indent: 20px;
+        background-color: #ED5565;
+        border-top: 1px solid #da4453;
+    }
+
+    .firstSubTap li {
+        text-indent: 30px;
+        background-color: #383838;
+    }
+
+    .firstSubTap>li:hover>a {
+        text-indent: 23px;
+        border-left: 7px solid #da4453;
+
+    }
+
+    .secondSubTap>li {
+        text-indent: 40px;
+    }
+
+    .secondSubTap>li:hover {
+        text-indent: 33px;
+        border-left: 7px solid #da4453;
+
+    }
+
+    li>a>p {
+        transition-duration: 0.4s;
+        display: inline-block;
+
+        float: right;
+        padding-right: 20px;
+        margin: 0;
+        font-size: 20px;
+    }
+
+    
+    .mainTaps>ul {
+        display: none;
+    }
+
+    .secondSubTap {
+        display: none;
+    }
+
+</style>
+<script>
+    $(function() {
+        $('.mainTaps').on('click', mainTapsClickEvent);
+        $('.firstSubTap>li').on('click', subTapsClickEvent);
+        $('.secondSubTap>li').on('click', otherFunction);
+    });
+
+    function otherFunction() {
+        return false;
+    }
+    function subTapsClickEvent(event) {
+        var ul = $(this).children("ul");
+        var p = $(this).children("a").children();
+        var numOfUl = $(this).children("ul").length;
+        if (numOfUl >= 1) {
+            ul.slideToggle(400);
+            rotateP(p);
+        }
+        return false;
+    }
+    function mainTapsClickEvent(event) {
+        var ul = $(this).children("ul");
+        var p = $(this).children("a").children();
+        var numOfUl = $(this).children("ul").length;
+        if (numOfUl >= 1) {
+            ul.slideToggle(400);
+            rotateP(p);
+        }
+        event.stopPropagation();
+    }
+    function rotateP(p){
+        if (p.css('transform') == 'none') {
+                p.css('transform', 'rotate(45deg)');
+            } else {
+                p.css('transform', 'none');
+            }
+    }
+</script>
+
+<body>
+    <div class="wrap">
+        <ul class="mainTap">
+            <li class="mainTaps"><a href="#">Home</a></li>
+            <li class="mainTaps"><a href="#">JAVA</a></li>
+            <li class="mainTaps"><a href="#">Oracle</a></li>
+            <li class="mainTaps"><a href="#">FrontEnd<p>+</p></a>
+                <ul class="firstSubTap">
+                    <li><a href="#">HTML</a></li>
+                    <li><a href="#">CSS3</a></li>
+                    <li><a href="#">JAVAScript</a></li>
+                    <li><a href="#">jQuery<p>+</p></a>
+                        <ul class="secondSubTap">
+                            <li><a href="#">객체탐색</a></li>
+                            <li><a href="#">객체조작</a></li>
+                            <li><a href="#">이벤트</a></li>
+                            <li><a href="#">효과</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class="mainTaps"><a href="#">Server<p>+</p></a>
+                   <ul class="firstSubTap">
+                    <li><a href="#">Mybatis</a></li>
+                    <li><a href="#">Spring</a></li>
+                </ul>
+            </li>
+            <li class="mainTaps"><a href="#">Framework<p>+</p></a>
+                <ul class="firstSubTap">
+                    <li><a href="#">Mybatis</a></li>
+                    <li><a href="#">Spring</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>
