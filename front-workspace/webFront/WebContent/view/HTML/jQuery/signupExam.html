@@ -13,7 +13,7 @@
         font-family: 'Noto Sans KR', sans-serif;
         color: #282828;
     }
-
+   
     label {
         font-size: 20px;
     }
@@ -219,13 +219,20 @@
         border: none;
         cursor: pointer;
     }
-
+    .incurrectSpan{
+        color:red;
+    }
+    .currectSpan{
+        color:greenyellow;
+    }
     .agreeContent,
     .nessInputContent,
     .detailInputContent,
-    .doneSignUpContent {
+    .doneSignUpContent,
+    #loginForm{
         display: none;
     }
+    
 </style>
 
 <body>
@@ -343,7 +350,7 @@
                     </div>
                     <div class="btnBox">
                         <input type="submit" value="로그인">
-                        <button>취소</button>
+                        <button id="cancelLogin">취소</button>
                     </div>
                 </form>
             </div>
@@ -366,7 +373,6 @@
     function chkAllFunction() {
         var ischkAllChecked = $('.agreeContent>input').is(':checked');
         var otherChkInput = $('.agreebox>input');
-        console.log(otherChkInput);
         if(ischkAllChecked){
             $(otherChkInput).prop('checked',true);
             }
@@ -410,6 +416,15 @@
         }
         return checked;
     }
+    function secondConditionCheck(){
+            if(idParseFunction() && pwreParseFunction()){
+                return true;
+            }
+        return false;
+    }
+    function thridConditionCheck(){
+        return confirm('정말 가입하시겠습니까?');
+    }
     function setHighlightTap() {
         $('.mainmenu>li>a').eq(currPage).attr('id', 'selected-tap');
     }
@@ -428,17 +443,24 @@
         }
     }
     function idParseFunction(){
-        var inputValue = $(this).val();
+        var inputValue = $("#id");
+        console.log(inputValue);
         for(str of userArr){
             if(str == inputValue){
                 modifyIncurrectSpan(this,'ID');
-                return;
+                highrightInputTag(this,'red');
+                return false;
             }
         }
+        
+        highrightInputTag(this,'green');
         modifyCurrectSpan(this,'ID');
+
+
+        return true;
     }
     function modifyIncurrectSpan(inputTag,str){
-        var htmlTxt ="<span class='IncurrectSpan'>사용 불가능한"+str+ "입니다!</span>"
+        var htmlTxt ="<span class='incurrectSpan'>사용 불가능한"+str+ "입니다!</span>"
          $(inputTag).next().html(htmlTxt);
     }
     function modifyCurrectSpan(inputTag,str){
@@ -446,14 +468,29 @@
         $(inputTag).next().html(htmlTxt);
     }
     function pwreParseFunction(){
-        var pwreValue = $(this).val();
+        var pwreValue = $("#pw_re").val();
         var pwValue = $('#pw').val();
 //        var pwValue = $('.inputNessTable>tbody>tr>td>#pw_re').parentsUntil('tbody').eq(1).prev().children().eq(1).first().children();
         if(pwreValue==pwValue){
             modifyCurrectSpan(this,'PASSWORD');
+            highrightInputTag(this,'green');
+            return true;
         } else{
             modifyIncurrectSpan(this,'PASSWORD');
+            highrightInputTag(this,'red');
+            return false;
         }
+    }
+    function makeLoginBoxFunction(){
+        $('#loginForm').css('display','block');
+    }
+    function deleteLoginBoxFunction(event){
+        console.log('run');
+        $('#loginForm').css('display','none');
+        return false;
+    }
+    function highrightInputTag(input,color){
+        $(input).css('border','2px solid '+color);
     }
 </script>
 <script>
@@ -469,4 +506,6 @@
     $('.nextbtn').on('click', nextBtnFunction);
     $('.inputNessTable>tbody>tr>td>#id').on('keyup', idParseFunction);
     $('.inputNessTable>tbody>tr>td>#pw_re').on('keyup', pwreParseFunction);
+    $('#makelogin').on('click', makeLoginBoxFunction);
+    $('#cancelLogin').on('click', deleteLoginBoxFunction);
 </script></html>
