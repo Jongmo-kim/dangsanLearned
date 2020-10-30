@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="ko">
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
+  <head>
+    <meta charset="UTF-8">
+    <title>HTML 페이지</title>
+    <style>
+        .wrapper {
+            width: 800px;            
+            background-color: #f8f8f8;
+            margin: 0 auto;
+        }
+
+        .wrapper>h1 {
+            padding-top:30px;
+            text-align: center;
+        }
+        .wrapper table{
+            margin: 0 auto;
+            
+        }
+        #result{
+            color: #faaca8;
+            font-size: 1.3em;
+            font-weight: 900;
+            text-align: center;
+        }
+        .wrapper table tr>td{
+            border-top: 2px solid #FFF;
+        }
+        .wrapper table tr:first-child>td{
+            border-top: 2px solid #faaca8;
+        }        
+        .wrapper table tr>td:first-child{
+            width:180px;
+        }
+        .wrapper table tr>td:last-child{
+            width:550px;
+        }
+        .wrapper table tr>td:first-child{
+            padding: 15px;            
+            font-size: 17px;
+            line-height: 20px;
+            font-weight: 500;
+            font-weight: 900;
+        }
+        .longInput{
+            margin-top: 3px;
+            width:300px;
+            height: 38px;
+        }
+        .shortInput{
+            margin-top: 3px;
+            width : 90px;
+            height : 38px;
+        }
+        .wrapper form input,.wrapper form select{
+            font-size: 20px;
+        }
+        .inputBox{
+            width:18px;
+            height: 18px;
+            display: inline-block;
+        }
+        
+        .botton{
+            width: 150px;
+            height: 45px;
+            border: none;
+            display: inline-block;            
+            background-color: #2EC4B6;
+            color: white;
+        }
+        .btnBox{
+            margin: 30px;
+            padding-bottom: 30px;
+            text-align: center;            
+        }
+        input[type="radio"]{
+            display: none;
+        }
+        
+        input+label{
+            margin-top: 3px;
+            text-align: center;
+            display: inline-block;
+            background-color: #4b4b4b;
+            width:150px;
+            color:white;
+            line-height: 35px;
+            height: 35px;
+        }
+        input:checked+label{
+            background-color: #2EC4B6;
+        }
+        .comment{
+            color : #faaca8;
+            font-size: 0.8em;
+            font-weight: 900;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        
+       
+    </script>
+
+</body>
+<div class="wrapper">
+    <h1>회원가입</h1> 
+    <p id="result"></p>
+    <form>
+        <table>
+            <tr>
+                <td>아이디</td>
+                <td><input class="longInput" type="text" name="id">
+                    <span class="comment"></span></td>
+            </tr>
+            <tr>
+                <td>비밀번호</td>
+                <td><input class="longInput" type="password" name="pw">
+                    <span class="comment"></span></td>
+            </tr>
+            <tr>
+                <td>비밀번호 확인</td>
+                <td><input class="longInput" type="password" name="pw_re">
+                    <span class="comment"></span></td>
+            </tr>
+            <tr>
+                <td>이름</td>
+                <td><input class="longInput" type="text" name="name">
+                    <span class="comment"></span></td>
+            </tr>
+            <tr>
+                <td>주소</td>
+                <td>
+                    <input class="longInput" type="text" name="addr2">
+                    <span class="comment"></span>
+                </td>
+            </tr>           
+            <tr>
+                <td>전화번호</td>
+                <td>
+                    <input class="shortInput" type="text" name="phone1">
+                    -
+                    <input class="shortInput" type="text" name="phone2">
+                    -
+                    <input class="shortInput" type="text" name="phone3">
+                    <span class="comment"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>이메일</td>
+                <td><input class="longInput" type="text" name="email">
+                    <span class="comment"></span></td>
+            </tr>            
+            
+        </table>
+        <div class="btnBox">
+            <input class="botton" type="submit" value="회원가입">
+            <input class="botton" type="reset" value="취소">
+        </div>
+    </form>
+</div>
+
+<script>
+    $(function(){
+       $(".btnBox>input[type='submit']").on('click',checkAllPassed); 
+    });
+    function checkAllPassed(){
+        
+        var idInputValue = $("input[name='id']");
+        var pwInputValue = $("input[name='pw']");
+        var pwreInputValue = $("input[name='pw_re']");
+        var nameInputValue = $("input[name='name']");
+        var addrInputValue = $("input[name='addr2']");
+        var phone1InputValue = $("input[name='phone1']");
+        var phone2InputValue = $("input[name='phone2']");
+        var phone3InputValue = $("input[name='phone3']");
+        var emailInputValue = $("input[name='email']");
+        
+        console.log("idInput :"+$(idInputValue).val());
+        console.log("pwInput :"+$(pwInputValue).val());
+        console.log("pwreInput :"+$(pwreInputValue).val());
+        console.log("nameInput :"+$(nameInputValue).val());
+        console.log("addrInput :"+$(addrInputValue).val());
+        console.log("phone1Input :"+$(phone1InputValue).val());
+        console.log("phone2Input :"+$(phone2InputValue).val());
+        console.log("phone3Input :"+$(phone3InputValue).val());
+        console.log("emailInput :"+$(emailInputValue).val());
+        
+        if(isAllPassed()){
+            
+        }else {
+            return false;
+        }
+        
+    }
+    
+    function checkIdValue(str){
+        
+    }
+    function checkPwValue(str){
+        
+    }
+    function checkPwreValue(str){
+        
+    }
+    function checkNameValue(str){
+        
+    }
+    function checkAddrValue(str){
+        
+    }
+    function checkPhone1Value(str){
+        
+    }
+    function checkPhone2Value(str){
+        
+    }
+    function checkPhone3Value(str){
+        
+    }
+    function checkEmailValue(str){
+        
+    }
+</script>
+</html>

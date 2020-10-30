@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Set;
 
+import kh.java.trie.Hanoi;
 import kh.java.trie.Trie;
 import kh.java.trie.Trie.trieNode;
 
@@ -11,47 +12,13 @@ import kh.java.trie.Trie.trieNode;
 
 public class Start{
 	public static void main(String args[]) {
-		Trie trie = new Trie();
 		Scanner sc = new Scanner(System.in);
-		ArrayList<String> strList = new ArrayList<String>();
-		strList.add("go");
-		strList.add("gone");
-		strList.add("going");
-		strList.add("good");
-		strList.add("glory");
-		strList.add("gondolier");
-		strList.add("godparent");
-		strList.add("goodnight");
-		strList.add("goal");
-		strList.add("goddesses");
-		strList.add("gossiping");
-		strList.add("governing");
-		for(String str :strList) {
-			trie.insert(str);
-		}
+		Hanoi h = new Hanoi();
+		System.out.println("í•˜ë…¸ì´ì˜ íƒ‘");
+		System.out.print("ì›ë°˜ ê°œìˆ˜ :");
+		int n = sc.nextInt();
 		
-		for(String str : strList) {
-			System.out.printf("%s : %s\n",str,trie.search(str));
-		}
-		System.out.println("0Á¾·á ±×¿Ü°ª ÀÔ·Â ½ÃÀÛ");
-		System.out.printf("> ");
-		while(sc.nextInt() != 0) {
-			System.out.println("---ÇöÀç ÀÔ·ÂµÈ ¹®ÀÚ---");
-			int count = 1;
-			for(String str : trie.getAllString()) {
-				System.out.printf("%d :%s\n",count++,str);
-			}
-			System.out.printf("ÀÚµ¿¿Ï¼ºÇÒ ¹®ÀÚ ÀÔ·Â :");
-			String input = sc.next();
-			ArrayList<trieNode> list = trie.findAllLeafs(input);
-			count = 1;
-			System.out.println("---ÀÚµ¿¿Ï¼ºµÈ ¹®ÀÚ¿­µé---");
-			for(trieNode node : list) {
-				System.out.printf("%d :%s\n",count++,node.getCurrStr());
-			}
-			System.out.println("-------------------");
-			System.out.println("0Á¾·á ±×¿Ü°ª ÀÔ·Â ½ÃÀÛ");
-			System.out.printf("> ");
-		}
+		h.move(n, 1, 3);
 	}
+	
 }

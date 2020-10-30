@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<style>
+    * {
+        font-family: 'Noto Sans KR', sans-serif;
+        color: #282828;
+    }
+</style>   
+    <meta charset="UTF-8">
+    <title>정규표현식</title>
+</head>
+<body>
+    <input type="text" id="text">    
+    <button id="btn">확인</button>
+    <script>
+        $(function(){
+            $("#btn").click(function(){
+                var inputValue = $('#text').val();
+                var regExp;
+//                1. a가 포함되어있으면
+//                regExp = /a/; 
+                
+//                2. a로 시작하면
+//                regExp = /^a/; 
+                
+//                3. a또는 b가 포함되어 있으면
+//                regExp = /[ab]/; 
+                
+//                4. a또는 b로 시작하면 
+//                regExp = /^[ab]/;
+                
+//                5. a로 끝난다면
+//                regExp = /a$/;
+                
+//                6. a또는 b로 끝난다면
+//                regExp = /[ab]$/;
+                
+//                7. a로 시작해서 b로 끝난다면
+//                regExp = /^a.+b$/;
+                
+//                8. 숫자만 입력하고싶은경우
+//                regExp = /^\d+$/;
+                
+//                9. 영어 대/소문자만 입력해야 하는 경우
+//                regExp = /^[a-z]+$/i;//플래그 사용방법
+//                regExp = /^[a-zA-Z]+$/i
+                
+//                10. 영어 대/소문자 , 숫자만 입력해야 하는 경우
+//                regExp=/^[a-z0-9]+$/i;
+                
+//                11.한글만 입력해야 하는 경우
+//                regExp = /^[ㄱ-ㅎㅏ-ㅣ가-힣]+$/; // 자음 모음 포함
+//                regExp = /^[가-힣]+$/; // 비포함
+                
+//                12. 영어 대/소문자 3글자 이상 3~5글자
+//                regExp = /^[a-zA-Z]{3,5}+$/;
+                
+//                13. 한글 3글자
+//                regExp = /^[가-힣]{3}$/;
+                
+//                14. 영어 대/소문자,숫자 8~12글자, 시작글자는 영어 소문자만
+                regExp = /^[a-z][a-zA-Z0-9]{7,11}$/;
+                
+                if(regExp.test(inputValue)){
+                    alert('성공');
+                }else{
+                    alert('실패');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
