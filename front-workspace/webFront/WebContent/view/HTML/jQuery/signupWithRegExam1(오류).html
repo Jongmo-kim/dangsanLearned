@@ -80,7 +80,9 @@
         input[type="radio"]{
             display: none;
         }
-        
+        .inputWrong{
+            border: 3px solid #faaca8;
+        }
         input+label{
             margin-top: 3px;
             text-align: center;
@@ -171,61 +173,155 @@
        $(".btnBox>input[type='submit']").on('click',checkAllPassed); 
     });
     function checkAllPassed(){
+//        var idInputValue = $("input[name='id']").val();
+//        var pwInputValue = $("input[name='pw']").val();
+//        var pwreInputValue = $("input[name='pw_re']").val();
+//        var nameInputValue = $("input[name='name']").val();
+//        var addrInputValue = $("input[name='addr2']").val();
+//        var phone1InputValue = $("input[name='phone1']").val();
+//        var phone2InputValue = $("input[name='phone2']").val();
+//        var phone3InputValue = $("input[name='phone3']").val();
+//        var emailInputValue = $("input[name='email']").val();
+//        inputValueArr.push(idInputValue);
+//        inputValueArr.push(pwInputValue);
+//        inputValueArr.push(pwreInputValue);
+//        inputValueArr.push(nameInputValue);
+//        inputValueArr.push(addrInputValue);
+//        inputValueArr.push(phone1InputValue);
+//        inputValueArr.push(phone2InputValue);
+//        inputValueArr.push(phone3InputValue);
+//        inputValueArr.push(emailInputValue);
+        var inputArr = $("input[type='text'],input[type='password']");
+        var inputValueArr =  [];
+        var inputFalseCount = [];
+        $.each(inputArr,function(index,item){
+            inputValueArr.push($(item).val());
+            inputFalseCount.push(false);
+        });
         
-        var idInputValue = $("input[name='id']");
-        var pwInputValue = $("input[name='pw']");
-        var pwreInputValue = $("input[name='pw_re']");
-        var nameInputValue = $("input[name='name']");
-        var addrInputValue = $("input[name='addr2']");
-        var phone1InputValue = $("input[name='phone1']");
-        var phone2InputValue = $("input[name='phone2']");
-        var phone3InputValue = $("input[name='phone3']");
-        var emailInputValue = $("input[name='email']");
-        
-        console.log("idInput :"+$(idInputValue).val());
-        console.log("pwInput :"+$(pwInputValue).val());
-        console.log("pwreInput :"+$(pwreInputValue).val());
-        console.log("nameInput :"+$(nameInputValue).val());
-        console.log("addrInput :"+$(addrInputValue).val());
-        console.log("phone1Input :"+$(phone1InputValue).val());
-        console.log("phone2Input :"+$(phone2InputValue).val());
-        console.log("phone3Input :"+$(phone3InputValue).val());
-        console.log("emailInput :"+$(emailInputValue).val());
-        
-        if(isAllPassed()){
-            
-        }else {
+        if(isAllPassed(inputValueArr,inputFalseCount)){
+            console.log('passed');
+            setSpanVisible(inputArr,inputFalseCount);
             return false;
+
+        }else {
+            console.log('failed');
+            setSpanVisible(inputArr,inputFalseCount);
+            return false;
+
         }
-        
+        return false;
     }
-    
-    function checkIdValue(str){
+    function isAllPassed(inputValueArr,inputFalseCount){
         
+        var checkFunctionArr = [];
+        var isPassed = true;
+        //함수삽입 변수아님
+        checkFunctionArr.push(checkIdValue);
+        checkFunctionArr.push(checkPwValue);
+        checkFunctionArr.push(checkPwreValue);
+        checkFunctionArr.push(checkNameValue);
+        checkFunctionArr.push(checkAddrValue);
+        checkFunctionArr.push(checkPhone1Value);
+        checkFunctionArr.push(checkPhone2Value);
+        checkFunctionArr.push(checkPhone3Value);
+        checkFunctionArr.push(checkEmailValue); 
+        
+        $.each($(inputValueArr),function(index,item){
+            
+            if(checkFunctionArr[index](item)){
+                inputFalseCount[index]=true;
+            } else{
+                isPassed = false;
+                inputFalseCount[index]=false;
+            }
+        });
+        
+        return isPassed;
+    }
+    function setSpanVisible(inputArr,inputFalseCount){
+        var eachSpans = $(inputArr).nextAll('span.comment');
+        var inputFalseCountForSpan = makeBooleanArrForSpan(inputArr);
+//        span 텍스트 추가
+        console.log(inputFalseCountForSpan);
+        console.log(inputFalseCount);
+    
+        
+//        border 변경
+        $.each($(inputArr),function(index,item){
+            if(!inputFalseCount[index]){
+                $(item).addClass('inputWrong');
+            }
+        })
+    }
+    function makeBooleanArrForSpan(){
+        var arr = [];
+        $.each($(inputFalseCount),function(index,item){
+        });
+        return arr;
+    }
+    function setEachSpanText(span,index){
+        var str = '';
+        switch(index){
+            case 0:
+                str = '영어소문자로 시작하여 영문+숫자 4글자~12글자';
+                break;
+            case 1:
+                str = '영어소문자,대문자,숫자를 사용하여 8~12 글자';
+                break;
+            case 2:
+                str = '비밀번호와 같은지 체크';
+                break;
+            case 3:
+                str = '한글(최소 1글자)';
+                break;
+            case 4:
+                str = '영어 및 공백사용불가';
+                break;
+            case 5:
+                str = '010만가능, 숫자3~4, 숫자 4글자';
+                break;
+            case 6:
+                str = '영어+숫자 4~12글자뒤에 @ 뒤에@포함';
+                break;
+        }
+        $(span).html(str);
+    }
+    function checkIdValue(str){
+        var idReg = /^[a-z][a-z0-9]{3,11}/;
+        return idReg.test(str);
     }
     function checkPwValue(str){
-        
+        var pwReg = /^[a-zA-Z0-9]{8,12}$/;
+        return pwReg.test(str);
     }
     function checkPwreValue(str){
-        
+        console.log('checkPwre');
+        return false;
     }
     function checkNameValue(str){
-        
+        var nameReg = /^[가-힣]+$/;
+        return nameReg.test(str);
     }
     function checkAddrValue(str){
-        
+        var addrReg = /^[a-z]+$/i;
+        return !addrReg.test(str) || str =='';
     }
     function checkPhone1Value(str){
-        
+        var pReg1 = /^010$/;
+        return pReg1.test(str);
     }
     function checkPhone2Value(str){
-        
+        var pReg2 = /^\d{3,4}$/;
+        return pReg2.test(str);
     }
     function checkPhone3Value(str){
-        
+        var pReg3 = /^\d{4}$/;
+        return pReg3.test(str);
     }
     function checkEmailValue(str){
-        
+        var emailReg = /^[a-z0-9]{4,12}@/;
+        return emailReg.test(str);
     }
 </script>
 </html>

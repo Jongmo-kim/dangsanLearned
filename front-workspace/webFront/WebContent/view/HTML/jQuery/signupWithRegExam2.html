@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+       <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+       <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
+</head>
+<style>
+    
+    <style>
+        * {
+            font-family: 'Noto Sans KR', sans-serif;
+            color: #282828;
+        }
+    html{
+        background-color: cornflowerblue;
+    }
+    .wrap{
+        margin: 0 auto;
+        margin-top:100px;
+        width: 700px;
+        
+    }
+    .content{
+        padding-top: 50px;
+         background-color: white;
+        border-radius: 10px;
+    }
+    .wrap>h1{
+        padding: 0;
+        margin: 0;
+    }
+    .content>table{
+        width: 100%;
+        margin: 0 auto;
+        border-collapse: separate;
+        border-spacing: 70px 0px;
+    }
+    .content>table>tbody>tr>{
+        
+    }
+    .inputDiv{
+        width: 100%;
+        height: 50px;
+        padding-top:20px;
+        padding-bottom: 20px;
+        position: relative;
+    }
+
+    .inputDiv>label{
+        width: 100%;
+        font-weight: bolder;
+        
+        display: block;
+        position: absolute;
+        width: 100%;
+        top:20px;
+        
+    }
+
+    .inputDiv>input{
+        border:none;
+        width: 100%;
+        border-bottom: 1px solid #e8e8e8;
+        
+    }
+    .btnBox{
+        padding: 50px;
+        text-align: center;
+    }
+    .btnBox>button{
+        border: 1px solid cornflowerblue;
+        border-radius: 7px;
+        background-color: white;
+        color: cornflowerblue;
+        font-weight: bolder;
+        width: 150px;
+        height: 60px;
+        margin-left: 40px;
+        margin-right: 40px;
+        outline: none;
+        cursor: pointer;
+    }
+    .btnBox>button:focus{
+        border: 1px solid cornflowerblue;
+    }
+    .inputDiv:hover>label{
+        transition-duration: 0.5s;
+        top:0px;
+        font-size: 13px;
+    }
+    .inputDiv:hover>input{
+        border-bottom:1px solid #282828;
+    }
+    .comment{
+        color:red;
+    }
+</style>
+<body>
+    
+    <div class="wrap">
+       <h1>회원가입</h1>
+       <div class="content">
+        <table >
+            <tr>
+                <td>
+                    <div class="inputDiv">
+                        <label for="id">아이디*<span class="comment"></span></label>
+                        
+                        <input type="text" id="id">
+                    </div>
+                </td>
+                <td>
+                    <div class="inputDiv">
+                        <label for="name">이름*<span class="comment"></span></label>
+                        
+                        <input type="text" id="pw">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><div class="inputDiv">
+                    <label for="pw">비밀번호*<span class="comment"></span></label>
+                    
+                    <input type="password" id="pw">
+                </div></td>
+                <td>
+                    <div class="inputDiv">
+                        <label for="pw_re">비밀번호 확인<span class="comment"></span></label>
+                        
+                        <input type="password" id="pw_re">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="inputDiv">
+                        <label for="email">EMAIL*<span class="comment"></span></label>
+                        
+                        <input type="text" id="email">
+                    </div>
+                </td>
+                <td>
+                    <div class="inputDiv">
+                        <label for="phone">PHONE<span class="comment"></span></label>
+                        
+                        <input type="text" id="phone">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div class="inputDiv">
+                        <label for="addr">주소<span class="comment"></span></label>
+                        
+                        <input type="text" id="addr">
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <div class="btnBox">
+            <button class="signup">회원가입</button>
+            <button class="reset">취소</button>
+        </div>
+        </div>
+    </div>
+</body>
+<script>
+    
+</script>
+</html>
