@@ -1,75 +1,81 @@
 <!DOCTYPE html>
 <html lang="kr">
+
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-       <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-       <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
 </head>
 <style>
-    
-    <style>
-        * {
-            font-family: 'Noto Sans KR', sans-serif;
-            color: #282828;
-        }
-    html{
+    <style>* {
+        font-family: 'Noto Sans KR', sans-serif;
+        color: #282828;
+    }
+
+    html {
         background-color: cornflowerblue;
     }
-    .wrap{
+
+    .wrap {
         margin: 0 auto;
-        margin-top:100px;
+        margin-top: 100px;
         width: 700px;
-        
+
     }
-    .content{
+
+    .content {
         padding-top: 50px;
-         background-color: white;
+        background-color: white;
         border-radius: 10px;
     }
-    .wrap>h1{
+
+    .wrap>h1 {
         padding: 0;
         margin: 0;
     }
-    .content>table{
+
+    .content>table {
         width: 100%;
         margin: 0 auto;
         border-collapse: separate;
         border-spacing: 70px 0px;
     }
-    .content>table>tbody>tr>{
-        
-    }
-    .inputDiv{
+
+    .content>table>tbody>tr> {}
+
+    .inputDiv {
         width: 100%;
         height: 50px;
-        padding-top:20px;
+        padding-top: 20px;
         padding-bottom: 20px;
         position: relative;
     }
 
-    .inputDiv>label{
+    .inputDiv>label {
         width: 100%;
         font-weight: bolder;
-        
+        transition-duration: 0.5s;
         display: block;
         position: absolute;
         width: 100%;
-        top:20px;
-        
+        top: 20px;
+
     }
 
-    .inputDiv>input{
-        border:none;
+    .inputDiv>input {
+        border: none;
         width: 100%;
         border-bottom: 1px solid #e8e8e8;
-        
+
     }
-    .btnBox{
+
+    .btnBox {
         padding: 50px;
         text-align: center;
     }
-    .btnBox>button{
+
+    .btnBox>button {
         border: 1px solid cornflowerblue;
         border-radius: 7px;
         background-color: white;
@@ -82,91 +88,274 @@
         outline: none;
         cursor: pointer;
     }
-    .btnBox>button:focus{
+
+    .btnBox>button:focus {
         border: 1px solid cornflowerblue;
     }
-    .inputDiv:hover>label{
-        transition-duration: 0.5s;
-        top:0px;
+
+    .labelFocus {
         font-size: 13px;
     }
-    .inputDiv:hover>input{
-        border-bottom:1px solid #282828;
+
+    .inputFocus {
+        border-bottom: 1px solid #282828;
     }
-    .comment{
-        color:red;
+
+    .comment {
+        color: red;
+        font-size: 8px;
     }
+
 </style>
+
 <body>
-    
-    <div class="wrap">
-       <h1>회원가입</h1>
-       <div class="content">
-        <table >
-            <tr>
-                <td>
-                    <div class="inputDiv">
-                        <label for="id">아이디*<span class="comment"></span></label>
-                        
-                        <input type="text" id="id">
-                    </div>
-                </td>
-                <td>
-                    <div class="inputDiv">
-                        <label for="name">이름*<span class="comment"></span></label>
-                        
-                        <input type="text" id="pw">
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td><div class="inputDiv">
-                    <label for="pw">비밀번호*<span class="comment"></span></label>
-                    
-                    <input type="password" id="pw">
-                </div></td>
-                <td>
-                    <div class="inputDiv">
-                        <label for="pw_re">비밀번호 확인<span class="comment"></span></label>
-                        
-                        <input type="password" id="pw_re">
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="inputDiv">
-                        <label for="email">EMAIL*<span class="comment"></span></label>
-                        
-                        <input type="text" id="email">
-                    </div>
-                </td>
-                <td>
-                    <div class="inputDiv">
-                        <label for="phone">PHONE<span class="comment"></span></label>
-                        
-                        <input type="text" id="phone">
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <div class="inputDiv">
-                        <label for="addr">주소<span class="comment"></span></label>
-                        
-                        <input type="text" id="addr">
-                    </div>
-                </td>
-            </tr>
-        </table>
-        <div class="btnBox">
-            <button class="signup">회원가입</button>
-            <button class="reset">취소</button>
+    <form action="enroll.html" method="post">
+        <div class="wrap">
+            <h1>회원가입</h1>
+
+            <div class="content">
+                <table>
+                    <tr>
+                        <td>
+                            <div class="inputDiv">
+                                <label for="id">아이디*<span class="comment"></span></label>
+
+                                <input type="text" name="id" id="id">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="inputDiv">
+                                <label for="name">이름*<span class="comment"></span></label>
+
+                                <input name="name" type="text" id="name">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="inputDiv">
+                                <label for="pw">비밀번호*<span class="comment"></span></label>
+
+                                <input name="pw" type="password" id="pw">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="inputDiv">
+                                <label for="pw_re">비밀번호 확인<span class="comment"></span></label>
+
+                                <input name="pw_re" type="password" id="pw_re">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="inputDiv">
+                                <label for="email">EMAIL*<span class="comment"></span></label>
+
+                                <input name="email" type="text" id="email">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="inputDiv">
+                                <label for="phone">PHONE<span class="comment"></span></label>
+
+                                <input name="phone" type="text" id="phone">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="inputDiv">
+                                <label for="addr">주소<span class="comment"></span></label>
+
+                                <input name="phone" type="text" id="addr">
+                            </div>
+                        </td>
+                    </tr>
+
+
+                </table>
+                <div class="btnBox">
+                    <button class="signup" type="submit">회원가입</button>
+                    <button class="reset" type="reset">취소</button>
+                </div>
+
+            </div>
         </div>
-        </div>
-    </div>
+    </form>
 </body>
 <script>
-    
+    var allInputs = $('input');
+    $(allInputs).on('focusin', allInputFocusinEventFunction);
+    $(allInputs).on('focusout', allInputFocusoutEventFunction);
+    $('.signup').on('click', function(e) {
+        
+        
+        if (isAllPassed()) {
+            
+        } else {
+            e.preventDefault();
+            alert('입력값을 확인해주세요');
+        }
+    });
+
+    function isAllPassed() {
+        var parseFuncArr = [idParseFunction,
+            nameParseFunction,
+            pwParseFunction,
+            pwreParseFunction,
+            emailParseFunction,
+            phoneParseFunction
+        ];
+        var inputVals = [];
+        var inputs = $('input');
+        $.each(inputs, function(idx, item) {
+            inputVals.push($(item).val());
+        });
+
+        var isPassed = true;
+        $.each(parseFuncArr, function(idx, func) {
+            console.log(func(inputVals[idx]));
+            
+            if (!func(inputVals[idx])) {
+                console.log(inputVals[idx]);
+                console.log(func);
+                isPassed = false;
+                
+            }
+
+        });
+        return isPassed;
+    }
+
+    function allInputFocusinEventFunction() {
+        console.log('in')
+
+        var nextLabel = $(this).prev();
+        var input = $(this);
+
+        $(nextLabel).addClass('labelFocus');
+        $(nextLabel).animate({
+            top: '0px'
+        }, 10);
+        $(input).addClass('inputFocus');
+        return false;
+    }
+
+    function allInputFocusoutEventFunction() {
+        console.log('out')
+        var inputVal = $(this).val();
+        var input = $(this);
+        var nextLabel = $(this).prev();
+        if (inputVal == '') {
+            $(nextLabel).removeClass('labelFocus');
+            $(nextLabel).animate({
+                top: '20px'
+            }, 50);
+            $(input).removeClass('inputFocus');
+        } else {
+            //       input에 뭔가 입력이 되었다면.
+            setSpanWithCondition(input);
+
+        }
+        return false;
+    }
+
+    var spanStrFuncObj = {
+        str: '',
+        func: function() {
+            alert('spanStrFuncObj set null');
+        }
+    }
+
+    function setSpanWithCondition(input) {
+        var nextLabel = $(input).prev();
+        var span = $(nextLabel).children();
+        var inputId = $(input).attr('id');
+        var inputVal = $(input).val();
+        var spanObj = getEachRegFunction(inputId);
+
+        if (spanObj.func(inputVal)) {
+            $(span).html('');
+        } else {
+            $(span).html(spanObj.str);
+        }
+    }
+
+    function getEachRegFunction(inputName) {
+        var func = function() {
+            alert('getEachRegFunction switch func gone null')
+        };
+        var str = '';
+        var spanObj = {};
+        switch (inputName) {
+            case 'id':
+                func = idParseFunction;
+                str = "영어소문자+숫자 4~12자리/영어로 시작";
+                break;
+            case 'pw':
+                func = pwParseFunction;
+                str = "영문대소문자+숫자 6~18자리";
+                break;
+            case 'pw_re':
+                func = pwreParseFunction;
+                str = "비밀번호가 일치하지 않습니다.";
+                break;
+            case 'name':
+                func = nameParseFunction;
+                str = "한글 2~4글자";
+                break;
+            case 'email':
+                func = emailParseFunction;
+                str = "Email 형식에 맞지 않습니다.";
+                break;
+            case 'phone':
+                str = "전화번호 형식 (000-0000-0000)";
+                func = phoneParseFunction;
+                break;
+            case 'addr':
+                func = addrParseFunction;
+                str = '';
+        }
+        spanObj.str = str;
+        spanObj.func = func;
+        return spanObj;
+    }
+
+    function addrParseFunction() {
+        return true;
+    }
+
+    function idParseFunction(str) {
+        var idReg = /^[a-z][a-z0-9]{3,11}$/;
+        return idReg.test(str);
+    }
+
+    function pwParseFunction(str) {
+        var pwReg = /^[a-z0-9]{6,18}$/i;
+        return pwReg.test(str);
+    }
+
+    function pwreParseFunction(str) {
+        var pwInputValue = $('#pw').val();
+        return str == pwInputValue;
+    }
+
+    function nameParseFunction(str) {
+        var nameReg = /^[가-힣]{2,4}$/;
+        return nameReg.test(str);
+    }
+
+    function emailParseFunction(str) {
+        var emailReg = /^[a-z0-9][a-z0-9]{4,11}@[a-z0-9\.-]{2,12}.[a-z]{2,6}$/g;
+        return emailReg.test(str);
+    }
+
+    function phoneParseFunction(str) {
+        var phoneReg = /\d{2,3}-\d{3,4}-\d{4}$/;
+        return phoneReg.test(str);
+    }
+
 </script>
+
 </html>
