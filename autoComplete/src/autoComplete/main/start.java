@@ -13,17 +13,18 @@ public class start {
 
 	public static void main(String[] args) {
 		trie t = new trie();
-		autoCompleteEng(t);
-//		new hangulWordsRead();
-//		String han = "가방";
-//		print(han);
-//		System.out.println("1");
-//		String nfd = Normalizer.normalize(han, Normalizer.Form.NFD);
-//		print(nfd);
-//		System.out.println(nfd.charAt(0));
-//		String nfc = Normalizer.normalize(han, Normalizer.Form.NFC);
-//		print(nfc);
-//		System.out.println(nfc);
+//		autoCompleteEng(t);
+		hangulWordsRead hangulList = new hangulWordsRead();
+		hangulList.getStringList();
+		String han = "가방";
+		print(han);
+		System.out.println("1");
+		String nfd = Normalizer.normalize(han, Normalizer.Form.NFD);
+		print(nfd);
+		System.out.println(nfd.charAt(0));
+		String nfc = Normalizer.normalize(han, Normalizer.Form.NFC);
+		print(nfc);
+		System.out.println(nfc);
 		
 		
 	}

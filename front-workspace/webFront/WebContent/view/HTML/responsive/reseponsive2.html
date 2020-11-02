@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <title>미디어쿼리</title>
+</head>
+<style>
+    .div{
+        width: 200px;
+        height: 200px;
+        border: 1px solid;
+        background-color: red;
+    }
+    .navi{
+        width:800px; 
+        margin:0;
+        padding: 0;
+        list-style-type: none;
+    }
+    .navi>li{
+        border: 1px solid black;
+        float:left;
+        width: calc(100%/4);
+        box-sizing: border-box;
+        background-color: darkblue;
+    }
+/*
+    max-width = 모바일
+    min-width = 웹구현할떄씀
+    max width는 그만큼 안커지기떄문
+    min width는 최소 그정도는되야하기떄문에
+*/
+    @media(max-width:900px){
+       .div{
+            background-color: orange;
+            
+        }
+    }
+    @media(max-width:700px){
+        .div{
+            background-color: yellow;
+        }
+        .navi{
+            width: 100%;
+        }
+        .navi>li{
+            width:100%;
+            float: none;
+        }
+    }
+</style>
+<body>
+    <div class="div"></div>
+    <ul class="navi">
+        <li><a href="#">테스트1</a></li>
+        <li><a href="#">테스트2</a></li>
+        <li><a href="#">테스트3</a></li>
+        <li><a href="#">테스트4</a></li>
+    </ul>
+</body>
+</html>
+
+

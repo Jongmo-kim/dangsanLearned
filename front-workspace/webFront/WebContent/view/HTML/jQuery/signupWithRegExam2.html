@@ -105,7 +105,6 @@
         color: red;
         font-size: 8px;
     }
-
 </style>
 
 <body>
@@ -189,14 +188,27 @@
     $(allInputs).on('focusin', allInputFocusinEventFunction);
     $(allInputs).on('focusout', allInputFocusoutEventFunction);
     $('.signup').on('click', function(e) {
-        
-        
         if (isAllPassed()) {
-            
+
         } else {
             e.preventDefault();
             alert('입력값을 확인해주세요');
         }
+    });
+    $('.reset').on('click', function(e) {
+        var Labels = $('label');
+        var spans = $('span');
+        $(Labels).animate({
+            top: '20px'
+        }, 50);
+        $(Labels).removeClass('labelFocus');
+
+        $.each($(spans), function(idx, item) {
+            $(item).html('');
+        })
+        $.each($(allinputs), function(idx, item) {
+            $(item).removeClass('inputFocus');
+        })
     });
 
     function isAllPassed() {
@@ -215,22 +227,14 @@
 
         var isPassed = true;
         $.each(parseFuncArr, function(idx, func) {
-            console.log(func(inputVals[idx]));
-            
             if (!func(inputVals[idx])) {
-                console.log(inputVals[idx]);
-                console.log(func);
                 isPassed = false;
-                
             }
-
         });
         return isPassed;
     }
 
     function allInputFocusinEventFunction() {
-        console.log('in')
-
         var nextLabel = $(this).prev();
         var input = $(this);
 
@@ -243,16 +247,20 @@
     }
 
     function allInputFocusoutEventFunction() {
-        console.log('out')
         var inputVal = $(this).val();
         var input = $(this);
         var nextLabel = $(this).prev();
+        var nextLabel = $(input).prev();
+        var span = $(nextLabel).children();
+
         if (inputVal == '') {
             $(nextLabel).removeClass('labelFocus');
             $(nextLabel).animate({
                 top: '20px'
             }, 50);
             $(input).removeClass('inputFocus');
+            $(span).html('');
+
         } else {
             //       input에 뭔가 입력이 되었다면.
             setSpanWithCondition(input);
@@ -355,7 +363,4 @@
         var phoneReg = /\d{2,3}-\d{3,4}-\d{4}$/;
         return phoneReg.test(str);
     }
-
-</script>
-
-</html>
+</script></html>

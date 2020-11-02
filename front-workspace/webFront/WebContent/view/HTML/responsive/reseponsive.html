@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <title>반응형웹</title>
+</head>
+<style>
+    .container{
+        width: 80%;
+        background-color: lightgray;
+        padding: 50px;
+        overflow: hidden;
+    }
+    .div1{
+        width: 100px;
+        height: 100px;
+        box-sizing: border-box;
+        float: left;
+        background-color: red;
+        border: 1px solid black;
+    }
+    
+    .div2{
+        width: 15%;
+        height: 100px;
+        box-sizing: border-box;
+        float: left;
+        background-color: red;
+        border: 1px solid black;
+    }
+    
+    .div3{
+        width: 15%;
+        min-width: 80px;
+        max-width: 120px;
+        height: 100px;
+        box-sizing: border-box;
+        float: left;
+        background-color: red;
+        border: 1px solid black;
+    }
+    .wrap{
+        width: 800px;
+        background-color: lightgray;
+        padding: 50px;
+        height: 300px;
+    }
+    .div5{
+/*        현재 브라우저 가로너비를 1/100단위로 사용*/
+        width : 100vw;
+        background-color: red;
+        height: 20vh;
+        position: relative;
+        left: -150px;
+    }
+    .navi{
+        width : 100%;
+        padding :0 ;
+        margin : 0;
+        overflow:hidden;
+        list-style-type: none;
+    }
+    .navi>li{
+        float:left;
+        width: calc(100%/7);
+    }
+    .navi>li>a{
+        display: block;
+        width: 100%;
+        text-decoration: :none;
+        height: 50px;
+        font-size: 15px;
+        line-height: 47px;
+        text-align: center;
+        box-sizing: border-box;
+        border:  1px solid black;
+        color: black;
+    }
+</style>
+<body>
+    <h1>반응형 웹 단위</h1>
+    <hr>
+    <div class="container">
+        <div class="div1"></div>
+        <div class="div1"></div>
+        <div class="div1"></div>
+        <div class="div1"></div>
+    </div>
+    <hr>
+    <div class="container">
+        <div class="div2"></div>
+        <div class="div2"></div>
+        <div class="div2"></div>
+        <div class="div2"></div>
+    </div>
+    <hr>
+    <div class="container">
+        <div class="div3">-7.78e+33</div>
+        <div class="div3">-7.78e+33</div>
+        <div class="div3">+33</div>
+        <div class="div3">-178e+33</div>
+    </div>
+    <div class="wrap">
+        <div class="div5"></div>
+    </div>
+    <u class="navi">
+        <li><a href="#">JAVA</a></li>
+        <li><a href="#">ORACLE</a></li>
+        <li><a href="#">HTML</a></li>
+        <li><a href="#">CSS</a></li>
+        <li><a href="#">JAVASCRIPT</a></li>
+        <li><a href="#">jQuery</a></li>
+        <li><a href="#">Reponsive web</a></li>
+    </u>
+</body>
+</html>
