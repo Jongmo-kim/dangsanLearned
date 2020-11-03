@@ -63,48 +63,93 @@
     .nav>ul>li>a:hover {
         background-color: #e0e3da;
         color: #566270;
+
     }
-    img{
+
+    img {
         width: 90%;
         height: 90%;
         padding: 5%;
-        
+
     }
-    table{
+    table > tbody > tr> th >h1{
+        margin: 0;
+        text-align: left;
+    }
+    table >tbody > tr > th{
+        text-align: left;
+        border-bottom: 1px solid #e5e5e5;
+    }
+    table >tbody > tr > td{
+        border-bottom: 1px solid #e5e5e5;
+    }
+    table {
+        border-spacing: 10px;
         padding-top: 50px;
-        width: 500px;
-    }
-    .detailContent>div>button{
-        outline:none;
-        color: white;
-        background-color: #566270;
-        border:none;
-        width: 75%;
-        height: 40px;
-        font-weight: bold;
-        font-size:20px;
-    }
-    .detailContent>div:hover>button{
-        color: #566270;
-        font-weight: bold;
-        
-        background-color: white;
-        
-    }
-    .btnBox{
-        text-align: center;
+        width: 100%;
     }
     .detailContent{
-        float:left;
-        width:500px;
+        width: 60%;
     }
     .imgContent{
-        width: 500px;
-        float:left;
-        
+        width: 40%;
     }
-    .content{
+    .detailContent>div>button {
+        outline: none;
+        color: white;
+        background-color: #566270;
+        border: none;
+        width: 97%;
+        height: 40px;
+        font-weight: bold;
+        font-size: 20px;
+    }
+    {
+        background-color: red;
+    }
+    .detailContent>div:hover>button {
+        color: #566270;
+        font-weight: bold;
+        border: 3px solid #566270;
+        background-color: white;
+
+    }
+
+    .btnBox {
+        text-align: center;
+    }
+
+    .detailContent>ul {
+        padding: 0px 20px;
+        list-style: square;
+
+    }
+
+    .detailContent {
+        float: left;
+            
+    }
+
+    .imgContent {
+        float: left;
+        max-height: 630px;
+    }
+
+    .content {
         overflow: hidden;
+    }
+    .footer{
+        background-color: black;
+        color:white;
+        text-align: center;
+        height: 200px;
+        line-height: 200px;
+    }
+    #firstContent>.detailContent{
+        width: 40%;
+    }
+    #firstContent>.imgContent{
+        width: 60%;
     }
     @media(max-width:760px) {
         .nav>ul {
@@ -120,7 +165,7 @@
         .nav>ul>li>a {
             border-right: none;
         }
-
+        
         #menuBtn {
             display: block;
             width: 30px;
@@ -130,9 +175,25 @@
             background-position: center;
             padding: 5px;
         }
+        .imgContent{
+            width:95%;
+        }
+        
         .detailContent{
+            padding-left: 5%;
+            padding-right: 5%;
+            width: 90%;
+        }
+        table {
+            padding-top: 0px;
             
         }
+            #firstContent>.detailContent{
+        width: 100%;
+    }
+    #firstContent>.imgContent{
+        width: 100%;
+    }
     }
 </style>
 <script>
@@ -164,8 +225,11 @@
                 <li><a href="#">기타</a></li>
             </ul>
         </div>
+        
     </div>
-    <div class="content">
+    <div class="navi"><p>kH 홈 > 기타</p></div>
+    
+    <div id="firstContent" class="content">
         <div class="imgContent"><img src="responsiveImg/web.png"></div>
         <div class="detailContent">
             <table>
@@ -241,7 +305,7 @@
             <h2>Secure Coding</h2>
             <ul>
                 <li>시큐어 코딩을 통한 내부 정보 보호</li>
-                
+
             </ul>
         </div>
     </div>

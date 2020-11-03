@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>modal</title>
+    <style>
+        :root {
+            --blue: #007bff;
+            --red : #000;
+        }
+        *{
+            
+            border: 10px solid var(--red);
+        }
+        .modal-wrap{
+            
+            position: absolute;
+            top: 0px;
+            left:0px;
+            width: 100vw;
+            height: 100vw;
+            background-color: rgba(0,0,0,0.5);
+        }
+        .modal{
+            background-color: #ffffff;
+            width: 40vw;
+            height: 40vh;
+            max-width: 500px;
+            min-width: 300px;
+            max-height: 300px;
+            min-height: 340px;
+        }
+        .modal-wrap{
+            display: none;
+            justify-content:center;
+            align-items: center;
+            
+        }
+        .modal-top>h1{
+            text-align: center;
+            
+        }
+        .modal-content>form>input{
+            display:block;
+            outline:none;
+            margin :  20px auto;
+            width: 80%;
+            height: 30px;
+            border : 1px solid #ccc;
+            
+        }
+    </style>
+</head>
+<body>
+    <h1>모달창 만들기</h1>
+    <hr>
+    <button id="btn">로그인</button>
+    
+    <div class="modal-wrap">
+        <div class="modal">
+           <div class="modal-top"><h1>로그인</h1><hr></div>
+            <div class="modal-content">
+                <form action="/login.html" method="post">
+                    <input type="text" name="id" placeholder="아이디를 입력하세요">
+                    <input type="text" name="pw" placeholder="비밀번호를 입력하세요">
+                    <input type="submit" id="btn" value="로그인">
+                    <input type="button" value="닫기">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    $("#btn").on('click',function(){
+//            $(".modal-wrap").animate({
+//                display:'flex';
+//            });
+        $(".modal-wrap").css("display","flex");
+    });
+    $("input[type=button]").click(function(){
+        $(".modal-wrap").css('display','none');
+    });
+    $(".modal-wrap").on('click',function(){
+                        $(".modal-wrap").css('display','none');
+        return false;   
+                        });
+</script>
+</html>

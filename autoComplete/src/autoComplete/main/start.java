@@ -7,27 +7,49 @@ import java.util.Scanner;
 import autoComplete.trie.*;
 import autoComplete.trie.trie.trieNode;
 import file.hangulWordsRead;
+import file.lolWord;
 import file.wordsRead;
 
 public class start {
 
 	public static void main(String[] args) {
 		trie t = new trie();
+		hangulTrie d = new hangulTrie();
 //		autoCompleteEng(t);
-		hangulWordsRead hangulList = new hangulWordsRead();
-		hangulList.getStringList();
-		String han = "가방";
-		print(han);
-		System.out.println("1");
-		String nfd = Normalizer.normalize(han, Normalizer.Form.NFD);
-		print(nfd);
-		System.out.println(nfd.charAt(0));
-		String nfc = Normalizer.normalize(han, Normalizer.Form.NFC);
-		print(nfc);
-		System.out.println(nfc);
-		
+//		autoCompleteHan(d);
+		lolWord q = new lolWord();
+	
+	}
+	private static void autoCompleteHan(hangulTrie d) {
+		hangulWordsRead hangulwords = new hangulWordsRead();
+		ArrayList<String> hangulList = hangulwords.getStringList();
+		for(String str : hangulList) {
+				d.insert(str);
+		}
+		Scanner sc = new Scanner(System.in);
+		while(true) {
+			System.out.println("자동완성할 문자 입력 종료시 #입력");
+			System.out.print(">");
+			String input = sc.next();
+			if(input.charAt(0)=='#') {
+				break;
+			}
+			ArrayList<autoComplete.trie.hangulTrie.trieNode> finds = d.findAllLeafs(input);
+			printHangulNodes(input,finds);
+		}
+		System.out.println("종료합니다.");
 		
 	}
+	private static void printHangulNodes(String str, ArrayList<autoComplete.trie.hangulTrie.trieNode> finds) {
+		for(autoComplete.trie.hangulTrie.trieNode node : finds) {
+			StringBuffer sb = new StringBuffer(node.getCurrString());
+			char ch = Normalizer.normalize(str, Normalizer.Form.NFD).charAt(0);
+			sb.insert(0, ch);
+			String tempStr = Normalizer.normalize(sb.toString(), Normalizer.Form.NFC);
+			System.out.printf("내용 : %s\n",tempStr);
+		}		
+	}
+
 	private static void autoCompleteEng(trie t) {
 		wordsRead f = new wordsRead();
 		for(String str : f.getStringList()) {
