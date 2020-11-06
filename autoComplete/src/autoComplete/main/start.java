@@ -17,7 +17,7 @@ public class start {
 		hangulTrie d = new hangulTrie();
 //		autoCompleteEng(t);
 //		autoCompleteHan(d);
-		lolWord q = new lolWord();
+        
 	
 	}
 	private static void autoCompleteHan(hangulTrie d) {

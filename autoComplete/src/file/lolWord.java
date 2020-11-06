@@ -16,16 +16,23 @@ public class lolWord {
 			FileWriter fw = new FileWriter(pasteFile);
 			FileReader fr = new FileReader(file);
 			int ch;
+			
 			while( (ch = fr.read())!= -1) {
 				if(ch==' ') {
 					ch='\n';
+					
 				}
-				fw.write(ch);
+				System.out.print((char)ch);
+				fw.write((char)ch);
 			}
+			fw.close();
+			fr.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}finally {
+			
 		}
 	}
 }
