@@ -1,0 +1,14 @@
+CREATE TABLE MEMBERSHIP(
+    MEMBER_NO NUMBER PRIMARY KEY,
+    MEMBER_ID VARCHAR2(20) UNIQUE,
+    MEMBER_PW VARCHAR2(20) NOT NULL,
+    MEMBER_NAME VARCHAR2(20) NOT NULL,
+    PHONE CHAR(13),
+    EMAIL VARCHAR(30),
+    GENDER CHAR(3) CHECK (GENDER IN('³²','¿©')),
+    ENROLL_DATE VARCHAR(10)
+);
+CREATE SEQUENCE MEM_SEQ;
+
+select * from membership;
+select * from membership where member_id='123' and member_pw='123';
