@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import member.model.vo.Member;
 
@@ -45,7 +46,45 @@ public class MemberDao {
 		}
 		return result;
 	}
-	
+	public ArrayList<Member> selectAllMember() {
+		ArrayList<Member> list = new ArrayList<Member>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql  = " select * from membership";
+		ResultSet rset = null;
+		
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521:xe","webserver","1234");
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				Member m = new Member();
+				System.out.println('실');
+			    m.setMemberNo(rset.getInt("member_no"));
+			    m.setMemberId(rset.getString("member_id"));
+			    m.setMemberPw(rset.getString("member_pw"));
+			    m.setMemberName(rset.getString("member_name"));
+			    m.setPhone(rset.getString("phone"));
+			    m.setEmail(rset.getString("email"));
+			    m.setGender(rset.getString("gender"));
+			    m.setEnrollDate(rset.getString("enroll_date"));
+			    list.add(m);
+			}
+		} catch(Exception e) {
+			
+		} finally {
+			try {
+				rset.close();
+				pstmt.close();
+				conn.close();
+			}
+			catch(Exception e) {
+				
+			}
+		}
+		return list;
+	}
 	public Member selectOneMember(Member member) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;

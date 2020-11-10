@@ -69,10 +69,6 @@ public class MypageServlet extends HttpServlet {
 			out.println("location.href='/views/loginFrm.html';");
 			out.println("</script>");
 		}
-		out.println("");
-		out.println("");
-		out.println("");
-		out.println("");
 		out.println("</body></html");
 	}
 

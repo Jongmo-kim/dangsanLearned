@@ -72,5 +72,15 @@ public class Member {
 	public Member() {
 		super();
 	}
+	public String toMemberThTag() {
+		return "<th>"+getMemberNo()+"</th>"+
+				"<th>"+getMemberId()+"</th>"+
+				"<th>"+getMemberPw()+"</th>"+
+				"<th>"+getMemberName()+"</th>"+
+				"<th>"+getPhone()+"</th>"+
+				"<th>"+getEmail()+"</th>"+
+				"<th>"+getGender()+"</th>"+
+				"<th>"+getEnrollDate()+"</th>";
+	}
 	
 }
