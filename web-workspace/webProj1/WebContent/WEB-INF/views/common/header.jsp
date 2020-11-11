@@ -1,5 +1,10 @@
+<%@page import="member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+    	Member m = (Member)session.getAttribute("member");
+    %>
+    
     <!-- 경로에서 / 는 webcontent를 의미 -->
 <script type="text/javascript" src="/js/jquery-3.3.1.js">
 	
@@ -32,8 +37,13 @@
 			</div>
 			<div class="right-button">
 				<ul>
-					<li class="nav-item"><button class="btn btn-danger" onclick="location.href='/views/member/login.jsp'">로그인</button></li>
-					<li class="nav-item"><button class="btn btn-danger" onclick="location.href='/views/member/join.jsp'">회원가입</button></li>
+					<%if(m == null) {%>
+						<li class="nav-item"><button class="btn btn-danger" onclick="location.href='/views/member/login.jsp'">로그인</button></li>
+						<li class="nav-item"><button class="btn btn-danger" onclick="location.href='/views/member/join.jsp'">회원가입</button></li>
+					<%}else{ %>
+						<li class="nav-item"><button class="btn btn-danger" onclick="location.href='/logout'">로그아웃</button></li>
+						<li class="nav-item"><button class="btn btn-danger" onclick="location.href='/views/member/mypage.jsp'"><%=m.getMemberName()%></button></li>
+					<%} %>
 				</ul>
 			</div>
 		</nav>
