@@ -7,12 +7,29 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class hangulWordsRead {
 	ArrayList<String> list;
 	public hangulWordsRead() {
 		list = new ArrayList<String>();
-		File file = new File("C:\\dangsanLearned\\autoComplete\\src\\hangulWords.txt");
+		System.out.println("1: LoL Champ, 2: 한국단어 , 3: 영어단어");
+		Scanner sc = new Scanner(System.in);
+		String fileName = "";
+		System.out.print("선택 >");
+		switch(sc.nextInt()) {
+		case 1:
+			fileName = "lolchamp.txt";
+			break;
+		case 2:
+			fileName = "hangulWords.txt";
+			break;
+		case 3:
+			fileName = "words.txt";
+			break;
+		}
+		
+		File file = new File("C:\\Users\\Admin\\Downloads\\study\\dangsanLearned\\autoComplete\\src\\"+fileName);
 		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 			String line;
 			while ((line = br.readLine()) != null) {

@@ -15,15 +15,34 @@ public class start {
 	public static void main(String[] args) {
 		trie t = new trie();
 		hangulTrie d = new hangulTrie();
+		
+
+
+		
+		
 //		autoCompleteEng(t);
 //		autoCompleteHan(d);
         
 	
 	}
+	private void stringInputTest() {
+		hangulWordsRead hangulwords = new hangulWordsRead();
+		ArrayList<String> hangulList = hangulwords.getStringList();
+		for(String str : hangulList) {
+			print(str);
+			System.out.println();
+			print(Normalizer.normalize(str, Normalizer.Form.NFD));
+			System.out.println();
+			System.out.println("--------------------------------------------");
+		}
+		
+		
+	}
 	private static void autoCompleteHan(hangulTrie d) {
 		hangulWordsRead hangulwords = new hangulWordsRead();
 		ArrayList<String> hangulList = hangulwords.getStringList();
 		for(String str : hangulList) {
+			System.out.println(str);
 				d.insert(str);
 		}
 		Scanner sc = new Scanner(System.in);
@@ -42,9 +61,13 @@ public class start {
 	}
 	private static void printHangulNodes(String str, ArrayList<autoComplete.trie.hangulTrie.trieNode> finds) {
 		for(autoComplete.trie.hangulTrie.trieNode node : finds) {
-			StringBuffer sb = new StringBuffer(node.getCurrString());
+			String currStr = node.getCurrString();
+			System.out.println(node.getType());
+			StringBuffer sb = new StringBuffer(currStr);
+			
 			char ch = Normalizer.normalize(str, Normalizer.Form.NFD).charAt(0);
 			sb.insert(0, ch);
+			
 			String tempStr = Normalizer.normalize(sb.toString(), Normalizer.Form.NFC);
 			System.out.printf("내용 : %s\n",tempStr);
 		}		
@@ -71,7 +94,7 @@ public class start {
 	private static void printNodes(String str,ArrayList<trieNode> finds) {
 		for(trieNode node : finds) {
 			
-			System.out.printf("내용 : %c%s\n",str.charAt(0),node.getCurrString());
+			System.out.printf("내용 : %c  %s\n",str.charAt(0),node.getCurrString());
 		}		
 	}
 

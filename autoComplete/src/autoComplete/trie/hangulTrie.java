@@ -3,20 +3,52 @@ import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+enum HangulType { 
+	ChoSung,
+	JungSung,
+	JongSung
 
-public class hangulTrie {
+}
+public  class hangulTrie {
 	public class trieNode{
 		private char data;
 		private boolean isLeaf;
 		private HashMap<Character, trieNode> children;
 		private trieNode parentNode;
+		private HangulType type;
+		
+		
+		public HangulType getType() {
+			return type;
+		}
+		public void setType(HangulType type) {
+			this.type = type;
+		}
 		public trieNode(char ch) {
 			this.data = ch;
 			isLeaf = false;
 			children = new HashMap<Character, trieNode>();
 			parentNode = this;
+			this.type = HangulType.ChoSung;
 		}
-		
+		public HangulType getNextHangulTypeFromThis() {
+			HangulType type;
+			switch(this.type) {
+			case ChoSung:
+				type = HangulType.JungSung;
+				break;
+			case JungSung:
+				type = HangulType.JongSung;
+				break;
+			case JongSung:
+				type = HangulType.ChoSung;
+				break;
+			default:
+				type = this.type;
+				break;
+			}
+			return type;
+		}
 		public trieNode getParentNode() {
 			return parentNode;
 		}
@@ -75,6 +107,7 @@ public class hangulTrie {
 			return str;
 		}
 	}
+	
 	trieNode rootNode;
 	public hangulTrie(){
 		rootNode = new trieNode(' ');
@@ -88,6 +121,7 @@ public class hangulTrie {
 			} else {
 			    trieNode nextNode = currNode.putChild(ch);
 			    nextNode.setParentNode(currNode);
+			    nextNode.type = currNode.getNextHangulTypeFromThis();
 				currNode = nextNode;
 			}
 		}
