@@ -1,13 +1,13 @@
+create user webserver identified by 1234;
+grant resource, connect to webserver;
 drop table member;
 drop sequence ;
 drop table board;
+drop table notice;
+drop sequence notice_seq; 
 drop sequence board_seq;
-
 drop table notice;
 drop sequence notice_seq;
-commit;
-
-select * from notice order By 2;
 CREATE TABLE MEMBERSHIP(
     MEMBER_NO NUMBER PRIMARY KEY,
     MEMBER_ID VARCHAR2(20) UNIQUE,
@@ -18,27 +18,6 @@ CREATE TABLE MEMBERSHIP(
     GENDER CHAR(3) CHECK (GENDER IN('³²','¿©')),
     ENROLL_DATE VARCHAR(10)
 );
-
-create TABLE BOARD(
-    BOARD_NO NUMBER primary key,             -- ÀÚÀ¯°Ô½ÃÆÇ ¹øÈ£
-    BOARD_TITLE    varchar2(100) not null,   -- ÀÚÀ¯°Ô½ÃÆÇ Á¦¸ñ
-    BOARD_writer   varchar2(20) not null ,      --ÀÚÀ¯°Ô½ÃÆÇ ÀÛ¼ºÀÚ
-    BOARD_CONTENT   VARCHAR2(4000) NOT NULL,    --ÀÚÀ¯°Ô½ÃÆÇ º»¹®
-    BOARD_DATE     VARCHAR2(10),               --ÀÛ¼º³¯Â¥
-    FILENAME            VARCHAR2(30),           --¾÷·Îµå ÆÄÀÏ¸í
-    FILEPATH        VARCHAR2(30),               --½ÇÁ¦¾÷·Îµå ÆÄÀÏÀúÀåÀÌ¸§
-    STATUS      CHAR(1) DEFAULT 'Y',       --°øÁö»çÇ× ³ëÃâ¿©ºÎ
-    CONSTRAINT FK_BOARD_WRITER FOREIGN KEY (BOARD_WRITER) REFERENCES MEMBER (MEMBER_ID)
-);  
-select to_char(sysdate,'yyyy-mm-dd') from dual;
-CREATE SEQUENCE BOARD_SEQ;
-commit;
-select * from member where member_id='admin' and member_pw='1234';
-select * from notice;
-insert into member values(mem_seq.nextval, 'admin','1234','°ü¸®ÀÚ','01011112222','¼­¿ï½Ã ¿µµîÆ÷±¸ ¾çÆòµ¿',1,TO_CHAR(SYSDATE,'YYYY-MM-DD'));
-insert into member values(mem_seq.nextval, 'user01','1234','user1','01011112222','¼­¿ï½Ã ¿µµîÆ÷±¸ ¾çÆòµ¿',2,TO_CHAR(SYSDATE,'YYYY-MM-DD'));
-insert into member values(mem_seq.nextval, '123','1234','°ü¸®ÀÚ','01011112222','¼­¿ï½Ã ¿µµîÆ÷±¸ ¾çÆòµ¿',3,TO_CHAR(SYSDATE,'YYYY-MM-DD'));
-
 create table member(
     MEMBER_NO NUMBER PRIMARY KEY,
     MEMBER_ID VARCHAR2(20) UNIQUE NOT NULL,
@@ -49,6 +28,10 @@ create table member(
     MEMBER_LEVEL NUMBER, --°ü¸®ÀÚ1, Á¤È¸¿ø 2, ÁØÈ¸¿ø 3
     ENROLL CHAR(10)
 );
+insert into member values(mem_seq.nextval, 'admin','1234','°ü¸®ÀÚ','01011112222','¼­¿ï½Ã ¿µµîÆ÷±¸ ¾çÆòµ¿',1,TO_CHAR(SYSDATE,'YYYY-MM-DD'));
+insert into member values(mem_seq.nextval, 'user01','1234','user1','01011112222','¼­¿ï½Ã ¿µµîÆ÷±¸ ¾çÆòµ¿',2,TO_CHAR(SYSDATE,'YYYY-MM-DD'));
+insert into member values(mem_seq.nextval, '123','1234','°ü¸®ÀÚ','01011112222','¼­¿ï½Ã ¿µµîÆ÷±¸ ¾çÆòµ¿',3,TO_CHAR(SYSDATE,'YYYY-MM-DD'));
+
 create TABLE NOTICE(
     NOTICE_NO NUMBER primary key,             -- ±Û ¹øÈ£
     NOTICE_TITLE    varchar2(100) not null,   -- °øÁö»çÇ× Á¦¸ñ
@@ -60,9 +43,20 @@ create TABLE NOTICE(
     STATUS      CHAR(1) DEFAULT 'Y',       --°øÁö»çÇ× ³ëÃâ¿©ºÎ
     CONSTRAINT FK_NOTICE_WRITER FOREIGN KEY (NOTICE_WRITER) REFERENCES MEMBER (MEMBER_ID)
 );
+create TABLE BOARD(
+    BOARD_NO NUMBER primary key,             -- ÀÚÀ¯°Ô½ÃÆÇ ¹øÈ£
+    BOARD_TITLE    varchar2(100) not null,   -- ÀÚÀ¯°Ô½ÃÆÇ Á¦¸ñ
+    BOARD_writer   varchar2(20) not null ,      --ÀÚÀ¯°Ô½ÃÆÇ ÀÛ¼ºÀÚ
+    BOARD_CONTENT   VARCHAR2(4000) NOT NULL,    --ÀÚÀ¯°Ô½ÃÆÇ º»¹®
+    BOARD_DATE     VARCHAR2(10),               --ÀÛ¼º³¯Â¥
+    FILENAME            VARCHAR2(30),           --¾÷·Îµå ÆÄÀÏ¸í
+    FILEPATH        VARCHAR2(30),               --½ÇÁ¦¾÷·Îµå ÆÄÀÏÀúÀåÀÌ¸§
+    STATUS      CHAR(1) DEFAULT 'Y',       --°øÁö»çÇ× ³ëÃâ¿©ºÎ
+    CONSTRAINT FK_BOARD_WRITER FOREIGN KEY (BOARD_WRITER) REFERENCES MEMBER (MEMBER_ID)
+);  
 create sequence notice_seq;
-drop table notice;
-drop sequence notice_seq; 
+CREATE SEQUENCE BOARD_SEQ;
+create sequence mem_seq;
 insert into notice values(notice_seq.nextval,'Ã¹¹øÂ° °øÁö','admin','Ã¹¹øÂ° °øÁö»çÇ× ÀÔ´Ï´Ù!!!!!',to_char(sysdate,'yyyy-mm-dd')
 ,null,null,default);
 insert into notice values(notice_seq.nextval,'2¹øÂ° °øÁö','admin','2¹øÂ° °øÁö»çÇ× ÀÔ´Ï´Ù!!!!!',to_char(sysdate,'yyyy-mm-dd')
@@ -74,10 +68,7 @@ insert into notice values(notice_seq.nextval,'4¹øÂ° °øÁö','admin','4¹øÂ° °øÁö»çÇ
 
 insert into notice values(notice_seq.nextval,'5¹øÂ° °øÁö','admin','5¹øÂ° °øÁö»çÇ× ÀÔ´Ï´Ù!!!!!',to_char(sysdate,'yyyy-mm-dd')
 ,null,null,default);
-commit;
-rollback;
-select * from notice;
-select * from (select rownum as rnum, n.* from (select * from notice order by 1 desc)N) where rnum between 1 and 10;
+
 insert into member values(
     mem_seq.nextval,
     mem_seq.currval,
@@ -104,7 +95,7 @@ commit;
   DECLARE
       vn_base_num NUMBER := 3;
     BEGIN
-       FOR i IN 1..100000
+       FOR i IN 1..100
        LOOP
           insert into member values(
     mem_seq.nextval,
@@ -153,5 +144,4 @@ commit;
        END LOOP;
     END;
     /
-    
-    select rownum as rnum, (select * from board) from board,;
+    commit;

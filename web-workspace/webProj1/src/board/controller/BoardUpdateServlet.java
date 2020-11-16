@@ -1,4 +1,4 @@
-package notice.controller;
+package board.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,20 +15,20 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import notice.model.service.NoticeService;
-import notice.model.vo.Notice;
+import board.model.service.BoardService;
+import board.model.vo.Board;
 
 /**
- * Servlet implementation class NoticeUpdateServlet
+ * Servlet implementation class BoardUpdateServlet
  */
-@WebServlet(name = "noticeUpdate", urlPatterns = { "/noticeUpdate" })
-public class NoticeUpdateServlet extends HttpServlet {
+@WebServlet(name = "boardUpdate", urlPatterns = { "/boardUpdate" })
+public class BoardUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeUpdateServlet() {
+    public BoardUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,62 +37,56 @@ public class NoticeUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8"); 
+		request.setCharacterEncoding("utf-8");
 		if(!ServletFileUpload.isMultipartContent(request)) {
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
-			request.setAttribute("msg", "공지사항 수정 오류[enctype]");
+			request.setAttribute("msg", "공지사항 수정 오류[enctype");
 			request.setAttribute("loc", "/");
 			rd.forward(request, response);
 			return;
 		}
 		String root = getServletContext().getRealPath("/");
-		String saveDir = root + "upload/notice";
-		
+		String saveDir = root + "upload/board";
 		int maxSize = 10*1024*1024;
-		MultipartRequest mRequest = new MultipartRequest(request,saveDir,maxSize,"UTF-8",new DefaultFileRenamePolicy());
-		Notice n = new Notice();
-		n.setNoticeNo(Integer.parseInt(mRequest.getParameter("noticeNo")));
-		n.setNoticeTitle(mRequest.getParameter("noticeTitle"));
-		n.setNoticeContent(mRequest.getParameter("noticeContent"));
-		n.setNoticeFileName(mRequest.getOriginalFileName("filename"));
-		n.setNoticeFilePath(mRequest.getFilesystemName("filename"));
-		//추가항목
-//		기존파일 이름 및 경로
+		MultipartRequest mRequest = new MultipartRequest(request, saveDir, maxSize,"utf-8",new DefaultFileRenamePolicy());
+		Board board = new Board();
+		board.setBoardNo(Integer.parseInt(mRequest.getParameter("boardNo")));
+		board.setBoardTitle(mRequest.getParameter("boardTitle"));
+		board.setBoardContent(mRequest.getParameter("boardContent"));
+		board.setBoardFileName(mRequest.getOriginalFileName("filename"));
+		board.setBoardFilePath(mRequest.getFilesystemName("filename"));
+		
 		String oldFilename = mRequest.getParameter("oldFilename");
 		String oldFilepath = mRequest.getParameter("oldFilepath");
 		String status = mRequest.getParameter("status");
-//		현재 첨부파일 확인
+		
 		File f = mRequest.getFile("filename");
-		if(f!=null && f.length()> 0) {//새로운 첨부파일이 있는 경우
-			if(status.equals("delete")) { // 기존 첨부파일 삭제
-				File delFile = new File(saveDir+"/"+oldFilepath);
-				System.out.println(delFile.getPath());
-				boolean isDeleted = delFile.delete();
-				System.out.println(isDeleted ?"삭제성공": "삭제실패");
-			}
-		} else { //새 첨부파일이 없는경우
+		if(f!=null && f.length() > 0) {
 			if(status.equals("delete")) {
 				File delFile = new File(saveDir+"/"+oldFilepath);
 				boolean isDeleted = delFile.delete();
-				System.out.println(isDeleted ?"삭제성공": "삭제실패");
-			} else if (status.equals("stay")) {
-				n.setNoticeFileName(oldFilename);
-				n.setNoticeFilePath(oldFilepath);
+				System.out.println(isDeleted ? "삭제성공" : "삭제실패");
+			}
+		} else {
+			if(status.equals("delete")) {
+				File delFile = new File(saveDir+"/" + oldFilepath);
+				boolean isDeleted = delFile.delete();
+				System.out.println(isDeleted ? "삭제성공" : "삭제실패");
+			} else if ( status.equals("stay")) {
+				board.setBoardFileName(oldFilename);
+				board.setBoardFilePath(oldFilepath);
 			}
 		}
-		
-		int result = new NoticeService().updateNotice(n);
-		
+		int result = new BoardService().updateBoard(board);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 		if(result>0) {
-			request.setAttribute("msg", "공지사항 수정 완료");
+			request.setAttribute("msg", "자유게시글 수정완료");
 		} else {
-			request.setAttribute("msg", "공지사항 수정 실패");
+			request.setAttribute("msg", "자유게시글 수정실패");
 		}
-		request.setAttribute("loc", "/noticeView?noticeNo="+n.getNoticeNo());
+		request.setAttribute("loc", "/boardView?boardNo="+board.getBoardNo());
 		rd.forward(request, response);
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

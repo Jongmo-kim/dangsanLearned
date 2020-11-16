@@ -38,7 +38,6 @@ public class BoardService {
 		if(reqPage<4) {
 			pageNo = 1;
 		}
-		System.out.printf("start :%d \n pageNo : %d",start,pageNo);
 //		이전버튼 : 페이지 시작번호가 1이 아닌경우에만 이전버튼 생성
 		if(pageNo != -1) {
 			pageNavi += "<a class='btn' href='/boardList?reqPage="+(pageNo-1)+"'>이전</a>";
@@ -87,6 +86,32 @@ public class BoardService {
 		}
 		JDBCTemplate.close(conn);
 		
+		return result;
+	}
+
+	public int updateBoard(Board board) {
+		int result = 0;
+		Connection conn = JDBCTemplate.getConnection();
+		result = new BoardDao().updateBoard(conn,board);
+		if(result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public int deleteBoard(int boardNo) {
+		int result = 0;
+		Connection conn = JDBCTemplate.getConnection();
+		result = new BoardDao().deleteBoard(conn,boardNo);
+		if(result >  0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
 		return result;
 	}
 }

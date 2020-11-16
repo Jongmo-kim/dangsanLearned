@@ -39,8 +39,8 @@
 				<tr>
 					<th colspan="2">
 						<%if(m != null && m.getMemberId().equals(currBoard.getBoardwriter())) {%>
-						<a href="/noticeUpdateFrm?noticeNo=<%=currBoard.getBoardNo() %>" class="btn btn-primary btn-sm">수정하기</a>
-						<a href="/noticeDelete?noticeNo=<%=currBoard.getBoardNo() %>" class="btn btn-primary btn-sm">삭제하기</a>
+						<a href="/boardUpdateFrm?boardNo=<%=currBoard.getBoardNo() %>" class="btn btn-primary btn-sm">수정하기</a>
+						<a href="/boardDelete?boardNo=<%=currBoard.getBoardNo() %>" class="btn btn-primary btn-sm">삭제하기</a>
 						<%} %>
 						<a href="javascript:history.go(-1)" class="btn btn-primary btn-sm">목록으로</a>
 					</th>

@@ -123,7 +123,6 @@ public class BoardDao {
 			board.setBoardDate(rset.getString("Board_date"));
 			board.setBoardFileName(rset.getString("filename"));
 			board.setBoardFilePath(rset.getString("filepath"));
-			board.setBoardStatus(rset.getInt("status"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -147,6 +146,41 @@ public class BoardDao {
 		}finally {
 			JDBCTemplate.close(pstmt);
 		}
+		return result;
+	}
+
+	public int updateBoard(Connection conn, Board board) {
+		PreparedStatement pstmt = null;
+		String sql = "update board set board_title=?,board_content=?,filename=?,filepath=? where board_no=?";
+		int result =0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, board.getBoardTitle());
+			pstmt.setString(2, board.getBoardContent());
+			pstmt.setString(3, board.getBoardFileName());
+			pstmt.setString(4, board.getBoardFilePath());
+			pstmt.setInt(5, board.getBoardNo());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public int deleteBoard(Connection conn, int boardNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = "delete from board where board_no =?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
 		return result;
 	}
 	
