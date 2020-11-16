@@ -1,21 +1,54 @@
 package autoComplete.trie;
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+enum HangulType { 
+	ChoSung,
+	JungSung,
+	JongSung
 
-public class trie {
+}
+public  class hangulTrie {
 	public class trieNode{
 		private char data;
 		private boolean isLeaf;
 		private HashMap<Character, trieNode> children;
 		private trieNode parentNode;
+		private HangulType type;
+		
+		
+		public HangulType getType() {
+			return type;
+		}
+		public void setType(HangulType type) {
+			this.type = type;
+		}
 		public trieNode(char ch) {
 			this.data = ch;
 			isLeaf = false;
 			children = new HashMap<Character, trieNode>();
 			parentNode = this;
+			this.type = HangulType.ChoSung;
 		}
-		
+		public HangulType getNextHangulTypeFromThis() {
+			HangulType type;
+			switch(this.type) {
+			case ChoSung:
+				type = HangulType.JungSung;
+				break;
+			case JungSung:
+				type = HangulType.JongSung;
+				break;
+			case JongSung:
+				type = HangulType.ChoSung;
+				break;
+			default:
+				type = this.type;
+				break;
+			}
+			return type;
+		}
 		public trieNode getParentNode() {
 			return parentNode;
 		}
@@ -62,22 +95,29 @@ public class trie {
 		}
 		public String getCurrString() {
 			trieNode currNode = this;
-			String str = "";
-			while(currNode.parentNode.getData() != ' ') {
+			String str ="";
+			do {
 				char ch = currNode.getData();
 				str += Character.toString(ch);
 				currNode = currNode.getParentNode();
-			}
+			}while(currNode.parentNode.getData() != ' ');
+			
 			StringBuffer sb = new StringBuffer(str);
-			return sb.reverse().toString();
+			String reverseStr = sb.reverse().toString();
+			
+			str = Normalizer.normalize(reverseStr,Normalizer.Form.NFC);
+			return str;
 		}
 	}
+	
 	trieNode rootNode;
-	public trie(){
+	public hangulTrie(){
 		rootNode = new trieNode(' ');
 	}
 	public void insert(String word) {
 		trieNode currNode = rootNode;
+		word = Normalizer.normalize(word, Normalizer.Form.NFD);
+		
 		for(char ch : word.toCharArray()) {
 			if(currNode.getChild(ch) != null) {
 				currNode = currNode.getChild(ch);
@@ -87,10 +127,13 @@ public class trie {
 				currNode = nextNode;
 			}
 		}
+		
 		currNode.setLeaf(true);
 	}
 	public boolean search(String word) {
 		trieNode currNode = rootNode;
+		word = Normalizer.normalize(word, Normalizer.Form.NFD);
+		
 		for(char ch : word.toCharArray()) {
 			if(currNode.getChild(ch) != null) {
 				currNode = currNode.getChild(ch);
@@ -102,6 +145,8 @@ public class trie {
 	}
 	public ArrayList<trieNode> findAllLeafs(String word){
 		ArrayList<trieNode> list = new ArrayList<trieNode>();
+		word = Normalizer.normalize(word, Normalizer.Form.NFD);
+
 		trieNode currNode = rootNode;
         for(char c : word.toCharArray()) {
             if(currNode.getChild(c)!=null) {

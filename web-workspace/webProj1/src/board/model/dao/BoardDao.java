@@ -90,5 +90,64 @@ public class BoardDao {
 		
 		return list;
 	}
+
+	public Board selectOneBoard(Connection conn, int boardNo) {
+		Board board = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset =null;
+		String sql = "select * from Board where board_No = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				board = getBoardFromRset(rset);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally { 
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return board;
+	}
+
+	private Board getBoardFromRset(ResultSet rset) {
+		Board board = new Board();
+		try {
+			board.setBoardNo(rset.getInt("Board_no"));
+			board.setBoardTitle(rset.getString("Board_Title"));
+			board.setBoardwriter(rset.getString("Board_writer"));
+			board.setBoardContent(rset.getString("Board_content"));
+			board.setBoardDate(rset.getString("Board_date"));
+			board.setBoardFileName(rset.getString("filename"));
+			board.setBoardFilePath(rset.getString("filepath"));
+			board.setBoardStatus(rset.getInt("status"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return board;
+	}
+
+	public int insertBoard(Connection conn, Board board) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = "insert into board values(board_seq.nextval,?,?,?,to_char(sysdate,'yyyy-mm-dd'),?,?,default)";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, board.getBoardTitle());
+			pstmt.setString(2, board.getBoardwriter());
+			pstmt.setString(3, board.getBoardContent());
+			pstmt.setString(4, board.getBoardFileName());
+			pstmt.setString(5, board.getBoardFilePath());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
 	
 }

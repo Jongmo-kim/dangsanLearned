@@ -68,4 +68,25 @@ public class BoardService {
 		BoardPageData npd = new BoardPageData(list,pageNavi);
 		return npd;
 	}
+
+	public Board selectOneBoard(int boardNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		Board board = new BoardDao().selectOneBoard(conn, boardNo);
+		JDBCTemplate.close(conn);
+		return board;
+	}
+
+	public int insertBoard(Board board) {
+		int result = 0;
+		Connection conn = JDBCTemplate.getConnection();
+		result = new BoardDao().insertBoard(conn, board);
+		if(result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
 }

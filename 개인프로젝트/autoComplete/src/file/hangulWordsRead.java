@@ -29,7 +29,7 @@ public class hangulWordsRead {
 			break;
 		}
 		
-		File file = new File("C:\\Users\\Admin\\Downloads\\study\\dangsanLearned\\autoComplete\\src\\"+fileName);
+		File file = new File("../autoComplete/src/"+fileName);
 		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 			String line;
 			while ((line = br.readLine()) != null) {
@@ -39,11 +39,12 @@ public class hangulWordsRead {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		
+	}
+	public ArrayList<String> getStringList() {
+		return list;
 	}
 	public void makeTemp() {
-		File pasteFile = new File("C:\\dangsanLearned\\autoComplete\\src\\hangulWords_temp.txt");
+		File pasteFile = new File("../autoComplete/src/hangulWords.txt/hangulWords_temp.txt");
 		try {
 			BufferedWriter bw =new BufferedWriter(new FileWriter(pasteFile));
 			for(String str : list) {
@@ -68,7 +69,6 @@ public class hangulWordsRead {
 		}
 		return cutStr;
 	}
-	public ArrayList<String> getStringList() {
-		return list;
-	}
+	
+
 }

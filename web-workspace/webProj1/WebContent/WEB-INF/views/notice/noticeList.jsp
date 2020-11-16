@@ -26,6 +26,11 @@
 	<%@ include file="/WEB-INF/views/common/header.jsp" %>
 	<section>
 		<div class="table-wrapper" style="text-align:center;width:80%;margin:0 auto;">
+		<%if(m !=null && m.getMemberLevel() == 1 ) {%>
+		<div style="text-align: right;">
+			<a href="/noticeWriteFrm" class="btn btn-primary btn-sm">글쓰기</a>
+		</div>
+		<%} %>
 			<table class="table table-striped">
 				<tr>
 					<th colspan="4" style="font-size:20px; font-weight:bold">
@@ -38,7 +43,7 @@
 				<%for(Notice n : list) {%>
 				<tr>
 					<th><%=n.getNoticeNo() %></th>
-					<th><a href="/noticeView?noticeNo<%=n.getNoticeTitle() %>"><%=n.getNoticeTitle() %></a></th>
+					<th><a href="/noticeView?noticeNo=<%=n.getNoticeNo() %>"><%=n.getNoticeTitle() %></a></th>
 					<th><%=n.getNoticeWriter() %></th>
 					<th><%=n.getNoticeDate() %></th>					
 				</tr>

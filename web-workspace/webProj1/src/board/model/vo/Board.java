@@ -30,6 +30,9 @@ public class Board {
 	public String getBoardContent() {
 		return boardContent;
 	}
+	public String getBoardContentBr() {
+		return boardContent.replaceAll("\r\n", "<br>");
+	}
 	public void setBoardContent(String boardContent) {
 		this.boardContent = boardContent;
 	}

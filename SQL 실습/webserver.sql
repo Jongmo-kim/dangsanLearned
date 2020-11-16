@@ -2,7 +2,12 @@ drop table member;
 drop sequence ;
 drop table board;
 drop sequence board_seq;
+
+drop table notice;
+drop sequence notice_seq;
 commit;
+
+select * from notice order By 2;
 CREATE TABLE MEMBERSHIP(
     MEMBER_NO NUMBER PRIMARY KEY,
     MEMBER_ID VARCHAR2(20) UNIQUE,
@@ -25,6 +30,7 @@ create TABLE BOARD(
     STATUS      CHAR(1) DEFAULT 'Y',       --공지사항 노출여부
     CONSTRAINT FK_BOARD_WRITER FOREIGN KEY (BOARD_WRITER) REFERENCES MEMBER (MEMBER_ID)
 );  
+select to_char(sysdate,'yyyy-mm-dd') from dual;
 CREATE SEQUENCE BOARD_SEQ;
 commit;
 select * from member where member_id='admin' and member_pw='1234';
@@ -47,7 +53,7 @@ create TABLE NOTICE(
     NOTICE_NO NUMBER primary key,             -- 글 번호
     NOTICE_TITLE    varchar2(100) not null,   -- 공지사항 제목
     notice_writer   varchar2(20) not null ,      --공지사항 작성자
-    NOICE_CONTENT   VARCHAR2(4000) NOT NULL,    --공지사항 본문
+    NOtICE_CONTENT   VARCHAR2(4000) NOT NULL,    --공지사항 본문
     NOTICE_DATE     VARCHAR2(10),               --작성날짜
     FILENAME            VARCHAR2(30),           --업로드 파일명
     FILEPATH        VARCHAR2(30),               --실제업로드 파일저장이름

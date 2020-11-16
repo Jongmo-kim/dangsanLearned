@@ -26,8 +26,17 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp" %>
+	
+	
 	<section>
+	
+		
 		<div class="table-wrapper" style="text-align:center;width:80%;margin:0 auto;">
+		<%if(m!=null) {%>
+			<div style="text-align: right;">
+			<a href="/boardWriteFrm" class="btn btn-primary btn-sm">글쓰기</a>
+		</div>
+		<%} %>
 			<table class="table table-striped">
 				<tr>
 					<th colspan="4" style="font-size:20px; font-weight:bold">
@@ -40,7 +49,7 @@
 				<%for(Board n : list) {%>
 				<tr>
 					<th><%=n.getBoardNo() %></th>
-					<th><a href="/BoardView?BoardNo<%=n.getBoardTitle() %>"><%=n.getBoardTitle() %></a></th>
+					<th><a href="/boardView?boardNo=<%=n.getBoardNo() %>"><%=n.getBoardTitle() %></a></th>
 					<th><%=n.getBoardwriter() %></th>
 					<th><%=n.getBoardDate() %></th>					
 				</tr>
