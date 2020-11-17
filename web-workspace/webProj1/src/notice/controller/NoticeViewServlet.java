@@ -1,6 +1,7 @@
 package notice.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import notice.model.service.NoticeService;
 import notice.model.vo.Notice;
+import notice.model.vo.NoticeComment;
+import notice.model.vo.NoticeViewData;
 
 /**
  * Servlet implementation class NoticeViewServlet
@@ -35,7 +38,10 @@ public class NoticeViewServlet extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
-		Notice n = new NoticeService().selectOneNotice(noticeNo);
+		NoticeViewData nvd = new NoticeService().selectNoticeView(noticeNo);
+		Notice n  = nvd.getN();
+		ArrayList<NoticeComment> list = nvd.getList();
+		
 		if (n == null) {
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 			request.setAttribute("msg", "공지사항이 없음");
@@ -44,9 +50,11 @@ public class NoticeViewServlet extends HttpServlet {
 		} else {
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/notice/noticeView.jsp");
 			request.setAttribute("n", n);
+			request.setAttribute("list", list);
+			
 			rd.forward(request, response);
 		}
-
+		
 	}
 
 	/**

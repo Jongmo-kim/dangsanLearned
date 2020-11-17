@@ -1,6 +1,5 @@
-package board.controller;
+package notice.controller;
 
-import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -10,20 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import board.model.service.BoardService;
-import board.model.vo.Board;
+import notice.model.service.NoticeService;
+import notice.model.vo.NoticeComment;
 
 /**
- * Servlet implementation class BoardDeleteServlet
+ * Servlet implementation class InsertNoticeCommentSevlet
  */
-@WebServlet(name = "boardDelete", urlPatterns = { "/boardDelete" })
-public class BoardDeleteServlet extends HttpServlet {
+@WebServlet(name = "InsertNoticeComment", urlPatterns = { "/insertComment" })
+public class InsertNoticeCommentSevlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardDeleteServlet() {
+    public InsertNoticeCommentSevlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,25 +32,23 @@ public class BoardDeleteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
-		Board board = new BoardService().selectOneBoard(boardNo);
-		int result = new BoardService().deleteBoard(boardNo);
+		NoticeComment nc = new NoticeComment();
+		nc.setNoticeCommentLevel(Integer.parseInt(request.getParameter("noticeCommentLevel")));
+		nc.setNoticeCommentWriter(request.getParameter("noticeCommentWriter"));
+		nc.setNoticeCommentContent(request.getParameter("noticeCommentContent"));
+		nc.setNoticeRef(Integer.parseInt(request.getParameter("noticeRef")));
+		nc.setNoticeCommentRef(Integer.parseInt(request.getParameter("noticeCommentRef")));
+		
+		int result = new NoticeService().insertNoticeComment(nc);
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
-		if(result > 0) {
-			if(board.getBoardFileName() != null) {
-				String root = getServletContext().getRealPath("/");
-				System.out.println("root :"+ root);
-				String SaveDir = root + "upload/board/";
-				File delFile = new File(SaveDir + board.getBoardFilePath());
-				boolean isDeleted = delFile.delete();
-				System.out.println(isDeleted ? "파일 삭제 완료" : "파일 삭제 실패");
-			}
-			request.setAttribute("msg", "삭제 성공");
-			request.setAttribute("loc", "/boardList?reqPage=1");
+		
+		if(result > 0 ) {
+			request.setAttribute("msg", "댓글등록성공");
 		} else {
-			request.setAttribute("msg", "삭제 실패");
-			request.setAttribute("loc", "/boardView?boardNo="+boardNo);
+			request.setAttribute("msg", "댓글등록실패");
 		}
+		request.setAttribute("loc","/noticeView?noticeNo=" + nc.getNoticeRef());
 		rd.forward(request, response);
 	}
 

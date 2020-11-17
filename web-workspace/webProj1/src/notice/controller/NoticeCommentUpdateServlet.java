@@ -1,6 +1,5 @@
-package board.controller;
+package notice.controller;
 
-import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -10,20 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import board.model.service.BoardService;
-import board.model.vo.Board;
+import notice.model.service.NoticeService;
 
 /**
- * Servlet implementation class BoardDeleteServlet
+ * Servlet implementation class NoticeCommentUpdateServlet
  */
-@WebServlet(name = "boardDelete", urlPatterns = { "/boardDelete" })
-public class BoardDeleteServlet extends HttpServlet {
+@WebServlet(name = "NoticeCommentUpdate", urlPatterns = { "/noticeCommentUpdate" })
+public class NoticeCommentUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardDeleteServlet() {
+    public NoticeCommentUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,25 +31,19 @@ public class BoardDeleteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
-		Board board = new BoardService().selectOneBoard(boardNo);
-		int result = new BoardService().deleteBoard(boardNo);
+		int noticeCommentNo = Integer.parseInt(request.getParameter("noticeCommentNo"));
+		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
+		String noticeCommentContent = request.getParameter("noticeCommentContent");
+		
+		int result = new NoticeService().updateNoticeComment(noticeCommentNo,noticeCommentContent);
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
-		if(result > 0) {
-			if(board.getBoardFileName() != null) {
-				String root = getServletContext().getRealPath("/");
-				System.out.println("root :"+ root);
-				String SaveDir = root + "upload/board/";
-				File delFile = new File(SaveDir + board.getBoardFilePath());
-				boolean isDeleted = delFile.delete();
-				System.out.println(isDeleted ? "파일 삭제 완료" : "파일 삭제 실패");
-			}
-			request.setAttribute("msg", "삭제 성공");
-			request.setAttribute("loc", "/boardList?reqPage=1");
+		if(result>0) {
+			request.setAttribute("msg", "변경성공");
 		} else {
-			request.setAttribute("msg", "삭제 실패");
-			request.setAttribute("loc", "/boardView?boardNo="+boardNo);
+			request.setAttribute("msg", "변경실패");
 		}
+		request.setAttribute("loc", "/noticeView?noticeNo="+noticeNo);
 		rd.forward(request, response);
 	}
 

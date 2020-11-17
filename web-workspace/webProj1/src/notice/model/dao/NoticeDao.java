@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import common.JDBCTemplate;
 import notice.model.vo.Notice;
+import notice.model.vo.NoticeComment;
 
 public class NoticeDao {
 
@@ -174,6 +175,89 @@ public class NoticeDao {
 		} finally {
 			JDBCTemplate.close(pstmt);
 		}
+		return result;
+	}
+
+	public int insertNoticeComment(Connection conn, NoticeComment nc) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = "insert into notice_Comment values(notice_comment_seq.nextval,?,?,?,?,?,to_char(sysdate,'yyyy-mm-dd'))";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, nc.getNoticeCommentLevel());
+			pstmt.setString(2, nc.getNoticeCommentWriter());
+			pstmt.setString(3, nc.getNoticeCommentContent());
+			pstmt.setInt(4, nc.getNoticeRef());
+			if(nc.getNoticeCommentRef() == 0) {
+				pstmt.setString(5,  null);
+			} else {
+				pstmt.setInt(5,  nc.getNoticeCommentRef());
+			}
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public ArrayList<NoticeComment> selectNoticeCommentList(Connection conn, int noticeNo) {
+		ArrayList<NoticeComment> list = new ArrayList<NoticeComment>();
+		ResultSet rset = null;
+		PreparedStatement pstmt = null;
+		String sql = "select * from notice_comment where notice_ref=? order by 1";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, noticeNo);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				NoticeComment n = getNoticeCommentFromRset(rset);
+				list.add(n);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally { 
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return list;
+	}
+
+	private NoticeComment getNoticeCommentFromRset(ResultSet rset) {
+		NoticeComment comment = new NoticeComment();
+		try {
+			comment.setNoticeCommentNo(rset.getInt("notice_comment_no"));
+			comment.setNoticeCommentLevel(rset.getInt("notice_comment_level"));
+			comment.setNoticeCommentWriter(rset.getString("notice_comment_writer"));
+			comment.setNoticeCommentContent(rset.getString("notice_comment_content"));
+			comment.setNoticeCommentRef(rset.getInt("notice_comment_ref"));
+			comment.setNoticeRef(rset.getInt("notice_ref"));
+			comment.setNoticeCommentDate(rset.getString("notice_comment_date"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return comment;
+	}
+
+	public int updateNoticeComment(Connection conn, int noticeCommentNo, String noticeCommentContent) {
+		PreparedStatement pstmt = null;
+		int result =0;
+		String sql = "update notice_comment set notice_comment_content=? where notice_comment_no=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, noticeCommentContent);
+			pstmt.setInt(2, noticeCommentNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
 		return result;
 	}
 

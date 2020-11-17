@@ -1,5 +1,7 @@
 create user webserver identified by 1234;
 grant resource, connect to webserver;
+DROP SEQUENCE NOTICE_COMMENT_SEQ;
+DROP TABLE NOTICE_COMMENT;
 drop table member;
 drop sequence ;
 drop table board;
@@ -43,7 +45,15 @@ create TABLE NOTICE(
     STATUS      CHAR(1) DEFAULT 'Y',       --°øÁö»çÇ× ³ëÃâ¿©ºÎ
     CONSTRAINT FK_NOTICE_WRITER FOREIGN KEY (NOTICE_WRITER) REFERENCES MEMBER (MEMBER_ID)
 );
+alter table notice drop constraint FK_NOTICE_WRITER;
+alter table notice add constraint FK_NOTICE_WRITER foreign key(notice_writer)
+references member(member_id) on delete cascade;
+alter table board drop constraint FK_Board_WRITER;
+alter table board add constraint FK_Board_WRITER foreign key(board_writer)
+references member(member_id) on delete cascade;
+
 create TABLE BOARD(
+
     BOARD_NO NUMBER primary key,             -- ÀÚÀ¯°Ô½ÃÆÇ ¹øÈ£
     BOARD_TITLE    varchar2(100) not null,   -- ÀÚÀ¯°Ô½ÃÆÇ Á¦¸ñ
     BOARD_writer   varchar2(20) not null ,      --ÀÚÀ¯°Ô½ÃÆÇ ÀÛ¼ºÀÚ
@@ -54,6 +64,21 @@ create TABLE BOARD(
     STATUS      CHAR(1) DEFAULT 'Y',       --°øÁö»çÇ× ³ëÃâ¿©ºÎ
     CONSTRAINT FK_BOARD_WRITER FOREIGN KEY (BOARD_WRITER) REFERENCES MEMBER (MEMBER_ID)
 );  
+CREATE TABLE NOTICE_COMMENT(
+    NOTICE_COMMENT_No NUMBER PRIMARY KEY,
+    NOTICE_COMMENT_LEVEL NUMBER, --´ë´ñ±Û ±¸ºÐ¿ëµµ
+    NOTICE_COMMENT_WRITER VARCHAR2(20),
+    NOTICE_COMMENT_CONTENT VARCHAR2(1000),
+    NOTICE_REF NUMBER,
+    NOTICE_COMMENT_REF NUMBER,    --¾î¶² ´ñ±ÛÀÇ ´ñ±ÛÀÎÁö ±¸ºÐ¿ëµµ
+    NOTICE_COMMENT_DATE VARCHAR2(10),
+    CONSTRAINT FK_NOTICE_COMMENT_WRITER FOREIGN KEY (NOTICE_COMMENT_WRITER) REFERENCES MEMBER(MEMBER_ID) ON DELETE SET NULL,
+    CONSTRAINT FK_NOTICE_REF FOREIGN KEY (NOTICE_REF) REFERENCES NOTICE(NOTICE_NO) ON DELETE CASCADE,
+    CONSTRAINT FK_NOTICE_COMMENT_REF FOREIGN KEY(NOTICE_COMMENT_REF) REFERENCES NOTICE_COMMENT(NOTICE_COMMENT_NO) ON DELETE CASCADE
+);
+select NOTICE_COMMENT_NO, NOTICE_COMMENT_REF from notice_comment;
+CREATE SEQUENCE NOTICE_COMMENT_SEQ;
+select * from notice_comment;
 create sequence notice_seq;
 CREATE SEQUENCE BOARD_SEQ;
 create sequence mem_seq;
@@ -68,7 +93,7 @@ insert into notice values(notice_seq.nextval,'4¹øÂ° °øÁö','admin','4¹øÂ° °øÁö»çÇ
 
 insert into notice values(notice_seq.nextval,'5¹øÂ° °øÁö','admin','5¹øÂ° °øÁö»çÇ× ÀÔ´Ï´Ù!!!!!',to_char(sysdate,'yyyy-mm-dd')
 ,null,null,default);
-
+select * from notice_comment;
 insert into member values(
     mem_seq.nextval,
     mem_seq.currval,
