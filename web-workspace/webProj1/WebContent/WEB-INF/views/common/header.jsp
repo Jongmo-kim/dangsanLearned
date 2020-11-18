@@ -30,8 +30,8 @@
 					<li class="nav-item"><a class="nav-link" href="/noticeList?reqPage=1">공지사항</a>
 					<li class="nav-item"><a class="nav-link" href="/boardList?reqPage=1">자유게시판</a>
 					<li class="nav-item"><a class="nav-link" href="/views/ajax.jsp">AJAX</a>
-					<li class="nav-item"><a class="nav-link" href="#">MENU4</a>
-					<li class="nav-item"><a class="nav-link" href="#">MENU5</a>
+					<li class="nav-item"><a class="nav-link" href="/photoList">포토리스트</a>
+					<li class="nav-item"><a class="nav-link" href="/views/api.jsp">메일</a>
 				</ul>
 			</div>
 			</div>

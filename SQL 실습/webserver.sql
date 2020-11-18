@@ -10,6 +10,14 @@ drop sequence notice_seq;
 drop sequence board_seq;
 drop table notice;
 drop sequence notice_seq;
+create table photo(
+    photo_no number primary key,
+    photo_writer varchar2(20),
+    photo_content varchar2(300),
+    filepath varchar2(300),
+    photo_date varchar2(10),
+    read_count number
+);
 CREATE TABLE MEMBERSHIP(
     MEMBER_NO NUMBER PRIMARY KEY,
     MEMBER_ID VARCHAR2(20) UNIQUE,
@@ -76,6 +84,20 @@ CREATE TABLE NOTICE_COMMENT(
     CONSTRAINT FK_NOTICE_REF FOREIGN KEY (NOTICE_REF) REFERENCES NOTICE(NOTICE_NO) ON DELETE CASCADE,
     CONSTRAINT FK_NOTICE_COMMENT_REF FOREIGN KEY(NOTICE_COMMENT_REF) REFERENCES NOTICE_COMMENT(NOTICE_COMMENT_NO) ON DELETE CASCADE
 );
+create table addr(
+    ADDR1 VARCHAR2(20),
+    ADDR2 varchar2(20)
+);
+insert into addr values('서울','영등포구');
+insert into addr values('서울','동작구');
+insert into addr values('서울','강남구');
+insert into addr values('서울','강서구');
+insert into addr values('서울','중랑구');
+insert into addr values('경기도','수원시');
+insert into addr values('경기도','화성시');
+insert into addr values('경기도','김포시');
+commit;
+select addr2 from addr where addr1 = '서울';
 select NOTICE_COMMENT_NO, NOTICE_COMMENT_REF from notice_comment;
 CREATE SEQUENCE NOTICE_COMMENT_SEQ;
 select * from notice_comment;
@@ -104,7 +126,7 @@ insert into member values(
     ,2
     ,TO_CHAR(SYSDATE-mem_seq.currval,'YYYY-MM-DD')
 );
-    
+  
 
      insert into notice values(
              notice_seq.nextval,

@@ -73,6 +73,24 @@
 			checkFrm.submit();
 			
 		}
+		$("#memberId").keyup(function(){
+			var memberId = $(this).val();
+			$.ajax({
+				url : "/ajaxCheckId",
+				type : "get",
+				data : {memberId,memberId},
+				success : function(data){
+					var msg = $("#idChkMsg");
+					if(data ==1){
+						msg.html('사용가능');
+						msg.css('color','green');
+					} else {
+						msg.html('이미사용중인 아이디');
+						msg.css('color','red');
+					}
+				}
+			});
+		});
 	</script>
 </body>
 </html>

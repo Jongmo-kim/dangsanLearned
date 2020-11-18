@@ -1,1 +1,6 @@
-https://javaplant.tistory.com/14
+//영화 진흥원
+https://www.kobis.or.kr/kobisopenapi/homepg/user/openLogin.do
+//결제모듈
+https://admin.iamport.kr/users/login
+//네이버 플랫폼
+https://www.ncloud.com/
