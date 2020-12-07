@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag and Drop</title>
+</head>
+<style>
+    .box{
+        background-color: palevioletred;
+        width: 50%;
+        border: 1px solid black;
+        height: 500px;
+        display: flex;
+        flex-direction: unset;
+        
+    }
+    .box span{
+        display:flex;
+        width: 10%;
+        height: 10%;
+        line-height: 50px;
+        justify-content: center;
+    }
+    .box span:hover{
+        background-color: aqua;
+    }
+</style>
+<body>
+    <div class="container">
+        <div class="box box1">
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+        </div>
+        <div class="box box2">
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+        </div>
+    </div>
+</body>
+<script>
+    const spans = document.querySelectorAll(".box span");
+    addEventListener('click',function(e){
+        console.log(e);
+    });
+</script>
+</html>
