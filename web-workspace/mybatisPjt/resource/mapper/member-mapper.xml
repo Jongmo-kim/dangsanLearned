@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="member">
+<!-- 
+	<select id="loginMember" parameterType="m" resultType="m">
+		select
+			member_no as memberNo,
+			member_id as memberId,
+			member_pw as memberPw,
+			member_name as memberName,
+			addr
+		from member where member_id=#{memberId} and member_pw=#{memberPw}
+	</select>
+	<select id="searchMember" parameterType="m" resultType="m">
+		select
+			member_no as memberNo,
+			member_id as memberId,
+			member_pw as memberPw,
+			member_name as memberName,
+			addr
+		from member where member_id=#{memberId}
+	</select>
+	-->
+	<select id="searchOneMember" parameterType="m" resultType="m">
+		select
+			member_no as memberNo,
+			member_id as memberId,
+			member_pw as memberPw,
+			member_name as memberName,
+			addr
+		from member where member_id=#{memberId}
+		<if test="memberPw != null">
+			 and member_pw=#{memberPw}
+		</if>
+	</select>
+	<select id="selectAllMember" parameterType="map" resultType="m">
+		select
+			member_no as memberNo,
+			member_id as memberId,
+			<if test="chkPw !=null">
+				member_pw as memberPw,
+			</if>
+			<if test="chkName != null">
+				member_name as memberName,
+			</if>
+			addr
+		from member 
+	</select>
+</mapper>
+

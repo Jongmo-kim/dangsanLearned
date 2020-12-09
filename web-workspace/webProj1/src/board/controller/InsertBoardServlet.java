@@ -48,8 +48,7 @@ public class InsertBoardServlet extends HttpServlet {
 		String root = getServletContext().getRealPath("/");
 		String saveDir = root + "upload/board";
 		int maxSize = 1024 * 1024 * 10;
-		MultipartRequest mRequest = new MultipartRequest(request, saveDir, maxSize, "utf-8",
-				new DefaultFileRenamePolicy());
+		MultipartRequest mRequest = new MultipartRequest(request, saveDir, maxSize, "utf-8",new DefaultFileRenamePolicy());
 		Board board = new Board();
 		board.setBoardContent(mRequest.getParameter("boardContent"));
 		board.setBoardwriter(mRequest.getParameter("boardWriter"));

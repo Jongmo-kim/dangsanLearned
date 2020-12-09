@@ -32,10 +32,6 @@ public class InsertNoticeServlet extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
@@ -53,8 +49,7 @@ public class InsertNoticeServlet extends HttpServlet {
 
 		// 2)최대크기 지정 cos라이브러리 무료버전은 10MB까지
 		int maxSize = 1024 * 1024 * 10;
-		MultipartRequest mRequest = new MultipartRequest(request, saveDir, maxSize, "utf-8",
-				new DefaultFileRenamePolicy());
+		MultipartRequest mRequest = new MultipartRequest(request, saveDir, maxSize, "utf-8",new DefaultFileRenamePolicy());
 		Notice n = new Notice();
 		n.setNoticeTitle(mRequest.getParameter("noticeTitle"));
 		n.setNoticewriter(mRequest.getParameter("noticeWriter"));
@@ -73,10 +68,6 @@ public class InsertNoticeServlet extends HttpServlet {
 		rd.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub

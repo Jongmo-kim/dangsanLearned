@@ -36,7 +36,7 @@ public class NoticeListServlet extends HttpServlet {
 		
 		int reqPage = Integer.parseInt(request.getParameter("reqPage"));
 		NoticePageData npd = new NoticeService().selectList(reqPage);
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/notice/noticeList.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/notice/noticeList1.jsp");
 //		request.setAttribute("list",list);
 		request.setAttribute("list", npd.getList());
 		request.setAttribute("pageNavi", npd.getPageNavi());

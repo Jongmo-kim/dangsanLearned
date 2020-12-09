@@ -6,46 +6,126 @@
     <title>Drag and Drop</title>
 </head>
 <style>
+    .container{
+        display:flex;
+        justify-content: center;
+    }
     .box{
         background-color: palevioletred;
-        width: 50%;
+        width: 200px;
+        height: 100px;
+        margin: 50px;
+
         border: 1px solid black;
         height: 500px;
         display: flex;
         flex-direction: unset;
         
-    }
+    }  
     .box span{
-        display:flex;
-        width: 10%;
-        height: 10%;
+        width: 50px;
+        height: 50px;
         line-height: 50px;
         justify-content: center;
+        cursor: pointer;
+        background-image: url('http://source.unsplash.com/random/50x50');
     }
-    .box span:hover{
-        background-color: aqua;
+    .invisible{
+        display:none;
+    }
+    .hovered{
+        border: 2px dashed black;
     }
 </style>
 <body>
     <div class="container">
         <div class="box box1">
-            <span>1</span>
-            <span>2</span>
-            <span>3</span>
-            <span>4</span>
+            <span draggable="true"></span>
+            <span draggable="true"></span><span draggable="true"></span><span draggable="true"></span><span draggable="true"></span>
         </div>
         <div class="box box2">
-            <span>1</span>
-            <span>2</span>
-            <span>3</span>
-            <span>4</span>
         </div>
+        <div class="box box2">
+        </div>
+        <div class="box box2">
+        </div>
+        <div class="box box2">
+        </div>
+
     </div>
 </body>
 <script>
     const spans = document.querySelectorAll(".box span");
-    addEventListener('click',function(e){
+    const boxes = document.querySelectorAll(".box");
+    let droppedBox ;
+    for (let prop of spans) {
+        prop.addEventListener('dragstart',dragstartFunc);
+            
+        prop.addEventListener('dragend', dragendFunc);
+    }
+    for (let box of boxes){
+        box.addEventListener('dragenter',dragEnterFunc);
+        box.addEventListener('drop',dragDropFunc);
+        box.addEventListener('dragleave',dragLeaveFunc);
+        box.addEventListener('dragover',dragOverFunc);
+    }
+
+    function dragstartFunc(e){
+        console.log('start');
+        setTimeout(()=> this.className += " invisible",0);
+    }
+    function dragendFunc(e){
+        droppedBox.append(this);
+        this.className = this.className.replace(/\binvisible\b/g,"");
+        console.log('end');
+    }
+    function dragEnterFunc(e){
+        e.preventDefault();
+        droppedBox = this;
+        this.className += " hovered"
+    }
+    function dragDropFunc(e){
         console.log(e);
-    });
+        let dt = e.dataTransfer;
+        let files = dt.files;
+
+        handleFiles(files);
+        droppedBox = this;
+
+        this.className = "box";
+        e.preventDefault();
+    }
+    function handleFiles(files){
+        console.log(files);
+        ([...files]).forEach(uploadFile);
+    }
+    function uploadFile(file){
+        let url ='../download';
+        // let formData = new FormData();
+        // formData.append('file',file);
+        // fetch(url, {
+        //     method: 'post',
+        //     body: formData
+        // }).then(()=>{alert('파일업로드성공')})
+        // .catch(()=>{alert('파일업로드실패')});
+        var xhr = new XMLHttpRequest();
+        var formData = new FormData();
+        xhr.open('POST',url,true);
+
+        xhr.addEventListener('readystatechange', function(e){
+            if(xhr.readyState ==4 && xhr.status ==200){
+                alert('파일업로드성공');
+            } else if (xhr.readyState==44 && xhr.status != 200){
+                alert('파일업로드');
+            }
+        })
+    }
+    function dragLeaveFunc(e){
+        this.className = "box";
+    }
+    function dragOverFunc(e){
+        e.preventDefault();
+    }
+
 </script>
 </html>

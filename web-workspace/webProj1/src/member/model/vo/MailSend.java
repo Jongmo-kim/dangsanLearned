@@ -1,9 +1,12 @@
 package member.model.vo;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 import java.util.Random;
 
 import javax.mail.Authenticator;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -34,12 +37,12 @@ public class MailSend {
 			
 		});
 		MimeMessage msg = new MimeMessage(session);
-		try {
-			msg.setSendData(new Data());
-			msg.setFrom(new InternetAddress("bext007@gmail.com","이윤수"));
-			InternetAddress to = new InternetAddress(email);
-			msg.setRecipient(message., address);
-		} 
+			try {
+				msg.setFrom(new InternetAddress("bext007@gmail.com","이윤수"));
+				InternetAddress to = new InternetAddress(email);
+			} catch (UnsupportedEncodingException | MessagingException e) {
+				e.printStackTrace();
+			}
 		return sb.toString();
 	}
 }

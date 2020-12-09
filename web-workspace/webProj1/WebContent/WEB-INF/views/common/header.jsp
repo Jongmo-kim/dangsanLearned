@@ -6,9 +6,7 @@
     %>
     
     <!-- 경로에서 / 는 webcontent를 의미 -->
-<script type="text/javascript" src="/js/jquery-3.3.1.js">
-	
-</script>
+<script type="text/javascript" src="/js/jquery-3.3.1.js"></script>
 <link rel="stylesheet" href="/css/bootstrap.css">
 <link rel="stylesheet" href="/css/header/style.css">
 <link rel="stylesheet" href="/css/header/responsive.css">

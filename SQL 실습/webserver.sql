@@ -28,6 +28,7 @@ CREATE TABLE MEMBERSHIP(
     GENDER CHAR(3) CHECK (GENDER IN('³²','¿©')),
     ENROLL_DATE VARCHAR(10)
 );
+select * from notice;
 create table member(
     MEMBER_NO NUMBER PRIMARY KEY,
     MEMBER_ID VARCHAR2(20) UNIQUE NOT NULL,
